@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>幻方量化 AI/Agent 应用调研报告 | High-Flyer Quant Research</title>
+    <title>金融行业AI转型标杆案例 | 中国头部量化私募AI布局深度调研</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -22,6 +22,7 @@
             --accent-green: #22c55e;
             --accent-orange: #f59e0b;
             --accent-red: #ef4444;
+            --accent-cyan: #06b6d4;
             --border-color: rgba(212, 175, 55, 0.15);
             --glow-gold: rgba(212, 175, 55, 0.3);
         }
@@ -188,9 +189,9 @@
         
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 700;
-            line-height: 1.1;
+            line-height: 1.2;
             margin-bottom: 1.5rem;
             animation: fadeInUp 0.8s ease-out 0.2s backwards;
         }
@@ -205,7 +206,7 @@
         .hero-subtitle {
             font-size: 1.15rem;
             color: var(--text-secondary);
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto 2rem;
             animation: fadeInUp 0.8s ease-out 0.4s backwards;
         }
@@ -371,6 +372,18 @@
             border: 1px solid rgba(212, 175, 55, 0.3);
         }
         
+        .badge-purple {
+            background: rgba(168, 85, 247, 0.15);
+            color: var(--accent-purple);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+        
+        .badge-cyan {
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+        
         /* Quote Box */
         .quote-box {
             background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(212, 175, 55, 0.05));
@@ -396,7 +409,7 @@
         
         .quote-text {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 500;
             color: var(--accent-gold);
             line-height: 1.5;
@@ -415,57 +428,78 @@
             gap: 1.5rem;
         }
         
-        /* Agent Cards */
-        .agent-grid {
+        /* Company Cards */
+        .company-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
             margin-top: 1.5rem;
         }
         
-        .agent-card {
+        .company-card {
             background: var(--bg-card);
             border-radius: 16px;
             padding: 1.5rem;
             border: 1px solid var(--border-color);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
         
-        .agent-card:hover {
+        .company-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+        
+        .company-card.gold::before { background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light)); }
+        .company-card.blue::before { background: linear-gradient(90deg, var(--accent-blue), #60a5fa); }
+        .company-card.purple::before { background: linear-gradient(90deg, var(--accent-purple), #c084fc); }
+        .company-card.green::before { background: linear-gradient(90deg, var(--accent-green), #4ade80); }
+        .company-card.orange::before { background: linear-gradient(90deg, var(--accent-orange), #fbbf24); }
+        .company-card.cyan::before { background: linear-gradient(90deg, var(--accent-cyan), #22d3ee); }
+        
+        .company-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
         
-        .agent-card.green { border-left: 4px solid var(--accent-green); }
-        .agent-card.blue { border-left: 4px solid var(--accent-blue); }
-        .agent-card.orange { border-left: 4px solid var(--accent-orange); }
-        .agent-card.purple { border-left: 4px solid var(--accent-purple); }
-        
-        .agent-card h4 {
-            font-size: 1rem;
+        .company-card h4 {
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
         
-        .agent-card.green h4 { color: var(--accent-green); }
-        .agent-card.blue h4 { color: var(--accent-blue); }
-        .agent-card.orange h4 { color: var(--accent-orange); }
-        .agent-card.purple h4 { color: var(--accent-purple); }
+        .company-card.gold h4 { color: var(--accent-gold); }
+        .company-card.blue h4 { color: var(--accent-blue); }
+        .company-card.purple h4 { color: var(--accent-purple); }
+        .company-card.green h4 { color: var(--accent-green); }
+        .company-card.orange h4 { color: var(--accent-orange); }
+        .company-card.cyan h4 { color: var(--accent-cyan); }
         
-        .agent-card p {
+        .company-card .meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        
+        .company-card p {
             font-size: 0.85rem;
             color: var(--text-secondary);
             margin-bottom: 0.5rem;
         }
         
-        .agent-card ul {
+        .company-card ul {
             font-size: 0.85rem;
             color: var(--text-muted);
             padding-left: 1.25rem;
             margin-top: 0.75rem;
         }
         
-        .agent-card li {
+        .company-card li {
             margin-bottom: 0.4rem;
         }
         
@@ -531,58 +565,54 @@
             font-size: 0.95rem;
         }
         
-        /* Architecture Diagram */
-        .architecture-diagram {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9));
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2rem;
+        /* Comparison Table */
+        .comparison-table {
             overflow-x: auto;
         }
         
-        .architecture-diagram svg {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            display: block;
+        .comparison-table table {
+            min-width: 900px;
         }
         
-        /* Legend */
-        .legend {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-top: 1.5rem;
+        .comparison-table th:first-child,
+        .comparison-table td:first-child {
+            position: sticky;
+            left: 0;
+            background: var(--bg-secondary);
+            z-index: 1;
         }
         
-        .legend-item {
+        /* Insight Box */
+        .insight-box {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.03));
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .insight-box h4 {
+            color: var(--accent-green);
+            margin-bottom: 1rem;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            text-align: center;
+            gap: 0.5rem;
         }
         
-        .legend-item .icon {
-            font-size: 2rem;
+        .insight-box p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .insight-box ul {
+            padding-left: 1.5rem;
+            color: var(--text-secondary);
+        }
+        
+        .insight-box li {
             margin-bottom: 0.5rem;
         }
-        
-        .legend-item .title {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-        
-        .legend-item .desc {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-        
-        .legend-item.gold .title { color: var(--accent-gold); }
-        .legend-item.purple .title { color: var(--accent-purple); }
-        .legend-item.orange .title { color: var(--accent-orange); }
         
         /* Highlight Box */
         .highlight-box {
@@ -643,6 +673,43 @@
             transition: width 1s ease-out;
         }
         
+        /* Legend */
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .legend-item .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .legend-item .title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .legend-item .desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .legend-item.gold .title { color: var(--accent-gold); }
+        .legend-item.purple .title { color: var(--accent-purple); }
+        .legend-item.orange .title { color: var(--accent-orange); }
+        
         /* Footer */
         footer {
             text-align: center;
@@ -702,7 +769,7 @@
         @media (max-width: 1024px) {
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .two-column { grid-template-columns: 1fr; }
-            .agent-grid { grid-template-columns: 1fr; }
+            .company-grid { grid-template-columns: 1fr; }
             .legend { grid-template-columns: 1fr; }
         }
         
@@ -728,410 +795,410 @@
             <span class="logo-text">AI+Finance</span>
         </a>
         <nav class="nav-links">
-            <a href="#overview">概览</a>
-            <a href="#agents">Agent场景</a>
-            <a href="#architecture">战略布局</a>
-            <a href="#timeline">发展历程</a>
-            <a href="#performance">业绩表现</a>
+            <a href="#overview">行业概览</a>
+            <a href="#companies">标杆企业</a>
+            <a href="#comparison">深度对比</a>
+            <a href="#insights">九坤启示</a>
+            <a href="#timeline">发展脉络</a>
         </nav>
     </header>
     
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-badge">
-            <span>调研报告</span>
+            <span>深度调研报告</span>
             <span style="color: var(--text-muted);">|</span>
             <span>2026年2月更新</span>
         </div>
         <h1>
-            <span>幻方量化</span> AI/Agent<br>应用调研报告
+            <span>金融行业AI转型</span><br>标杆案例研究
         </h1>
         <p class="hero-subtitle">
-            深入研究"中国版文艺复兴科技"幻方量化的 AI 布局：DeepSeek 孵化者、萤火超算、全链路 AI Agent 矩阵
+            深度调研中国头部量化私募AI布局：幻方量化、九坤投资、明汯投资、灵均投资、鸣石基金等<br>
+            总结九坤可吸收借鉴的关键经验与差异化路径
         </p>
     </section>
     
     <!-- Stats Grid -->
     <section class="stats-grid" id="overview">
         <div class="stat-card">
-            <div class="stat-value">56.6%</div>
-            <div class="stat-label">2025年收益率<br><span style="color: var(--accent-gold);">百亿量化第2名</span></div>
+            <div class="stat-value">1.5万亿</div>
+            <div class="stat-label">私募量化管理规模<br><span style="color: var(--text-muted);">人民币</span></div>
         </div>
         <div class="stat-card">
-            <div class="stat-value">700亿+</div>
-            <div class="stat-label">管理规模<br><span style="color: var(--text-muted);">人民币</span></div>
+            <div class="stat-value">30%</div>
+            <div class="stat-label">量化交易占比<br><span style="color: var(--accent-gold);">A股日成交额</span></div>
         </div>
         <div class="stat-card">
-            <div class="stat-value">114%</div>
-            <div class="stat-label">五年收益均值<br><span style="color: var(--text-muted);">持续跑赢市场</span></div>
+            <div class="stat-value">28家</div>
+            <div class="stat-label">百亿私募招AI岗<br><span style="color: var(--text-muted);">2025春季</span></div>
         </div>
         <div class="stat-card">
-            <div class="stat-value">100%</div>
-            <div class="stat-label">AI策略覆盖率<br><span style="color: var(--text-muted);">2017年起全覆盖</span></div>
+            <div class="stat-value">3年</div>
+            <div class="stat-label">AI转型窗口期<br><span style="color: var(--accent-orange);">行业共识</span></div>
         </div>
     </section>
     
     <div class="container">
-        <!-- Company Overview -->
-        <section class="section">
+        <!-- Industry Quote -->
+        <div class="quote-box">
+            <p class="quote-text">
+                未来三年内，不应用AI技术的量化经理<br>可能被市场淘汰。
+            </p>
+            <p class="quote-author">— 倍漾量化创始人 冯霁</p>
+        </div>
+        
+        <!-- Company Profiles -->
+        <section class="section" id="companies">
             <div class="section-header">
                 <div class="section-icon">🏢</div>
-                <h2 class="section-title">公司概况</h2>
+                <h2 class="section-title">头部量化私募AI布局全景</h2>
             </div>
-            <div class="card">
-                <table>
-                    <tr>
-                        <th style="width: 25%;">属性</th>
-                        <th>详情</th>
-                    </tr>
-                    <tr>
-                        <td>公司名称</td>
-                        <td>宁波幻方量化投资管理合伙企业（有限合伙）<span class="badge badge-gold" style="margin-left: 0.5rem;">High-Flyer</span></td>
-                    </tr>
-                    <tr>
-                        <td>成立时间</td>
-                        <td>2015年2月</td>
-                    </tr>
-                    <tr>
-                        <td>创始人</td>
-                        <td>梁文锋、徐进、郑大为 <span style="color: var(--text-muted);">（浙江大学校友）</span></td>
-                    </tr>
-                    <tr>
-                        <td>总部</td>
-                        <td>中国杭州</td>
-                    </tr>
-                    <tr>
-                        <td>管理规模</td>
-                        <td><span style="color: var(--accent-gold); font-weight: 600;">约700亿元人民币</span> <span style="color: var(--text-muted);">（约100亿美元）</span></td>
-                    </tr>
-                    <tr>
-                        <td>核心子公司</td>
-                        <td>DeepSeek（深度求索）<span class="badge badge-info" style="margin-left: 0.5rem;">AGI研究</span></td>
-                    </tr>
-                    <tr>
-                        <td>行业地位</td>
-                        <td><span style="color: var(--accent-gold);">"中国版文艺复兴科技"</span></td>
-                    </tr>
-                </table>
+            
+            <div class="company-grid">
+                <!-- 幻方量化 -->
+                <div class="company-card gold">
+                    <h4>🚀 幻方量化（九章资产）</h4>
+                    <div class="meta">创始人：梁文锋 | 总部：杭州 | AUM：700亿+</div>
+                    <p><strong>定位：</strong>"中国版文艺复兴" + AGI探索者</p>
+                    <ul>
+                        <li><strong>2016年</strong>：第一个深度学习模型上线实盘</li>
+                        <li><strong>2017年</strong>：100% AI策略覆盖</li>
+                        <li><strong>萤火超算</strong>：萤火二号搭载10,000×A100 GPU</li>
+                        <li><strong>DeepSeek</strong>：2023年成立，首期投入30亿，2025年震动全球</li>
+                        <li><strong>特色</strong>：唯一做通用大模型的量化机构</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;"><span class="badge badge-success">2025收益56.6%</span> <span class="badge badge-gold">百亿量化第2名</span></p>
+                </div>
+                
+                <!-- 九坤投资 -->
+                <div class="company-card blue">
+                    <h4>🔬 九坤投资</h4>
+                    <div class="meta">创始人：王琛、姚齐聪 | 总部：北京 | AUM：650亿+</div>
+                    <p><strong>定位：</strong>"北九坤，南幻方"双雄格局</p>
+                    <ul>
+                        <li><strong>2012年</strong>：最早成立的量化"四大天王"</li>
+                        <li><strong>三大实验室</strong>：Data Lab、AI Lab、水滴实验室</li>
+                        <li><strong>北溟超算</strong>：建立超算集群</li>
+                        <li><strong>外部合作</strong>：九坤-IDEA联合实验室（金融数字化）</li>
+                        <li><strong>最新</strong>：携手微软复现DeepSeek-R1</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;"><span class="badge badge-info">华尔街派</span> <span class="badge badge-purple">清华系</span></p>
+                </div>
+                
+                <!-- 明汯投资 -->
+                <div class="company-card purple">
+                    <h4>💹 明汯投资</h4>
+                    <div class="meta">创始人：裘慧明 | 总部：上海 | AUM：600亿+</div>
+                    <p><strong>定位：</strong>超算级算力，全球化布局</p>
+                    <ul>
+                        <li><strong>北美投研中心</strong>：数千张GPU、万张CPU、PB级存储</li>
+                        <li><strong>超算能力</strong>：金融场景算力居世界超算TOP500</li>
+                        <li><strong>策略线</strong>：期货程序化、量化选股、事件驱动、量化CTA</li>
+                        <li><strong>创始人背景</strong>：华尔街千禧年基金</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;"><span class="badge badge-success">2024收益前10</span> <span class="badge badge-info">华尔街派</span></p>
+                </div>
+                
+                <!-- 灵均投资 -->
+                <div class="company-card green">
+                    <h4>🎯 灵均投资</h4>
+                    <div class="meta">创始人：蔡枚杰、马志宇 | 总部：上海 | AUM：400亿+</div>
+                    <p><strong>定位：</strong>国内首批量化私募，AI智能体先锋</p>
+                    <ul>
+                        <li><strong>2014年</strong>：成立，国内首批量化私募</li>
+                        <li><strong>富厚科技</strong>：落地AI智能体"AI名片"</li>
+                        <li><strong>跨场景布局</strong>：学习、健康、心理、财经等多领域</li>
+                        <li><strong>2025业绩</strong>：73.51%年度收益，百亿量化第一</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;"><span class="badge badge-success">2025收益73.5%</span> <span class="badge badge-gold">百亿量化冠军</span></p>
+                </div>
+                
+                <!-- 鸣石基金 -->
+                <div class="company-card orange">
+                    <h4>🔥 鸣石基金</h4>
+                    <div class="meta">创始人：袁宇 | 总部：上海 | AUM：200亿+</div>
+                    <p><strong>定位：</strong>全流程AI量化体系</p>
+                    <ul>
+                        <li><strong>2021年</strong>：成立AI实验室G-Lab</li>
+                        <li><strong>超算中心</strong>：两期建设累计投入"亿元级"</li>
+                        <li><strong>AI覆盖</strong>：因子、信号、模型优化、交易算法</li>
+                        <li><strong>2025年3月</strong>：全球招募AI科学家</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;"><span class="badge badge-warning">全流程AI</span> <span class="badge badge-info">全球招聘</span></p>
+                </div>
+                
+                <!-- 宽德投资 -->
+                <div class="company-card cyan">
+                    <h4>🧪 宽德投资</h4>
+                    <div class="meta">创始人：徐御之 | 总部：上海 | AUM：300亿+</div>
+                    <p><strong>定位：</strong>智能学习实验室，超级助手研发</p>
+                    <ul>
+                        <li><strong>智能学习实验室</strong>：从量化起步，探索科学领域</li>
+                        <li><strong>超级助手</strong>：研发通用型AI助手</li>
+                        <li><strong>2025年</strong>：紧急招揽AI研究员和工程师</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;"><span class="badge badge-cyan">通用AI</span> <span class="badge badge-info">科学领域</span></p>
+                </div>
             </div>
         </section>
         
-        <!-- AI Agent Applications -->
-        <section class="section" id="agents">
+        <!-- Comparison Table -->
+        <section class="section" id="comparison">
             <div class="section-header">
-                <div class="section-icon">🤖</div>
-                <h2 class="section-title">AI Agent 应用场景</h2>
+                <div class="section-icon">📊</div>
+                <h2 class="section-title">头部量化私募AI布局深度对比</h2>
             </div>
             
             <div class="card">
-                <h3>🎯 核心应用：AI驱动的量化交易全链路</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-                    幻方量化的AI应用深度覆盖量化交易全链路，从数据处理、因子挖掘到交易执行和市场监测，形成完整的AI Agent矩阵。
-                </p>
-                <table>
-                    <tr>
-                        <th>场景</th>
-                        <th>AI/Agent类型</th>
-                        <th>技术实现</th>
-                        <th>状态</th>
-                    </tr>
-                    <tr>
-                        <td>🔬 Alpha信号挖掘</td>
-                        <td>深度学习因子挖掘Agent</td>
-                        <td>神经网络探索非线性关系，自动生成Alpha因子</td>
-                        <td><span class="badge badge-success">已核实</span></td>
-                    </tr>
-                    <tr>
-                        <td>📡 另类数据处理</td>
-                        <td>CV/NLP多模态Agent</td>
-                        <td>卫星图像分析、舆情数据挖掘、情感因子提取</td>
-                        <td><span class="badge badge-info">行业通用</span></td>
-                    </tr>
-                    <tr>
-                        <td>⚡ 自动化交易执行</td>
-                        <td>强化学习交易Agent</td>
-                        <td>动态拆单、流动性判断、订单优化</td>
-                        <td><span class="badge badge-success">已核实</span></td>
-                    </tr>
-                    <tr>
-                        <td>📊 市场状态监测</td>
-                        <td>实时监测Agent</td>
-                        <td>市场异动检测、风险预警、状态识别</td>
-                        <td><span class="badge badge-success">已核实</span></td>
-                    </tr>
-                    <tr>
-                        <td>📈 深度学习选股</td>
-                        <td>神经网络选股模型</td>
-                        <td>神经网络 + GPU集群（萤火二号）</td>
-                        <td><span class="badge badge-success">已核实</span></td>
-                    </tr>
-                    <tr>
-                        <td>⏱️ AI择时模型</td>
-                        <td>时序预测模型</td>
-                        <td>深度学习时序预测</td>
-                        <td><span class="badge badge-warning">存在挑战</span></td>
-                    </tr>
-                </table>
-            </div>
-            
-            <!-- Quote Box -->
-            <div class="quote-box">
-                <p class="quote-text">
-                    量化公司是没有基金经理的，<br>基金经理就是一堆服务器。
-                </p>
-                <p class="quote-author">— 梁文锋（幻方量化创始人）</p>
-            </div>
-            
-            <!-- Agent Details -->
-            <div class="card">
-                <h3>🔍 Agent场景详解</h3>
-                <div class="agent-grid">
-                    <div class="agent-card green">
-                        <h4>🔬 Alpha信号挖掘 Agent</h4>
-                        <p><strong>核实来源</strong>：21世纪经济报道、行业研究报告</p>
-                        <ul>
-                            <li><strong>功能</strong>：在海量数据中探索复杂的非线性关系</li>
-                            <li><strong>技术</strong>：深度学习 + 强化学习挖掘</li>
-                            <li><strong>核实</strong>：业内人士证实"主要方向是强化深度学习"</li>
-                        </ul>
-                    </div>
-                    <div class="agent-card blue">
-                        <h4>📡 另类数据处理 Agent</h4>
-                        <p><strong>核实来源</strong>：量化行业白皮书、CSDN技术文章</p>
-                        <ul>
-                            <li><strong>CV Agent</strong>：卫星图像分析（工厂、港口）</li>
-                            <li><strong>NLP Agent</strong>：舆情数据、新闻情感提取</li>
-                            <li><strong>技术</strong>：多模态深度学习，结合DeepSeek能力</li>
-                        </ul>
-                    </div>
-                    <div class="agent-card orange">
-                        <h4>⚡ 自动化交易执行 Agent</h4>
-                        <p><strong>核实来源</strong>：新浪财经、贝恩公司报告</p>
-                        <ul>
-                            <li><strong>功能</strong>：动态拆单、流动性判断、订单优化</li>
-                            <li><strong>技术</strong>：强化学习（RL），与DeepSeek-R1同源</li>
-                            <li><strong>历史</strong>：2008年起探索全自动量化交易</li>
-                        </ul>
-                    </div>
-                    <div class="agent-card purple">
-                        <h4>📊 市场状态监测 Agent</h4>
-                        <p><strong>核实来源</strong>：幻方2021年公开声明</p>
-                        <ul>
-                            <li><strong>功能</strong>：市场状态识别、异动检测、风险预警</li>
-                            <li><strong>技术</strong>：实时数据流处理 + AI预测模型</li>
-                            <li><strong>挑战</strong>：2021年曾出现择时失误，持续优化中</li>
-                        </ul>
-                    </div>
+                <h3>🔍 核心维度对比分析</h3>
+                <div class="comparison-table">
+                    <table>
+                        <tr>
+                            <th>维度</th>
+                            <th>幻方量化</th>
+                            <th>九坤投资</th>
+                            <th>明汯投资</th>
+                            <th>灵均投资</th>
+                            <th>鸣石基金</th>
+                        </tr>
+                        <tr>
+                            <td><strong>AI布局深度</strong></td>
+                            <td><span class="badge badge-success">极深</span><br>通用大模型+量化</td>
+                            <td><span class="badge badge-info">深</span><br>三大实验室</td>
+                            <td><span class="badge badge-info">深</span><br>超算级算力</td>
+                            <td><span class="badge badge-warning">中深</span><br>AI智能体</td>
+                            <td><span class="badge badge-warning">中深</span><br>全流程AI</td>
+                        </tr>
+                        <tr>
+                            <td><strong>算力投入</strong></td>
+                            <td>萤火二号<br>10,000×A100<br><span style="color: var(--accent-gold);">约10亿元</span></td>
+                            <td>北溟超算<br>规模未公开<br><span style="color: var(--text-muted);">量化前三</span></td>
+                            <td>北美投研中心<br>数千GPU<br><span style="color: var(--accent-purple);">TOP500</span></td>
+                            <td>未公开</td>
+                            <td>超算中心<br><span style="color: var(--accent-orange);">亿元级</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>AI战略方向</strong></td>
+                            <td>AGI探索<br>DeepSeek独立发展</td>
+                            <td>金融AI垂直<br>+ 大模型复现</td>
+                            <td>金融AI垂直<br>高频策略</td>
+                            <td>AI智能体<br>跨场景应用</td>
+                            <td>全流程AI<br>量化赋能</td>
+                        </tr>
+                        <tr>
+                            <td><strong>创始人背景</strong></td>
+                            <td>浙大CS<br><span class="badge badge-gold">本土派</span></td>
+                            <td>清华+千禧年<br><span class="badge badge-purple">华尔街派</span></td>
+                            <td>千禧年<br><span class="badge badge-purple">华尔街派</span></td>
+                            <td>本土<br><span class="badge badge-gold">本土派</span></td>
+                            <td>本土<br><span class="badge badge-gold">本土派</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>外部产出</strong></td>
+                            <td>DeepSeek<br><span class="badge badge-success">全球影响</span></td>
+                            <td>IQuest-Coder<br><span class="badge badge-info">开源模型</span></td>
+                            <td>无公开产出</td>
+                            <td>AI名片<br><span class="badge badge-info">C端产品</span></td>
+                            <td>无公开产出</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2025业绩</strong></td>
+                            <td>56.6%<br>第2名</td>
+                            <td>表现一般<br>排名靠后</td>
+                            <td>前10</td>
+                            <td>73.5%<br><span class="badge badge-success">第1名</span></td>
+                            <td>中等</td>
+                        </tr>
+                        <tr>
+                            <td><strong>销售模式</strong></td>
+                            <td><span class="badge badge-gold">直销为主</span><br>利润率更高</td>
+                            <td>渠道+直销</td>
+                            <td>渠道为主</td>
+                            <td>渠道为主</td>
+                            <td>渠道为主</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
             
-            <!-- 2026 Updates -->
-            <div class="card" style="border: 1px solid var(--accent-gold);">
-                <h3 style="display: flex; align-items: center; gap: 0.75rem;">
-                    <span class="badge badge-gold">2026年2月最新</span>
-                    AI Agent 场景最新进展
-                </h3>
-                <table style="margin-top: 1rem;">
+            <div class="card">
+                <h3>🧬 AI技术应用场景对比</h3>
+                <table>
                     <tr>
-                        <th>场景</th>
-                        <th>最新进展</th>
-                        <th>状态</th>
+                        <th>应用场景</th>
+                        <th>幻方</th>
+                        <th>九坤</th>
+                        <th>明汯</th>
+                        <th>鸣石</th>
+                        <th>技术描述</th>
                     </tr>
                     <tr>
-                        <td>🧠 DeepSeek-V4赋能</td>
-                        <td>V4强编程能力可能用于策略代码自动生成与优化</td>
-                        <td><span class="badge badge-info">推测中</span></td>
+                        <td>因子挖掘</td>
+                        <td style="color: var(--accent-green);">✓</td>
+                        <td style="color: var(--accent-green);">✓</td>
+                        <td style="color: var(--accent-green);">✓</td>
+                        <td style="color: var(--accent-green);">✓</td>
+                        <td>深度学习探索非线性关系</td>
                     </tr>
                     <tr>
-                        <td>💾 Engram记忆模块</td>
-                        <td>开源记忆模块可能应用于策略长期学习与市场模式记忆</td>
-                        <td><span class="badge badge-gold">新发布</span></td>
+                        <td>NLP因子（研报/新闻）</td>
+                        <td style="color: var(--accent-green);">✓</td>
+                        <td style="color: var(--accent-green);">✓</td>
+                        <td style="color: var(--accent-green);">✓</td>
+                        <td style="color: var(--accent-green);">✓</td>
+                        <td>Transformer分析非结构化数据</td>
                     </tr>
                     <tr>
-                        <td>📐 稀疏注意力机制</td>
-                        <td>DSA论文发表，可能提升大规模数据处理效率</td>
-                        <td><span class="badge badge-success">技术突破</span></td>
+                        <td>多模态数据（卫星/图像）</td>
+                        <td style="color: var(--accent-green);">✓</td>
+                        <td style="color: var(--accent-orange);">○</td>
+                        <td style="color: var(--accent-orange);">○</td>
+                        <td style="color: var(--text-muted);">-</td>
+                        <td>CV处理卫星图像、供应链物流</td>
                     </tr>
                     <tr>
-                        <td>🔄 多策略融合</td>
-                        <td>探索多策略并行，降低单一策略风险</td>
-                        <td><span class="badge badge-success">持续优化</span></td>
+                        <td>交易执行优化</td>
+                        <td style="color: var(--accent-green);">✓</td>
+                        <td style="color: var(--accent-green);">✓</td>
+                        <td style="color: var(--accent-green);">✓</td>
+                        <td style="color: var(--accent-green);">✓</td>
+                        <td>强化学习动态拆单、流动性判断</td>
+                    </tr>
+                    <tr>
+                        <td>动态风控</td>
+                        <td style="color: var(--accent-green);">✓</td>
+                        <td style="color: var(--accent-green);">✓</td>
+                        <td style="color: var(--accent-green);">✓</td>
+                        <td style="color: var(--accent-green);">✓</td>
+                        <td>实时监控+自动对冲机制</td>
+                    </tr>
+                    <tr>
+                        <td>通用大模型研发</td>
+                        <td style="color: var(--accent-gold);">★</td>
+                        <td style="color: var(--accent-orange);">○</td>
+                        <td style="color: var(--text-muted);">-</td>
+                        <td style="color: var(--text-muted);">-</td>
+                        <td>DeepSeek系列（仅幻方）</td>
+                    </tr>
+                    <tr>
+                        <td>代码大模型</td>
+                        <td style="color: var(--accent-gold);">★</td>
+                        <td style="color: var(--accent-green);">✓</td>
+                        <td style="color: var(--text-muted);">-</td>
+                        <td style="color: var(--text-muted);">-</td>
+                        <td>IQuest-Coder（九坤）</td>
                     </tr>
                 </table>
-            </div>
-            
-            <div class="highlight-box">
-                <h4>⚠️ 关于效果与收益</h4>
-                <p>
-                    <strong>幻方量化不对外披露具体Agent的效果和收益数据</strong>。作为私募基金，其策略细节和单场景ROI属于核心商业机密。
-                    公开可查的仅有整体基金收益（2025年56.55%），无法拆分到各个Agent场景的具体贡献。
-                </p>
-                <p>
-                    <strong>可推断的效果</strong>：整体AI策略长期跑赢市场基准20-50%，说明各Agent组合的综合效果显著。
+                <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.85rem;">
+                    ★ 领先 | ✓ 已应用 | ○ 探索中 | - 无公开信息
                 </p>
             </div>
         </section>
         
-        <!-- Strategic Architecture -->
-        <section class="section" id="architecture">
+        <!-- Insights for Jiukun -->
+        <section class="section" id="insights">
             <div class="section-header">
-                <div class="section-icon">🗺️</div>
-                <h2 class="section-title">AI 战略布局全景图</h2>
+                <div class="section-icon">💡</div>
+                <h2 class="section-title">九坤可借鉴的关键经验</h2>
             </div>
             
-            <div class="card">
-                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-                    截至2026年2月，幻方量化形成了"一体两翼"的AI战略布局：以量化交易为核心主体，DeepSeek（AGI研究）和萤火超算（算力基础）为两翼。
-                </p>
-                
-                <div class="architecture-diagram">
-                    <svg viewBox="0 0 900 550" style="width: 100%; max-width: 900px; margin: 0 auto; display: block;">
-                        <defs>
-                            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#B8960C;stop-opacity:1" />
-                            </linearGradient>
-                            <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#22c55e;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#16a34a;stop-opacity:1" />
-                            </linearGradient>
-                            <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
-                            </linearGradient>
-                            <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
-                            </linearGradient>
-                            <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#4a9eff;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
-                            </linearGradient>
-                            <filter id="glow">
-                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                                <feMerge>
-                                    <feMergeNode in="coloredBlur"/>
-                                    <feMergeNode in="SourceGraphic"/>
-                                </feMerge>
-                            </filter>
-                        </defs>
+            <div class="insight-box" style="border-color: var(--accent-gold); background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.03));">
+                <h4 style="color: var(--accent-gold);">🏆 幻方模式的核心启示</h4>
+                <p><strong>1. "技术外溢"战略：从量化到AGI</strong></p>
+                <ul>
+                    <li>幻方将AI研发资源的"余力"转化为DeepSeek，开辟全新价值空间</li>
+                    <li>九坤已有三大实验室积累，可考虑将部分研究成果产品化或开源</li>
+                    <li><strong>建议</strong>：IQuest-Coder是好的开始，可进一步扩展金融垂直大模型</li>
+                </ul>
+            </div>
+            
+            <div class="insight-box">
+                <h4>📈 可借鉴的具体方向</h4>
+                <div class="two-column">
+                    <div>
+                        <p><strong>1. 算力基建持续投入</strong></p>
+                        <ul>
+                            <li>幻方萤火二号：10亿级投入，1万张A100</li>
+                            <li>明汯北美中心：TOP500超算能力</li>
+                            <li><strong>九坤行动</strong>：北溟超算需持续升级，保持"量化前三"地位</li>
+                        </ul>
                         
-                        <!-- Title -->
-                        <text x="450" y="30" text-anchor="middle" fill="#D4AF37" font-size="16" font-weight="bold" font-family="Noto Sans SC">幻方量化 AI 战略布局全景图 (2026.02)</text>
-                        
-                        <!-- Top: Main Entity -->
-                        <rect x="300" y="50" width="300" height="55" rx="12" fill="url(#goldGrad)" filter="url(#glow)"/>
-                        <text x="450" y="77" text-anchor="middle" fill="#0a0a0f" font-size="15" font-weight="bold" font-family="Noto Sans SC">🏦 幻方量化</text>
-                        <text x="450" y="95" text-anchor="middle" fill="#0a0a0f" font-size="10" font-family="Noto Sans SC">AUM 700亿+ | 2025收益56.55%</text>
-                        
-                        <!-- Connection Lines -->
-                        <line x1="350" y1="105" x2="180" y2="145" stroke="#D4AF37" stroke-width="2" stroke-dasharray="5,3" opacity="0.6"/>
-                        <line x1="550" y1="105" x2="720" y2="145" stroke="#D4AF37" stroke-width="2" stroke-dasharray="5,3" opacity="0.6"/>
-                        <line x1="450" y1="105" x2="450" y2="145" stroke="#D4AF37" stroke-width="2"/>
-                        
-                        <!-- Three Wings -->
-                        <rect x="50" y="145" width="260" height="60" rx="10" fill="url(#purpleGrad)"/>
-                        <text x="180" y="172" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="Noto Sans SC">🚀 DeepSeek (深度求索)</text>
-                        <text x="180" y="192" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9" font-family="Noto Sans SC">AGI研究 | 首期投入30亿 | 不用于交易</text>
-                        
-                        <rect x="320" y="145" width="260" height="60" rx="10" fill="url(#greenGrad)" filter="url(#glow)"/>
-                        <text x="450" y="172" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="Noto Sans SC">📈 AI量化交易（核心业务）</text>
-                        <text x="450" y="192" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9" font-family="Noto Sans SC">100% AI策略覆盖 | 全自动化执行</text>
-                        
-                        <rect x="590" y="145" width="260" height="60" rx="10" fill="url(#orangeGrad)"/>
-                        <text x="720" y="172" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="Noto Sans SC">🔥 萤火超算集群</text>
-                        <text x="720" y="192" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9" font-family="Noto Sans SC">萤火二号 | 10,000×A100 GPU</text>
-                        
-                        <!-- Arrow to Agent Matrix -->
-                        <line x1="450" y1="205" x2="450" y2="235" stroke="#22c55e" stroke-width="2"/>
-                        <polygon points="450,245 445,235 455,235" fill="#22c55e"/>
-                        
-                        <!-- Agent Matrix Title -->
-                        <rect x="320" y="250" width="260" height="28" rx="6" fill="rgba(34,197,94,0.15)" stroke="#22c55e" stroke-width="1"/>
-                        <text x="450" y="269" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="bold" font-family="Noto Sans SC">AI Agent 矩阵（量化交易全链路）</text>
-                        
-                        <!-- Agent Cards Row 1 -->
-                        <rect x="50" y="295" width="195" height="75" rx="8" fill="rgba(34,197,94,0.1)" stroke="#22c55e" stroke-width="1"/>
-                        <text x="147" y="320" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="bold" font-family="Noto Sans SC">🔬 Alpha信号挖掘</text>
-                        <text x="147" y="340" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Noto Sans SC">深度学习因子挖掘</text>
-                        <text x="147" y="358" text-anchor="middle" fill="#22c55e" font-size="8" font-family="Noto Sans SC">✓ 已核实</text>
-                        
-                        <rect x="255" y="295" width="195" height="75" rx="8" fill="rgba(74,158,255,0.1)" stroke="#4a9eff" stroke-width="1"/>
-                        <text x="352" y="320" text-anchor="middle" fill="#4a9eff" font-size="11" font-weight="bold" font-family="Noto Sans SC">📡 另类数据处理</text>
-                        <text x="352" y="340" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Noto Sans SC">CV/NLP多模态Agent</text>
-                        <text x="352" y="358" text-anchor="middle" fill="#4a9eff" font-size="8" font-family="Noto Sans SC">ℹ 行业通用</text>
-                        
-                        <rect x="460" y="295" width="195" height="75" rx="8" fill="rgba(245,158,11,0.1)" stroke="#f59e0b" stroke-width="1"/>
-                        <text x="557" y="320" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="bold" font-family="Noto Sans SC">⚡ 自动化交易执行</text>
-                        <text x="557" y="340" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Noto Sans SC">强化学习Agent</text>
-                        <text x="557" y="358" text-anchor="middle" fill="#22c55e" font-size="8" font-family="Noto Sans SC">✓ 已核实</text>
-                        
-                        <rect x="665" y="295" width="195" height="75" rx="8" fill="rgba(168,85,247,0.1)" stroke="#a855f7" stroke-width="1"/>
-                        <text x="762" y="320" text-anchor="middle" fill="#a855f7" font-size="11" font-weight="bold" font-family="Noto Sans SC">📊 市场状态监测</text>
-                        <text x="762" y="340" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Noto Sans SC">实时监测Agent</text>
-                        <text x="762" y="358" text-anchor="middle" fill="#22c55e" font-size="8" font-family="Noto Sans SC">✓ 已核实</text>
-                        
-                        <!-- Agent Cards Row 2 -->
-                        <rect x="150" y="385" width="195" height="75" rx="8" fill="rgba(34,197,94,0.1)" stroke="#22c55e" stroke-width="1"/>
-                        <text x="247" y="410" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="bold" font-family="Noto Sans SC">📈 深度学习选股</text>
-                        <text x="247" y="430" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Noto Sans SC">跑赢基准20-50%</text>
-                        <text x="247" y="448" text-anchor="middle" fill="#22c55e" font-size="8" font-family="Noto Sans SC">✓ 已核实</text>
-                        
-                        <rect x="355" y="385" width="195" height="75" rx="8" fill="rgba(239,68,68,0.1)" stroke="#ef4444" stroke-width="1"/>
-                        <text x="452" y="410" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="bold" font-family="Noto Sans SC">⏱️ AI择时模型</text>
-                        <text x="452" y="430" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Noto Sans SC">2021年曾出现失误</text>
-                        <text x="452" y="448" text-anchor="middle" fill="#f59e0b" font-size="8" font-family="Noto Sans SC">⚠ 存在挑战</text>
-                        
-                        <rect x="560" y="385" width="195" height="75" rx="8" fill="rgba(74,158,255,0.1)" stroke="#4a9eff" stroke-width="1" stroke-dasharray="5,3"/>
-                        <text x="657" y="410" text-anchor="middle" fill="#4a9eff" font-size="11" font-weight="bold" font-family="Noto Sans SC">🆕 2026新能力</text>
-                        <text x="657" y="430" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Noto Sans SC">V4+Engram+DSA</text>
-                        <text x="657" y="448" text-anchor="middle" fill="#4a9eff" font-size="8" font-family="Noto Sans SC">🔄 探索中</text>
-                        
-                        <!-- Bottom: Tech Stack -->
-                        <rect x="50" y="480" width="800" height="55" rx="10" fill="rgba(30,41,59,0.6)" stroke="rgba(212,175,55,0.2)" stroke-width="1"/>
-                        <text x="450" y="502" text-anchor="middle" fill="#D4AF37" font-size="11" font-weight="bold" font-family="Noto Sans SC">🛠️ 技术栈基座</text>
-                        
-                        <!-- Tech Tags -->
-                        <rect x="100" y="512" width="80" height="18" rx="9" fill="rgba(212,175,55,0.15)"/>
-                        <text x="140" y="524" text-anchor="middle" fill="#D4AF37" font-size="9" font-family="Noto Sans SC">深度学习</text>
-                        
-                        <rect x="195" y="512" width="80" height="18" rx="9" fill="rgba(212,175,55,0.15)"/>
-                        <text x="235" y="524" text-anchor="middle" fill="#D4AF37" font-size="9" font-family="Noto Sans SC">强化学习</text>
-                        
-                        <rect x="290" y="512" width="80" height="18" rx="9" fill="rgba(212,175,55,0.15)"/>
-                        <text x="330" y="524" text-anchor="middle" fill="#D4AF37" font-size="9" font-family="Noto Sans SC">多模态AI</text>
-                        
-                        <rect x="385" y="512" width="80" height="18" rx="9" fill="rgba(212,175,55,0.15)"/>
-                        <text x="425" y="524" text-anchor="middle" fill="#D4AF37" font-size="9" font-family="Noto Sans SC">A100集群</text>
-                        
-                        <rect x="480" y="512" width="80" height="18" rx="9" fill="rgba(212,175,55,0.15)"/>
-                        <text x="520" y="524" text-anchor="middle" fill="#D4AF37" font-size="9" font-family="Noto Sans SC">实时数据流</text>
-                        
-                        <rect x="575" y="512" width="80" height="18" rx="9" fill="rgba(212,175,55,0.15)"/>
-                        <text x="615" y="524" text-anchor="middle" fill="#D4AF37" font-size="9" font-family="Noto Sans SC">全链路自动</text>
-                        
-                        <rect x="670" y="512" width="80" height="18" rx="9" fill="rgba(168,85,247,0.2)"/>
-                        <text x="710" y="524" text-anchor="middle" fill="#a855f7" font-size="9" font-family="Noto Sans SC">DeepSeek</text>
-                    </svg>
-                </div>
-                
-                <div class="legend">
-                    <div class="legend-item gold">
-                        <div class="icon">🏦</div>
-                        <div class="title">核心主体</div>
-                        <div class="desc">AI量化交易</div>
+                        <p style="margin-top: 1rem;"><strong>2. AI研发体系化</strong></p>
+                        <ul>
+                            <li>鸣石G-Lab：2021年成立，全流程AI覆盖</li>
+                            <li>宽德智能学习实验室：通用型超级助手</li>
+                            <li><strong>九坤行动</strong>：三大实验室需强化协同，形成完整技术栈</li>
+                        </ul>
                     </div>
-                    <div class="legend-item purple">
-                        <div class="icon">🚀</div>
-                        <div class="title">左翼：AGI研究</div>
-                        <div class="desc">DeepSeek独立发展</div>
-                    </div>
-                    <div class="legend-item orange">
-                        <div class="icon">🔥</div>
-                        <div class="title">右翼：算力基础</div>
-                        <div class="desc">萤火超算集群</div>
+                    <div>
+                        <p><strong>3. 人才战略升级</strong></p>
+                        <ul>
+                            <li>行业AI研究员年薪：200万+</li>
+                            <li>与互联网大厂、科创企业激烈竞争</li>
+                            <li><strong>九坤行动</strong>：利用清华系优势，强化校招+顶尖人才引进</li>
+                        </ul>
+                        
+                        <p style="margin-top: 1rem;"><strong>4. 开源生态建设</strong></p>
+                        <ul>
+                            <li>DeepSeek开源策略：建立全球影响力</li>
+                            <li>九坤IQuest-Coder：已开源SOTA代码模型</li>
+                            <li><strong>九坤行动</strong>：扩大开源范围，建立技术品牌</li>
+                        </ul>
                     </div>
                 </div>
+            </div>
+            
+            <div class="card" style="border: 2px solid var(--accent-blue);">
+                <h3 style="color: var(--accent-blue);">🎯 九坤差异化发展路径建议</h3>
+                <table>
+                    <tr>
+                        <th>维度</th>
+                        <th>当前状态</th>
+                        <th>建议行动</th>
+                        <th>参考标杆</th>
+                    </tr>
+                    <tr>
+                        <td><strong>AI产出可见度</strong></td>
+                        <td>三大实验室，产出内化</td>
+                        <td>扩大开源、技术论文发表</td>
+                        <td>幻方DeepSeek</td>
+                    </tr>
+                    <tr>
+                        <td><strong>算力公开度</strong></td>
+                        <td>北溟超算，细节未公开</td>
+                        <td>适度披露，建立技术形象</td>
+                        <td>明汯TOP500</td>
+                    </tr>
+                    <tr>
+                        <td><strong>跨场景应用</strong></td>
+                        <td>聚焦金融量化</td>
+                        <td>探索金融垂直AI产品</td>
+                        <td>灵均AI名片</td>
+                    </tr>
+                    <tr>
+                        <td><strong>大模型战略</strong></td>
+                        <td>复现DeepSeek-R1</td>
+                        <td>发展金融专用大模型</td>
+                        <td>幻方双轨制</td>
+                    </tr>
+                    <tr>
+                        <td><strong>销售模式</strong></td>
+                        <td>渠道+直销</td>
+                        <td>可考虑增加直销占比</td>
+                        <td>幻方直销为主</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="highlight-box" style="border-color: var(--accent-orange);">
+                <h4 style="color: var(--accent-orange);">⚠️ 需要注意的风险与挑战</h4>
+                <p><strong>1. AI投入产出比的不确定性</strong></p>
+                <p>AI方向投入有"前期投入大，短期内不一定看到结果"的特点，需要量力而行。</p>
+                <p style="margin-top: 0.75rem;"><strong>2. 业绩与AI投入的关联性</strong></p>
+                <p>九坤2025年业绩表现一般，说明AI投入不能直接等同于业绩提升，需关注策略实效。</p>
+                <p style="margin-top: 0.75rem;"><strong>3. 技术落地的实际效果</strong></p>
+                <p>量化机构宣传AI技术，需要实际成果落地，否则可能沦为"PPT技术"。</p>
             </div>
         </section>
         
@@ -1139,198 +1206,96 @@
         <section class="section" id="timeline">
             <div class="section-header">
                 <div class="section-icon">📅</div>
-                <h2 class="section-title">AI 应用发展历程</h2>
+                <h2 class="section-title">行业AI发展脉络</h2>
             </div>
             
             <div class="card">
                 <div class="timeline">
                     <div class="timeline-item">
+                        <div class="timeline-date">2012年</div>
+                        <div class="timeline-content"><strong>九坤投资成立</strong>，最早的量化"四大天王"之一</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2014-2015年</div>
+                        <div class="timeline-content">明汯投资（2014）、灵均投资（2014）、幻方量化（2015）相继成立</div>
+                    </div>
+                    <div class="timeline-item">
                         <div class="timeline-date">2016年10月</div>
-                        <div class="timeline-content">第一个深度学习模型上线实盘交易</div>
+                        <div class="timeline-content"><strong>幻方量化</strong>第一个深度学习模型上线实盘交易</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-date">2017年底</div>
-                        <div class="timeline-content">几乎所有量化策略都采用AI模型计算，AI覆盖率达100%</div>
+                        <div class="timeline-date">2017年</div>
+                        <div class="timeline-content">幻方100% AI策略覆盖，行业AI应用进入探索期</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-date">2019年12月</div>
-                        <div class="timeline-content">成立"幻方AI"，管理规模突破100亿元</div>
+                        <div class="timeline-date">2018-2020年</div>
+                        <div class="timeline-content">因诺、稳博、信弘天禾、世纪前沿等相继成立AI团队</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-date">2020年</div>
-                        <div class="timeline-content">"萤火一号"超算投入运作（1,100块GPU，投资约2亿元）</div>
+                        <div class="timeline-content">幻方萤火一号上线（1,100 GPU），AI从"锦上添花"变为"核心引擎"</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-date">2021年</div>
-                        <div class="timeline-content">"萤火二号"上线（10,000块Nvidia A100，投资约10亿元），规模一度突破1000亿</div>
+                        <div class="timeline-content">萤火二号上线（10,000×A100）；鸣石成立G-Lab；九坤建立联合实验室</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-date">2023年4月</div>
-                        <div class="timeline-content">成立DeepSeek，探索AGI（通用人工智能），首期投入30亿元</div>
+                        <div class="timeline-content"><strong>DeepSeek成立</strong>，幻方探索AGI，首期投入30亿元</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2024年</div>
+                        <div class="timeline-content">行业AI应用从"赋能"转向"长期体系化建设"</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-date">2025年1月</div>
-                        <div class="timeline-content">DeepSeek R1模型发布，震动全球AI界，训练成本降低一个数量级</div>
+                        <div class="timeline-content"><strong>DeepSeek R1发布</strong>，震动全球AI界，量化行业关注度空前</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-date">2025年2月</div>
-                        <div class="timeline-content">DeepSeek R1开源，梁文锋参加总理座谈会并发言</div>
+                        <div class="timeline-content">灵均2025收益73.5%登顶，幻方56.6%居第二</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-date">2025年8月</div>
-                        <div class="timeline-content">幻方量化管理规模超700亿元，2025年收益率56.55%位列百亿量化第二</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2026年1月</div>
-                        <div class="timeline-content">DeepSeek-V4发布（据报道具备强编程能力），开源记忆模块Engram</div>
+                        <div class="timeline-date">2025年3月</div>
+                        <div class="timeline-content">九坤、宽德、蒙玺、鸣石等4家头部量化公开宣布加码AI研发</div>
                     </div>
                     <div class="timeline-item highlight">
                         <div class="timeline-date">2026年2月（当前）</div>
-                        <div class="timeline-content"><strong>幻方量化持续深耕AI量化交易，DeepSeek生态持续扩展</strong></div>
+                        <div class="timeline-content"><strong>行业进入"AI驱动"规模化阶段</strong>，28家百亿私募招AI岗</div>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Performance -->
-        <section class="section" id="performance">
+        <!-- Industry Trends -->
+        <section class="section">
             <div class="section-header">
-                <div class="section-icon">💰</div>
-                <h2 class="section-title">业绩表现与收益分析</h2>
+                <div class="section-icon">📈</div>
+                <h2 class="section-title">行业趋势与展望</h2>
             </div>
             
             <div class="two-column">
                 <div class="card">
-                    <h3>📊 最新业绩数据（2025年）</h3>
-                    <div class="progress-container">
-                        <div class="progress-label">
-                            <span>2025年收益均值</span>
-                            <span>56.55%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 75%;"></div>
-                        </div>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-label">
-                            <span>近三年收益均值</span>
-                            <span>85.15%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 85%;"></div>
-                        </div>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-label">
-                            <span>近五年收益均值</span>
-                            <span>114.35%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 100%;"></div>
-                        </div>
-                    </div>
-                    <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">
-                        <span class="badge badge-success">百亿量化第2名</span>
-                        <span style="margin-left: 0.5rem;">仅次于灵均投资（73.51%）</span>
-                    </p>
+                    <h3>🔮 技术方向</h3>
+                    <ul style="padding-left: 1.5rem; color: var(--text-secondary);">
+                        <li style="margin-bottom: 0.75rem;"><strong>大模型研发</strong>：从DeepSeek到金融垂直模型</li>
+                        <li style="margin-bottom: 0.75rem;"><strong>智能体应用</strong>：AI Agent在投研、交易全链路落地</li>
+                        <li style="margin-bottom: 0.75rem;"><strong>算力基建</strong>：超算级集群成为标配</li>
+                        <li style="margin-bottom: 0.75rem;"><strong>多模态场景</strong>：NLP、CV、端到端模型</li>
+                        <li><strong>强化学习</strong>：交易执行、风控优化</li>
+                    </ul>
                 </div>
                 
                 <div class="card">
-                    <h3>📈 规模变化历程</h3>
-                    <table>
-                        <tr>
-                            <td>2019年</td>
-                            <td>突破100亿元</td>
-                            <td><span class="badge badge-info">百亿私募</span></td>
-                        </tr>
-                        <tr>
-                            <td>2021年</td>
-                            <td>一度突破1000亿元</td>
-                            <td><span class="badge badge-success">千亿巨头</span></td>
-                        </tr>
-                        <tr>
-                            <td>2021年11月</td>
-                            <td>宣布封盘</td>
-                            <td><span class="badge badge-warning">暂停申购</span></td>
-                        </tr>
-                        <tr>
-                            <td>2023年</td>
-                            <td>主动降至400-500亿</td>
-                            <td><span class="badge badge-info">策略优化</span></td>
-                        </tr>
-                        <tr>
-                            <td>2025年末</td>
-                            <td>超过700亿元</td>
-                            <td><span class="badge badge-success">强劲恢复</span></td>
-                        </tr>
-                    </table>
+                    <h3>🏁 竞争格局</h3>
+                    <ul style="padding-left: 1.5rem; color: var(--text-secondary);">
+                        <li style="margin-bottom: 0.75rem;"><strong>头部集中</strong>：七大巨头规模占比近30%</li>
+                        <li style="margin-bottom: 0.75rem;"><strong>技术壁垒</strong>：自研实验室、算力投入、跨界合作</li>
+                        <li style="margin-bottom: 0.75rem;"><strong>人才争夺</strong>：顶尖AI专家年薪200万+</li>
+                        <li style="margin-bottom: 0.75rem;"><strong>差异化</strong>：AGI vs 垂直AI vs 跨场景</li>
+                        <li><strong>AI核心竞争力</strong>：已成为量化投资的核心竞争力</li>
+                    </ul>
                 </div>
-            </div>
-        </section>
-        
-        <!-- DeepSeek Section -->
-        <section class="section">
-            <div class="section-header">
-                <div class="section-icon">🚀</div>
-                <h2 class="section-title">DeepSeek：从量化到AGI</h2>
-            </div>
-            
-            <div class="card">
-                <table>
-                    <tr>
-                        <th style="width: 25%;">属性</th>
-                        <th>说明</th>
-                    </tr>
-                    <tr>
-                        <td>成立时间</td>
-                        <td>2023年4月</td>
-                    </tr>
-                    <tr>
-                        <td>定位</td>
-                        <td>探索AGI（通用人工智能）本质</td>
-                    </tr>
-                    <tr>
-                        <td>融资状态</td>
-                        <td>零外部融资，全部依赖幻方资金</td>
-                    </tr>
-                    <tr>
-                        <td>首期投资</td>
-                        <td><span style="color: var(--accent-gold); font-weight: 600;">30亿元</span>（幻方自有资金）</td>
-                    </tr>
-                    <tr>
-                        <td>估值区间</td>
-                        <td>10亿 - 1500亿美元（彭博调研）</td>
-                    </tr>
-                </table>
-                
-                <h3 style="margin-top: 2rem;">🎯 关键成果</h3>
-                <table style="margin-top: 1rem;">
-                    <tr>
-                        <th>产品</th>
-                        <th>发布时间</th>
-                        <th>影响</th>
-                    </tr>
-                    <tr>
-                        <td>DeepSeek-V2</td>
-                        <td>2024年5月</td>
-                        <td>性价比极高的开源模型</td>
-                    </tr>
-                    <tr>
-                        <td>DeepSeek-V3</td>
-                        <td>2024年12月</td>
-                        <td>达到GPT-4级别能力</td>
-                    </tr>
-                    <tr>
-                        <td>DeepSeek-R1</td>
-                        <td>2025年1月</td>
-                        <td><span class="badge badge-success">训练成本降低一个数量级，震动全球</span></td>
-                    </tr>
-                    <tr>
-                        <td>DeepSeek-V4</td>
-                        <td>2026年1月</td>
-                        <td><span class="badge badge-gold">强编程能力 + Engram记忆模块</span></td>
-                    </tr>
-                </table>
             </div>
         </section>
         
@@ -1344,16 +1309,19 @@
             <div class="card" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.03));">
                 <ol style="padding-left: 1.5rem; color: var(--text-secondary);">
                     <li style="margin-bottom: 1.25rem; line-height: 1.7;">
-                        <strong style="color: var(--accent-gold);">幻方是中国量化AI应用最成功的案例之一</strong>，从2016年开始全面采用深度学习进行投资决策，是国内最早的"AI原生"量化基金
+                        <strong style="color: var(--accent-gold);">幻方量化是中国量化AI应用的标杆案例</strong>，从2016年开始全面采用深度学习，并成功孵化出震动全球的DeepSeek，开创了"量化+AGI"双轨发展模式
                     </li>
                     <li style="margin-bottom: 1.25rem; line-height: 1.7;">
-                        <strong style="color: var(--accent-gold);">AI策略的效果整体优秀</strong>，长期跑赢市场基准20-50%，2025年收益56.55%位列百亿量化第二
+                        <strong style="color: var(--accent-gold);">九坤投资具备追赶的基础条件</strong>，三大实验室、北溟超算、清华系人才优势，已成功复现DeepSeek-R1并开源IQuest-Coder
                     </li>
                     <li style="margin-bottom: 1.25rem; line-height: 1.7;">
-                        <strong style="color: var(--accent-gold);">挑战在于择时和规模</strong>，2021年的回撤表明AI在市场波动时的择时判断仍有改进空间，同时策略容量存在上限
+                        <strong style="color: var(--accent-gold);">九坤的差距在于"外部产出可见度"</strong>，AI投入集中于内部量化策略，缺乏像DeepSeek这样具有全球影响力的外部产出
+                    </li>
+                    <li style="margin-bottom: 1.25rem; line-height: 1.7;">
+                        <strong style="color: var(--accent-gold);">建议九坤采取"金融垂直AI+开源生态"战略</strong>，在金融专用大模型、AI Agent产品化方面建立差异化优势
                     </li>
                     <li style="line-height: 1.7;">
-                        <strong style="color: var(--accent-gold);">最大战略收益是孵化DeepSeek</strong>，幻方的AI能力积累和资金支持，使其成功孵化出震动全球AI界的DeepSeek大模型
+                        <strong style="color: var(--accent-gold);">行业共识：未来3年是AI转型关键窗口期</strong>，不拥抱AI的量化机构可能被市场淘汰
                     </li>
                 </ol>
             </div>
@@ -1362,8 +1330,8 @@
     
     <!-- Footer -->
     <footer>
-        <p>幻方量化 AI/Agent 应用调研报告</p>
-        <p>调研日期: 2026年2月 | 数据来源: Wikipedia, Fortune, 证券时报, 21世纪经济报道, Financial Times, Bloomberg</p>
+        <p>金融行业AI转型标杆案例研究 | 中国头部量化私募AI布局深度调研</p>
+        <p>调研日期: 2026年2月 | 数据来源: 中国证券报、21世纪经济报道、证券时报、私募排排网、Bloomberg</p>
         <p style="margin-top: 1rem;">
             <a href="https://xiaoxiong20260206.github.io/AIFinLearn/">← 返回 AI+Finance 调研合集</a>
         </p>
