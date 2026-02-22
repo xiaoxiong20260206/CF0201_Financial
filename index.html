@@ -3,17 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>金融从业者工作场景分析与可视化</title>
+    <title>金融从业者工作场景分析与可视化 | AI-Powered Finance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="bg-pattern"></div>
+    <div class="grid-lines"></div>
+    
     <!-- Header -->
     <header class="header">
         <div class="header-content">
+            <div class="hero-badge">
+                <span>工作场景分析</span>
+                <span style="color: var(--text-muted);">|</span>
+                <span>Agent类型梳理</span>
+            </div>
             <h1 class="title">
                 <span class="title-icon">📊</span>
-                金融从业者工作场景分析与可视化
+                金融从业者<span>工作场景</span>分析与可视化
             </h1>
             <p class="subtitle">
                 基于量化分析师、基金经理、风控专员等金融从业者的日常工作场景，系统性梳理任务分类、时间占比、Agent类型和业界产品
@@ -33,17 +45,17 @@
                 <div class="stat-card research">
                     <div class="stat-icon">📈</div>
                     <div class="stat-value" id="research-tasks">0</div>
-                    <div class="stat-label">投研任务</div>
+                    <div class="stat-label">投研任务<br><span style="color: var(--accent-blue);">60%时间占比</span></div>
                 </div>
                 <div class="stat-card operation">
                     <div class="stat-icon">⚙️</div>
                     <div class="stat-value" id="operation-tasks">0</div>
-                    <div class="stat-label">运营合规任务</div>
+                    <div class="stat-label">运营合规任务<br><span style="color: var(--accent-purple);">40%时间占比</span></div>
                 </div>
                 <div class="stat-card agents">
                     <div class="stat-icon">🤖</div>
                     <div class="stat-value" id="agent-types">9</div>
-                    <div class="stat-label">Agent类型</div>
+                    <div class="stat-label">Agent类型<br><span style="color: var(--accent-green);">全场景覆盖</span></div>
                 </div>
             </div>
         </section>
@@ -276,13 +288,30 @@
         <div class="footer-content">
             <p>金融从业者工作场景分析与可视化 | 版本 2.0.0</p>
             <p>数据基于金融机构数字化转型实践整理</p>
+            <p style="margin-top: 0.75rem;">
+                <a href="https://xiaoxiong20260206.github.io/AIFinLearn/">← 返回 AI+Finance 调研合集</a>
+            </p>
         </div>
     </footer>
 
     <!-- Tooltip -->
     <div class="tooltip" id="tooltip"></div>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
     <script src="network-graph.js"></script>
     <script src="main.js"></script>
+    <script>
+        // Back to top button visibility
+        window.addEventListener('scroll', () => {
+            const btn = document.querySelector('.back-to-top');
+            if (window.scrollY > 500) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        });
+    </script>
 </body>
 </html>

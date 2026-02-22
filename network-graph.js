@@ -1081,9 +1081,9 @@ function renderNetworkGraph() {
             return `M ${source.x} ${source.y} C ${midX} ${source.y}, ${midX} ${target.y}, ${target.x} ${target.y}`;
         })
         .attr('fill', 'none')
-        .attr('stroke', '#E2E8F0')
+        .attr('stroke', 'rgba(212, 175, 55, 0.3)')
         .attr('stroke-width', 1.5)
-        .attr('opacity', 0.6)
+        .attr('opacity', 0.5)
         .attr('data-source', d => d.source)
         .attr('data-target', d => d.target);
     
@@ -1293,9 +1293,9 @@ function highlightConnected(nodeId, nodes, links, nodeElements, linkElements) {
     }).style('stroke', function(d) {
         if (clickedNode && clickedNode.type === 'product') {
             const isRelatedLink = connectedNodes.has(d.source) && connectedNodes.has(d.target);
-            return isRelatedLink ? '#D4AF37' : '#E2E8F0';
+            return isRelatedLink ? '#d4af37' : 'rgba(212, 175, 55, 0.3)';
         }
-        return (d.source === nodeId || d.target === nodeId) ? '#D4AF37' : '#E2E8F0';
+        return (d.source === nodeId || d.target === nodeId) ? '#d4af37' : 'rgba(212, 175, 55, 0.3)';
     }).style('stroke-width', function(d) {
         if (clickedNode && clickedNode.type === 'product') {
             const isRelatedLink = connectedNodes.has(d.source) && connectedNodes.has(d.target);
@@ -1310,7 +1310,7 @@ function resetHighlight(nodeElements, linkElements) {
     nodeElements.style('opacity', 1);
     linkElements
         .style('opacity', 0.6)
-        .style('stroke', '#E2E8F0')
+        .style('stroke', 'rgba(212, 175, 55, 0.3)')
         .style('stroke-width', 1.5);
 }
 
