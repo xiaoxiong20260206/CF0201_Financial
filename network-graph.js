@@ -818,17 +818,9 @@ function buildNetworkData() {
         });
     });
     
-    // 添加场景大类节点（第1列）
+    // 添加场景子类节点（第1列）- 跳过场景大类
     Object.entries(taskData).forEach(([sceneKey, scene]) => {
-        nodes.push({
-            id: scene.id,
-            name: scene.name,
-            type: 'scene',
-            timePercent: scene.timePercent,
-            column: 1
-        });
-        
-        // 添加场景子类节点（第2列）
+        // 添加场景子类节点（第1列）
         Object.entries(scene.subcategories).forEach(([subcatName, subcat]) => {
             nodes.push({
                 id: subcat.id,
@@ -836,17 +828,10 @@ function buildNetworkData() {
                 type: 'subcat',
                 timePercent: subcat.timePercent,
                 parentScene: scene.id,
-                column: 2
+                column: 1
             });
             
-            // 场景->子类连线
-            links.push({
-                source: scene.id,
-                target: subcat.id,
-                type: 'scene-subcat'
-            });
-            
-            // 添加任务节点（第3列）
+            // 添加任务节点（第2列）
             subcat.tasks.forEach(task => {
                 nodes.push({
                     id: task.id,
@@ -859,7 +844,7 @@ function buildNetworkData() {
                     example: task.example,
                     parentSubcat: subcat.id,
                     parentScene: scene.id,
-                    column: 3
+                    column: 2
                 });
                 
                 // 子类->任务连线
@@ -900,7 +885,7 @@ function buildNetworkData() {
         });
     });
     
-    // 添加Agent节点（第4列）
+    // 添加Agent节点（第3列）
     Object.entries(agentData).forEach(([agentKey, agent]) => {
         nodes.push({
             id: agent.id,
@@ -912,7 +897,7 @@ function buildNetworkData() {
             description: agent.description,
             cssClass: agent.cssClass,
             agentKey: agentKey,
-            column: 4
+            column: 3
         });
     });
     
@@ -942,7 +927,7 @@ function buildNetworkData() {
             url: productLinks[product] || '#',
             relatedTasks: productTaskMap[product] || [],
             relatedAgents: Array.from(productAgentMap[product] || []),
-            column: 5
+            column: 4
         });
     });
     
@@ -1033,19 +1018,18 @@ function renderNetworkGraph() {
     userGradient.append('stop').attr('offset', '0%').attr('stop-color', '#F97316');
     userGradient.append('stop').attr('offset', '100%').attr('stop-color', '#FDBA74');
     
-    // 计算节点位置（现在有6列）
-    const columnWidth = width / 6;
+    // 计算节点位置（现在有5列）
+    const columnWidth = width / 5;
     const columnX = [
         columnWidth * 0.5,
         columnWidth * 1.5,
         columnWidth * 2.5,
         columnWidth * 3.5,
-        columnWidth * 4.5,
-        columnWidth * 5.5
+        columnWidth * 4.5
     ];
     
     // 按列分组节点
-    const nodesByColumn = [[], [], [], [], [], []];
+    const nodesByColumn = [[], [], [], [], []];
     nodes.forEach(node => {
         nodesByColumn[node.column].push(node);
     });
