@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>金融数字员工产品架构 | AI Digital Worker Architecture</title>
+    <title>私募量化数字员工产品架构 | AI Digital Worker Architecture</title>
     <style>
         /* ==================== CSS 变量定义 ==================== */
         :root {
@@ -516,8 +516,8 @@
         <!-- 头部区域 -->
         <header class="header">
             <span class="badge">🏗️ 产品规划</span>
-            <h1 class="main-title">金融数字员工产品架构与Roadmap</h1>
-            <p class="subtitle">基于金融从业者工作场景分析，设计覆盖投研、交易、风控、运营全链路的AI数字员工产品体系</p>
+            <h1 class="main-title">私募量化数字员工产品架构与Roadmap</h1>
+            <p class="subtitle">基于私募量化公司工作场景分析，设计覆盖投研、交易、风控、运营全链路的AI数字员工产品体系</p>
         </header>
         
         <!-- 导航目录 -->
@@ -534,8 +534,16 @@
                 <span class="section-number">3</span>
                 <span>Agent能力矩阵</span>
             </a>
+            <a href="#coverage" class="toc-item">
+                <span class="section-number section-number-blue">4</span>
+                <span>覆盖率计算方式</span>
+            </a>
+            <a href="#roi" class="toc-item">
+                <span class="section-number section-number-purple">5</span>
+                <span>Agent ROI分析</span>
+            </a>
             <a href="#roadmap" class="toc-item">
-                <span class="section-number section-number-yellow">4</span>
+                <span class="section-number section-number-yellow">6</span>
                 <span>产品Roadmap</span>
             </a>
         </nav>
@@ -596,7 +604,7 @@
                     </defs>
                     
                     <!-- Title -->
-                    <text x="450" y="25" text-anchor="middle" fill="#24292F" font-size="14" font-weight="600" font-family="system-ui, sans-serif">金融数字员工产品架构 (Finance AI Digital Worker)</text>
+                    <text x="450" y="25" text-anchor="middle" fill="#24292F" font-size="14" font-weight="600" font-family="system-ui, sans-serif">私募量化数字员工产品架构 (Quant AI Digital Worker)</text>
                     
                     <!-- ==================== L1: 用户交互层 ==================== -->
                     <rect x="30" y="45" width="840" height="95" rx="8" fill="#F6F8FA" stroke="#BF8700" stroke-width="2"/>
@@ -986,10 +994,252 @@
             </div>
         </section>
         
+        <!-- 覆盖率计算方式 -->
+        <section id="coverage" class="section-card">
+            <div class="section-header">
+                <span class="section-number section-number-blue">4</span>
+                <h2>覆盖率计算方式</h2>
+            </div>
+            <div class="section-content">
+                <p><strong>覆盖率 = 该Agent可处理的任务时间占比总和</strong></p>
+                
+                <div class="quote-box">
+                    <strong>计算逻辑</strong>：金融从业者的日常工作被划分为若干任务，每个任务有明确的时间占比估算。某Agent的覆盖率 = 所有关联该Agent的任务时间占比之和。验证规则：所有Agent覆盖率总和 = 100%。
+                </div>
+                
+                <h3 style="font-size: 14px; font-weight: 600; color: var(--color-text-primary); margin: 20px 0 12px;">工作场景时间分布</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>场景类型</th>
+                                <th>时间占比</th>
+                                <th>典型任务</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>投研场景</strong></td>
+                                <td><span class="status status-danger">60%</span></td>
+                                <td>策略研发、投资研究、数据分析、市场分析、风险管理</td>
+                            </tr>
+                            <tr>
+                                <td><strong>运营合规场景</strong></td>
+                                <td><span class="status status-warning">40%</span></td>
+                                <td>合规审核、报告生成、客户服务、会议管理、数据报表</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3 style="font-size: 14px; font-weight: 600; color: var(--color-text-primary); margin: 20px 0 12px;">各Agent覆盖任务明细</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Agent</th>
+                                <th>覆盖率</th>
+                                <th>覆盖的任务</th>
+                                <th>时间占比明细</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>📈 Quant Agent</strong></td>
+                                <td><span class="status status-success">28%</span></td>
+                                <td>策略编写、因子计算、回测分析、技术分析、信号生成</td>
+                                <td>8% + 5% + 5% + 2% + 8%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🔬 Research Agent</strong></td>
+                                <td><span class="status status-success">18%</span></td>
+                                <td>行业研究、公司分析、研报撰写、宏观分析</td>
+                                <td>6% + 5% + 4% + 3%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>📊 Data Agent</strong></td>
+                                <td><span class="status status-info">14%</span></td>
+                                <td>数据获取、数据清洗、数据可视化、报表生成</td>
+                                <td>4% + 3% + 3% + 4%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>⚠️ Risk Agent</strong></td>
+                                <td><span class="status status-info">12%</span></td>
+                                <td>风险评估、VaR计算、压力测试、合规检查</td>
+                                <td>4% + 2% + 3% + 3%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>💬 Chatbot Agent</strong></td>
+                                <td><span class="status status-info">11%</span></td>
+                                <td>知识问答、文档写作、翻译、客户服务</td>
+                                <td>3% + 3% + 2% + 3%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>⚙️ Workflow Agent</strong></td>
+                                <td><span class="status status-warning">9%</span></td>
+                                <td>流程自动化、报告审核、邮件处理、审批流程</td>
+                                <td>3% + 2% + 2% + 2%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>💹 Trading Agent</strong></td>
+                                <td><span class="status status-warning">5%</span></td>
+                                <td>订单管理、交易执行、执行分析、算法交易</td>
+                                <td>1% + 2% + 1% + 1%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🌐 Browser Agent</strong></td>
+                                <td><span class="status status-warning">3%</span></td>
+                                <td>信息采集、舆情监控、公告抓取</td>
+                                <td>1% + 1% + 1%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="insight-box">
+                    <div class="insight-title">💡 验证规则</div>
+                    <p>28% + 18% + 14% + 12% + 11% + 9% + 5% + 3% = <strong>100%</strong></p>
+                    <p style="margin-top: 8px; font-size: 13px; color: var(--color-text-muted);">覆盖率决定了开发优先级：覆盖率越高的Agent，能解决的用户痛点越多，ROI越高，应优先开发。</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Agent ROI分析 -->
+        <section id="roi" class="section-card">
+            <div class="section-header">
+                <span class="section-number section-number-purple">5</span>
+                <h2>Agent ROI分析</h2>
+            </div>
+            <div class="section-content">
+                <div class="quote-box">
+                    <strong>ROI计算公式</strong>：ROI = (效率提升带来的人力成本节省 + 更好决策带来的收益增量) / Agent开发与运营成本
+                </div>
+                
+                <h3 style="font-size: 14px; font-weight: 600; color: var(--color-text-primary); margin: 20px 0 12px;">各Agent效率提升与预期收益</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Agent</th>
+                                <th>核心效率提升</th>
+                                <th>预期收益</th>
+                                <th>ROI评估</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>📈 Quant Agent</strong></td>
+                                <td><span class="status status-success">+30%~50%</span></td>
+                                <td>缩短策略开发周期，加速Alpha因子发现</td>
+                                <td><span class="status status-success">极高</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>🔬 Research Agent</strong></td>
+                                <td><span class="status status-success">+80%</span></td>
+                                <td>研报产出时间从数天缩短到数小时</td>
+                                <td><span class="status status-success">极高</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>📊 Data Agent</strong></td>
+                                <td><span class="status status-success">+70%</span></td>
+                                <td>自助查询占比提升，减少IT支持成本</td>
+                                <td><span class="status status-info">高</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>⚠️ Risk Agent</strong></td>
+                                <td><span class="status status-info">95%覆盖</span></td>
+                                <td>自动化合规检查，降低人工审核成本</td>
+                                <td><span class="status status-info">高</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>💬 Chatbot Agent</strong></td>
+                                <td><span class="status status-info">+50%</span></td>
+                                <td>企业级知识库复用，减少重复工作</td>
+                                <td><span class="status status-warning">中</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>⚙️ Workflow Agent</strong></td>
+                                <td><span class="status status-info">+60%</span></td>
+                                <td>降低人工操作成本，减少流程错误</td>
+                                <td><span class="status status-warning">中</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>💹 Trading Agent</strong></td>
+                                <td><span class="status status-warning">+20%</span></td>
+                                <td>算法交易优化，降低交易成本(TCA)</td>
+                                <td><span class="status status-warning">中</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>🌐 Browser Agent</strong></td>
+                                <td><span class="status status-warning">+40%</span></td>
+                                <td>舆情监控自动化，及时发现市场风险</td>
+                                <td><span class="status status-warning">低</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3 style="font-size: 14px; font-weight: 600; color: var(--color-text-primary); margin: 20px 0 12px;">ROI量化估算示例</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Agent</th>
+                                <th>假设条件</th>
+                                <th>年化节省</th>
+                                <th>开发成本</th>
+                                <th>ROI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>📈 Quant Agent</strong></td>
+                                <td>5名量化 × 80万年薪 × 30%效率</td>
+                                <td><span class="status status-success">120万/年</span></td>
+                                <td>150万</td>
+                                <td><span class="status status-success">80%+</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>🔬 Research Agent</strong></td>
+                                <td>10名研究员 × 60万年薪 × 40%效率</td>
+                                <td><span class="status status-success">240万/年</span></td>
+                                <td>120万</td>
+                                <td><span class="status status-success">200%+</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>📊 Data Agent</strong></td>
+                                <td>3名数据分析师 × 50万年薪 × 50%效率</td>
+                                <td><span class="status status-info">75万/年</span></td>
+                                <td>80万</td>
+                                <td><span class="status status-info">94%</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>⚠️ Risk Agent</strong></td>
+                                <td>合规人力节省 + 罚款风险降低</td>
+                                <td><span class="status status-info">100万/年</span></td>
+                                <td>100万</td>
+                                <td><span class="status status-info">100%</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="insight-box">
+                    <div class="insight-title">💡 开发优先级建议</div>
+                    <div class="features-grid">
+                        <div class="feature-item"><strong>P0（最高优先级）</strong>：Quant Agent + Research Agent，覆盖率46%，ROI最高</div>
+                        <div class="feature-item"><strong>P1（次高优先级）</strong>：Data Agent + Risk Agent，覆盖率26%，基础设施级能力</div>
+                        <div class="feature-item"><strong>P2（中等优先级）</strong>：Chatbot/Workflow/Trading Agent，覆盖率25%，提效但非差异化</div>
+                        <div class="feature-item"><strong>P3（低优先级）</strong>：Browser Agent，覆盖率3%，可用现有工具替代</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <!-- Roadmap -->
         <section id="roadmap" class="section-card">
             <div class="section-header">
-                <span class="section-number section-number-yellow">4</span>
+                <span class="section-number section-number-yellow">6</span>
                 <h2>产品Roadmap</h2>
             </div>
             <div class="section-content">
@@ -1107,8 +1357,8 @@
         
         <!-- 页脚 -->
         <footer class="footer">
-            <p>金融数字员工产品架构与Roadmap</p>
-            <p>基于金融从业者工作场景分析设计 | 2026年2月</p>
+            <p>私募量化数字员工产品架构与Roadmap</p>
+            <p>基于私募量化公司工作场景分析设计 | 2026年2月</p>
             <p style="margin-top: 12px;">
                 <a href="index.html">← 场景分析</a>
                 <span style="margin: 0 12px;">|</span>

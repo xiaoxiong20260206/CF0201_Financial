@@ -508,13 +508,13 @@ const taskData = {
     }
 };
 
-// ===== 用户角色数据 =====
+// ===== 用户角色数据 (私募量化公司) =====
 const userData = {
     'quant-analyst': {
         id: 'user-quant-analyst',
-        name: '量化分析师',
+        name: '量化研究员',
         icon: '📈',
-        description: '量化策略研发、因子分析、回测',
+        description: '量化策略研发、因子挖掘、回测分析',
         relatedSubcategories: ['subcat-quant-dev', 'subcat-data-process', 'subcat-market-analysis'],
         cssClass: 'user-quant'
     },
@@ -522,53 +522,53 @@ const userData = {
         id: 'user-fund-manager',
         name: '基金经理',
         icon: '💼',
-        description: '投资研究、组合管理、交易执行',
+        description: '策略组合管理、风险控制、交易执行',
         relatedSubcategories: ['subcat-invest-research', 'subcat-portfolio', 'subcat-trading', 'subcat-risk'],
         cssClass: 'user-fund'
     },
     'risk-officer': {
         id: 'user-risk-officer',
-        name: '风控专员',
+        name: '风控合规',
         icon: '⚠️',
         description: '风险监控、压力测试、合规检查',
         relatedSubcategories: ['subcat-risk', 'subcat-compliance'],
         cssClass: 'user-risk'
     },
-    'researcher': {
-        id: 'user-researcher',
-        name: '研究员',
-        icon: '🔬',
-        description: '行业研究、公司分析、研报撰写',
-        relatedSubcategories: ['subcat-invest-research', 'subcat-market-analysis', 'subcat-reporting', 'subcat-knowledge'],
-        cssClass: 'user-research'
-    },
-    'fof-manager': {
-        id: 'user-fof-manager',
-        name: 'FOF投资经理',
-        icon: '🎯',
-        description: '基金筛选、组合配置、业绩归因',
-        relatedSubcategories: ['subcat-invest-research', 'subcat-portfolio', 'subcat-data-process'],
-        cssClass: 'user-fof'
+    'strategy-developer': {
+        id: 'user-strategy-developer',
+        name: '策略开发',
+        icon: '�️',
+        description: '策略编写、模型开发、算法优化',
+        relatedSubcategories: ['subcat-quant-dev', 'subcat-data-process'],
+        cssClass: 'user-strategy'
     },
     'trader': {
         id: 'user-trader',
         name: '交易员',
         icon: '💹',
-        description: '订单执行、执行分析、算法交易',
+        description: '算法交易、订单执行、执行分析',
         relatedSubcategories: ['subcat-trading', 'subcat-quant-dev'],
         cssClass: 'user-trader'
     },
+    'data-engineer': {
+        id: 'user-data-engineer',
+        name: '数据工程',
+        icon: '�',
+        description: '数据采集、数据清洗、因子库维护',
+        relatedSubcategories: ['subcat-data-process', 'subcat-data-report'],
+        cssClass: 'user-data'
+    },
     'market-manager': {
         id: 'user-market-manager',
-        name: '市场部客户经理',
+        name: '市场人员',
         icon: '🤝',
-        description: '直销获客、代销渠道、客户关系维护',
+        description: '投资者关系、渠道对接、产品路演',
         relatedSubcategories: ['subcat-marketing', 'subcat-investor-service', 'subcat-client', 'subcat-reporting'],
         cssClass: 'user-market'
     },
     'operation-staff': {
         id: 'user-operation-staff',
-        name: '运营人员',
+        name: '运营支持',
         icon: '⚙️',
         description: '报告生成、流程管理、数据报表',
         relatedSubcategories: ['subcat-reporting', 'subcat-data-report', 'subcat-meeting', 'subcat-knowledge'],
