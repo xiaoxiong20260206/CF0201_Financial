@@ -567,7 +567,7 @@
                 <h2>产品架构图</h2>
             </div>
             <div class="architecture-container">
-                <svg viewBox="0 0 900 680" style="width: 100%; max-width: 900px; height: auto;">
+                <svg viewBox="0 0 900 780" style="width: 100%; max-width: 900px; height: auto;">
                     <defs>
                         <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" style="stop-color:#1A7F37"/>
@@ -589,173 +589,251 @@
                             <stop offset="0%" style="stop-color:#CF222E"/>
                             <stop offset="100%" style="stop-color:#FF7B72"/>
                         </linearGradient>
+                        <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#0891B2"/>
+                            <stop offset="100%" style="stop-color:#22D3EE"/>
+                        </linearGradient>
                     </defs>
                     
                     <!-- Title -->
                     <text x="450" y="25" text-anchor="middle" fill="#24292F" font-size="14" font-weight="600" font-family="system-ui, sans-serif">金融数字员工产品架构 (Finance AI Digital Worker)</text>
                     
-                    <!-- Layer 1: User Interface -->
-                    <rect x="30" y="45" width="840" height="75" rx="8" fill="#F6F8FA" stroke="#D0D7DE" stroke-width="1"/>
-                    <text x="60" y="65" fill="#57606A" font-size="11" font-weight="600">用户交互层</text>
+                    <!-- ==================== L1: 用户交互层 ==================== -->
+                    <rect x="30" y="45" width="840" height="95" rx="8" fill="#F6F8FA" stroke="#BF8700" stroke-width="2"/>
+                    <text x="60" y="67" fill="#9A6700" font-size="12" font-weight="600">L1 用户交互层 (User Interaction)</text>
                     
-                    <rect x="50" y="75" width="85" height="35" rx="6" fill="url(#orangeGrad)"/>
-                    <text x="92" y="97" text-anchor="middle" fill="white" font-size="10" font-family="system-ui">👨‍💼 量化研究员</text>
+                    <!-- 用户角色 -->
+                    <text x="50" y="88" fill="#57606A" font-size="9" font-weight="500">用户角色</text>
+                    <rect x="50" y="95" width="70" height="32" rx="5" fill="url(#orangeGrad)"/>
+                    <text x="85" y="115" text-anchor="middle" fill="white" font-size="9">👨‍💼 量化</text>
+                    <rect x="125" y="95" width="70" height="32" rx="5" fill="url(#orangeGrad)"/>
+                    <text x="160" y="115" text-anchor="middle" fill="white" font-size="9">📊 基金PM</text>
+                    <rect x="200" y="95" width="70" height="32" rx="5" fill="url(#orangeGrad)"/>
+                    <text x="235" y="115" text-anchor="middle" fill="white" font-size="9">⚠️ 风控</text>
+                    <rect x="275" y="95" width="70" height="32" rx="5" fill="url(#orangeGrad)"/>
+                    <text x="310" y="115" text-anchor="middle" fill="white" font-size="9">💹 交易</text>
+                    <rect x="350" y="95" width="70" height="32" rx="5" fill="url(#orangeGrad)"/>
+                    <text x="385" y="115" text-anchor="middle" fill="white" font-size="9">🤝 市场</text>
+                    <rect x="425" y="95" width="70" height="32" rx="5" fill="url(#orangeGrad)"/>
+                    <text x="460" y="115" text-anchor="middle" fill="white" font-size="9">⚙️ 运营</text>
                     
-                    <rect x="145" y="75" width="85" height="35" rx="6" fill="url(#orangeGrad)"/>
-                    <text x="187" y="97" text-anchor="middle" fill="white" font-size="10" font-family="system-ui">📊 基金经理</text>
+                    <!-- 工作场景 -->
+                    <text x="510" y="88" fill="#57606A" font-size="9" font-weight="500">工作场景</text>
+                    <rect x="510" y="95" width="65" height="32" rx="5" fill="white" stroke="#BF8700"/>
+                    <text x="542" y="115" text-anchor="middle" fill="#9A6700" font-size="9">投研分析</text>
+                    <rect x="580" y="95" width="65" height="32" rx="5" fill="white" stroke="#BF8700"/>
+                    <text x="612" y="115" text-anchor="middle" fill="#9A6700" font-size="9">运营合规</text>
                     
-                    <rect x="240" y="75" width="85" height="35" rx="6" fill="url(#orangeGrad)"/>
-                    <text x="282" y="97" text-anchor="middle" fill="white" font-size="10" font-family="system-ui">⚠️ 风控经理</text>
+                    <!-- 终端 -->
+                    <text x="660" y="88" fill="#57606A" font-size="9" font-weight="500">终端</text>
+                    <rect x="660" y="95" width="50" height="32" rx="5" fill="white" stroke="#D0D7DE"/>
+                    <text x="685" y="115" text-anchor="middle" fill="#57606A" font-size="9">📱 移动</text>
+                    <rect x="715" y="95" width="50" height="32" rx="5" fill="white" stroke="#D0D7DE"/>
+                    <text x="740" y="115" text-anchor="middle" fill="#57606A" font-size="9">💻 PC</text>
                     
-                    <rect x="335" y="75" width="85" height="35" rx="6" fill="url(#orangeGrad)"/>
-                    <text x="377" y="97" text-anchor="middle" fill="white" font-size="10" font-family="system-ui">💹 交易员</text>
+                    <!-- 交互形式 -->
+                    <text x="780" y="88" fill="#57606A" font-size="9" font-weight="500">交互形式</text>
+                    <rect x="780" y="95" width="75" height="32" rx="5" fill="white" stroke="#D0D7DE"/>
+                    <text x="817" y="109" text-anchor="middle" fill="#57606A" font-size="8">💬 对话 | 📋 表单</text>
+                    <text x="817" y="121" text-anchor="middle" fill="#57606A" font-size="8">🔌 API | 🤖 嵌入</text>
                     
-                    <rect x="430" y="75" width="85" height="35" rx="6" fill="url(#orangeGrad)"/>
-                    <text x="472" y="97" text-anchor="middle" fill="white" font-size="10" font-family="system-ui">🤝 客户经理</text>
+                    <!-- ==================== L2: 工作流编排层 ==================== -->
+                    <rect x="30" y="150" width="840" height="110" rx="8" fill="#F6F8FA" stroke="#8B5CF6" stroke-width="2"/>
+                    <text x="60" y="172" fill="#7C3AED" font-size="12" font-weight="600">L2 工作流编排层 (Workflow Orchestration)</text>
                     
-                    <rect x="525" y="75" width="85" height="35" rx="6" fill="url(#orangeGrad)"/>
-                    <text x="567" y="97" text-anchor="middle" fill="white" font-size="10" font-family="system-ui">⚙️ 运营人员</text>
+                    <!-- 智能编排中心 -->
+                    <rect x="50" y="185" width="165" height="60" rx="6" fill="url(#purpleGrad)"/>
+                    <text x="132" y="207" text-anchor="middle" fill="white" font-size="10" font-weight="600">🧠 智能编排中心</text>
+                    <text x="132" y="223" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="8">意图识别 → 任务分解 → Agent调度</text>
+                    <text x="132" y="236" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="8">结果聚合 → 响应生成</text>
                     
-                    <!-- Channels -->
-                    <rect x="640" y="75" width="70" height="35" rx="6" fill="white" stroke="#D0D7DE"/>
-                    <text x="675" y="97" text-anchor="middle" fill="#57606A" font-size="9">💬 对话式</text>
+                    <!-- 上下文记忆 -->
+                    <rect x="225" y="185" width="130" height="60" rx="6" fill="white" stroke="#8B5CF6"/>
+                    <text x="290" y="207" text-anchor="middle" fill="#8B5CF6" font-size="10" font-weight="500">💾 上下文记忆</text>
+                    <text x="290" y="223" text-anchor="middle" fill="#8B949E" font-size="8">会话历史 | 用户画像</text>
+                    <text x="290" y="236" text-anchor="middle" fill="#8B949E" font-size="8">偏好学习 | 任务历史</text>
                     
-                    <rect x="720" y="75" width="70" height="35" rx="6" fill="white" stroke="#D0D7DE"/>
-                    <text x="755" y="97" text-anchor="middle" fill="#57606A" font-size="9">🔌 API</text>
+                    <!-- 非AI能力集成 -->
+                    <rect x="365" y="185" width="130" height="60" rx="6" fill="white" stroke="#8B5CF6"/>
+                    <text x="430" y="207" text-anchor="middle" fill="#8B5CF6" font-size="10" font-weight="500">⚙️ 非AI能力集成</text>
+                    <text x="430" y="223" text-anchor="middle" fill="#8B949E" font-size="8">规则引擎 | 审批流程</text>
+                    <text x="430" y="236" text-anchor="middle" fill="#8B949E" font-size="8">业务逻辑 | 外部API</text>
                     
-                    <rect x="800" y="75" width="55" height="35" rx="6" fill="white" stroke="#D0D7DE"/>
-                    <text x="827" y="97" text-anchor="middle" fill="#57606A" font-size="9">嵌入式</text>
+                    <!-- 工作流引擎 -->
+                    <rect x="505" y="185" width="130" height="60" rx="6" fill="white" stroke="#8B5CF6"/>
+                    <text x="570" y="207" text-anchor="middle" fill="#8B5CF6" font-size="10" font-weight="500">⚡ 工作流引擎</text>
+                    <text x="570" y="223" text-anchor="middle" fill="#8B949E" font-size="8">DAG编排 | 并行执行</text>
+                    <text x="570" y="236" text-anchor="middle" fill="#8B949E" font-size="8">状态管理 | 错误恢复</text>
                     
-                    <!-- Layer 2: Orchestration -->
-                    <rect x="30" y="130" width="840" height="100" rx="8" fill="#F6F8FA" stroke="#D0D7DE" stroke-width="1"/>
-                    <text x="60" y="150" fill="#57606A" font-size="11" font-weight="600">Agent编排层</text>
+                    <!-- 场景工作流 -->
+                    <rect x="645" y="185" width="210" height="60" rx="6" fill="rgba(139,92,246,0.08)" stroke="#8B5CF6" stroke-dasharray="4,2"/>
+                    <text x="750" y="202" text-anchor="middle" fill="#7C3AED" font-size="9" font-weight="600">场景工作流示例</text>
+                    <text x="680" y="220" fill="#8B949E" font-size="8">• 研报撰写流程</text>
+                    <text x="680" y="233" fill="#8B949E" font-size="8">• 风控预警流程</text>
+                    <text x="780" y="220" fill="#8B949E" font-size="8">• 策略回测流程</text>
+                    <text x="780" y="233" fill="#8B949E" font-size="8">• 合规审核流程</text>
                     
-                    <rect x="50" y="160" width="150" height="55" rx="6" fill="url(#purpleGrad)"/>
-                    <text x="125" y="182" text-anchor="middle" fill="white" font-size="10" font-weight="600">🧠 智能编排中心</text>
-                    <text x="125" y="200" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9">意图识别 | 任务分解</text>
+                    <!-- ==================== L3: Agent能力层 ==================== -->
+                    <rect x="30" y="270" width="840" height="130" rx="8" fill="#F6F8FA" stroke="#0969DA" stroke-width="2"/>
+                    <text x="60" y="292" fill="#0969DA" font-size="12" font-weight="600">L3 Agent能力层 (Extensible Agents)</text>
                     
-                    <rect x="215" y="160" width="130" height="55" rx="6" fill="white" stroke="#8B5CF6"/>
-                    <text x="280" y="182" text-anchor="middle" fill="#8B5CF6" font-size="10" font-weight="500">💾 记忆与上下文</text>
-                    <text x="280" y="200" text-anchor="middle" fill="#8B949E" font-size="9">会话记忆 | 偏好学习</text>
+                    <!-- Agent Row 1 -->
+                    <rect x="50" y="305" width="100" height="42" rx="5" fill="url(#blueGrad)"/>
+                    <text x="100" y="323" text-anchor="middle" fill="white" font-size="9" font-weight="600">📈 Quant</text>
+                    <text x="100" y="337" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="7">策略 | 因子 | 回测</text>
                     
-                    <rect x="360" y="160" width="130" height="55" rx="6" fill="white" stroke="#8B5CF6"/>
-                    <text x="425" y="182" text-anchor="middle" fill="#8B5CF6" font-size="10" font-weight="500">🔧 工具注册中心</text>
-                    <text x="425" y="200" text-anchor="middle" fill="#8B949E" font-size="9">API网关 | 权限控制</text>
+                    <rect x="155" y="305" width="100" height="42" rx="5" fill="url(#blueGrad)"/>
+                    <text x="205" y="323" text-anchor="middle" fill="white" font-size="9" font-weight="600">🔬 Research</text>
+                    <text x="205" y="337" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="7">研究 | 分析 | 研报</text>
                     
-                    <rect x="505" y="160" width="130" height="55" rx="6" fill="white" stroke="#8B5CF6"/>
-                    <text x="570" y="182" text-anchor="middle" fill="#8B5CF6" font-size="10" font-weight="500">⚡ 工作流引擎</text>
-                    <text x="570" y="200" text-anchor="middle" fill="#8B949E" font-size="9">DAG编排 | 状态管理</text>
+                    <rect x="260" y="305" width="100" height="42" rx="5" fill="url(#blueGrad)"/>
+                    <text x="310" y="323" text-anchor="middle" fill="white" font-size="9" font-weight="600">📊 Data</text>
+                    <text x="310" y="337" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="7">获取 | 清洗 | 可视化</text>
                     
-                    <rect x="650" y="160" width="105" height="55" rx="6" fill="white" stroke="#CF222E"/>
-                    <text x="702" y="182" text-anchor="middle" fill="#CF222E" font-size="10" font-weight="500">🛡️ 安全合规</text>
-                    <text x="702" y="200" text-anchor="middle" fill="#8B949E" font-size="9">审计 | 风控</text>
+                    <rect x="365" y="305" width="100" height="42" rx="5" fill="url(#blueGrad)"/>
+                    <text x="415" y="323" text-anchor="middle" fill="white" font-size="9" font-weight="600">⚠️ Risk</text>
+                    <text x="415" y="337" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="7">风控 | 压测 | 合规</text>
                     
-                    <rect x="770" y="160" width="85" height="55" rx="6" fill="white" stroke="#0969DA"/>
-                    <text x="812" y="182" text-anchor="middle" fill="#0969DA" font-size="10" font-weight="500">📊 可观测</text>
-                    <text x="812" y="200" text-anchor="middle" fill="#8B949E" font-size="9">链路追踪</text>
+                    <!-- Agent Row 2 -->
+                    <rect x="50" y="352" width="100" height="42" rx="5" fill="url(#greenGrad)"/>
+                    <text x="100" y="370" text-anchor="middle" fill="white" font-size="9" font-weight="600">💹 Trading</text>
+                    <text x="100" y="384" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="7">订单 | 执行 | 算法</text>
                     
-                    <!-- Layer 3: Agent -->
-                    <rect x="30" y="240" width="840" height="145" rx="8" fill="#F6F8FA" stroke="#D0D7DE" stroke-width="1"/>
-                    <text x="60" y="260" fill="#57606A" font-size="11" font-weight="600">智能体层 (Agent Layer)</text>
+                    <rect x="155" y="352" width="100" height="42" rx="5" fill="url(#greenGrad)"/>
+                    <text x="205" y="370" text-anchor="middle" fill="white" font-size="9" font-weight="600">💬 Chatbot</text>
+                    <text x="205" y="384" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="7">问答 | 写作 | 客服</text>
                     
-                    <!-- Row 1 -->
-                    <rect x="50" y="270" width="115" height="45" rx="6" fill="url(#blueGrad)"/>
-                    <text x="107" y="290" text-anchor="middle" fill="white" font-size="10" font-weight="600">📈 Quant Agent</text>
-                    <text x="107" y="305" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">策略 | 因子 | 回测</text>
+                    <rect x="260" y="352" width="100" height="42" rx="5" fill="url(#greenGrad)"/>
+                    <text x="310" y="370" text-anchor="middle" fill="white" font-size="9" font-weight="600">⚙️ Workflow</text>
+                    <text x="310" y="384" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="7">自动化 | 审核</text>
                     
-                    <rect x="175" y="270" width="115" height="45" rx="6" fill="url(#blueGrad)"/>
-                    <text x="232" y="290" text-anchor="middle" fill="white" font-size="10" font-weight="600">🔬 Research Agent</text>
-                    <text x="232" y="305" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">研究 | 分析 | 研报</text>
+                    <rect x="365" y="352" width="100" height="42" rx="5" fill="url(#greenGrad)"/>
+                    <text x="415" y="370" text-anchor="middle" fill="white" font-size="9" font-weight="600">🌐 Browser</text>
+                    <text x="415" y="384" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="7">采集 | 舆情</text>
                     
-                    <rect x="300" y="270" width="115" height="45" rx="6" fill="url(#blueGrad)"/>
-                    <text x="357" y="290" text-anchor="middle" fill="white" font-size="10" font-weight="600">📊 Data Agent</text>
-                    <text x="357" y="305" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">获取 | 清洗 | 可视化</text>
+                    <!-- 可扩展标识 -->
+                    <rect x="470" y="305" width="50" height="89" rx="5" fill="white" stroke="#D0D7DE" stroke-dasharray="4,2"/>
+                    <text x="495" y="345" text-anchor="middle" fill="#8B949E" font-size="20">...</text>
+                    <text x="495" y="375" text-anchor="middle" fill="#8B949E" font-size="8">可扩展</text>
                     
-                    <rect x="425" y="270" width="115" height="45" rx="6" fill="url(#blueGrad)"/>
-                    <text x="482" y="290" text-anchor="middle" fill="white" font-size="10" font-weight="600">⚠️ Risk Agent</text>
-                    <text x="482" y="305" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">风控 | 压测 | 合规</text>
+                    <!-- Agent通用能力 -->
+                    <rect x="530" y="305" width="325" height="89" rx="6" fill="white" stroke="#D0D7DE"/>
+                    <text x="692" y="325" text-anchor="middle" fill="#57606A" font-size="10" font-weight="600">Agent通用能力框架</text>
+                    <text x="560" y="348" fill="#8B949E" font-size="9">• 规划推理 (Planning)</text>
+                    <text x="560" y="365" fill="#8B949E" font-size="9">• 工具调用 (Tool Use)</text>
+                    <text x="560" y="382" fill="#8B949E" font-size="9">• 反思迭代 (Reflection)</text>
+                    <text x="720" y="348" fill="#8B949E" font-size="9">• 多轮对话 (Multi-turn)</text>
+                    <text x="720" y="365" fill="#8B949E" font-size="9">• 记忆检索 (Memory)</text>
+                    <text x="720" y="382" fill="#8B949E" font-size="9">• 插件扩展 (Plugin)</text>
                     
-                    <!-- Row 2 -->
-                    <rect x="50" y="325" width="115" height="45" rx="6" fill="url(#greenGrad)"/>
-                    <text x="107" y="345" text-anchor="middle" fill="white" font-size="10" font-weight="600">💹 Trading Agent</text>
-                    <text x="107" y="360" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">订单 | 执行 | 算法</text>
+                    <!-- ==================== L4: 基础设施层 ==================== -->
+                    <rect x="30" y="410" width="840" height="130" rx="8" fill="#F6F8FA" stroke="#1A7F37" stroke-width="2"/>
+                    <text x="60" y="432" fill="#1A7F37" font-size="12" font-weight="600">L4 基础设施层 (Foundation Infrastructure)</text>
                     
-                    <rect x="175" y="325" width="115" height="45" rx="6" fill="url(#greenGrad)"/>
-                    <text x="232" y="345" text-anchor="middle" fill="white" font-size="10" font-weight="600">💬 Chatbot Agent</text>
-                    <text x="232" y="360" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">问答 | 写作 | 客服</text>
+                    <!-- 共享能力 -->
+                    <text x="50" y="455" fill="#57606A" font-size="9" font-weight="500">共享能力</text>
+                    <rect x="50" y="462" width="115" height="35" rx="5" fill="url(#greenGrad)"/>
+                    <text x="107" y="480" text-anchor="middle" fill="white" font-size="9" font-weight="600">🧠 LLM基座</text>
+                    <text x="107" y="492" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="7">GPT | Claude | DeepSeek</text>
                     
-                    <rect x="300" y="325" width="115" height="45" rx="6" fill="url(#greenGrad)"/>
-                    <text x="357" y="345" text-anchor="middle" fill="white" font-size="10" font-weight="600">⚙️ Workflow Agent</text>
-                    <text x="357" y="360" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">自动化 | 审核</text>
+                    <rect x="170" y="462" width="115" height="35" rx="5" fill="white" stroke="#1A7F37"/>
+                    <text x="227" y="480" text-anchor="middle" fill="#1A7F37" font-size="9" font-weight="500">📚 RAG知识库</text>
+                    <text x="227" y="492" text-anchor="middle" fill="#8B949E" font-size="7">向量检索 | 混合搜索</text>
                     
-                    <rect x="425" y="325" width="115" height="45" rx="6" fill="url(#greenGrad)"/>
-                    <text x="482" y="345" text-anchor="middle" fill="white" font-size="10" font-weight="600">🌐 Browser Agent</text>
-                    <text x="482" y="360" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">采集 | 舆情</text>
+                    <rect x="290" y="462" width="115" height="35" rx="5" fill="white" stroke="#1A7F37"/>
+                    <text x="347" y="480" text-anchor="middle" fill="#1A7F37" font-size="9" font-weight="500">💻 代码沙箱</text>
+                    <text x="347" y="492" text-anchor="middle" fill="#8B949E" font-size="7">Python | 回测引擎</text>
                     
-                    <!-- Agent Capabilities -->
-                    <rect x="560" y="270" width="295" height="100" rx="6" fill="white" stroke="#D0D7DE" stroke-dasharray="4,2"/>
-                    <text x="707" y="295" text-anchor="middle" fill="#57606A" font-size="10" font-weight="600">Agent通用能力</text>
-                    <text x="590" y="320" fill="#8B949E" font-size="9">• 规划推理 (Planning)</text>
-                    <text x="590" y="338" fill="#8B949E" font-size="9">• 工具调用 (Tool Use)</text>
-                    <text x="730" y="320" fill="#8B949E" font-size="9">• 反思迭代 (Reflection)</text>
-                    <text x="730" y="338" fill="#8B949E" font-size="9">• 多轮对话 (Multi-turn)</text>
+                    <rect x="410" y="462" width="115" height="35" rx="5" fill="white" stroke="#1A7F37"/>
+                    <text x="467" y="480" text-anchor="middle" fill="#1A7F37" font-size="9" font-weight="500">🔌 外部系统网关</text>
+                    <text x="467" y="492" text-anchor="middle" fill="#8B949E" font-size="7">Wind | 恒生 | MCP</text>
                     
-                    <!-- Layer 4: Capability -->
-                    <rect x="30" y="395" width="840" height="95" rx="8" fill="#F6F8FA" stroke="#D0D7DE" stroke-width="1"/>
-                    <text x="60" y="415" fill="#57606A" font-size="11" font-weight="600">能力层 (Capability Layer)</text>
+                    <!-- 自进化能力 -->
+                    <text x="540" y="455" fill="#57606A" font-size="9" font-weight="500">自进化调优</text>
+                    <rect x="540" y="462" width="110" height="35" rx="5" fill="white" stroke="#0969DA"/>
+                    <text x="595" y="480" text-anchor="middle" fill="#0969DA" font-size="9" font-weight="500">🔄 模型微调</text>
+                    <text x="595" y="492" text-anchor="middle" fill="#8B949E" font-size="7">SFT | RLHF | 评估</text>
                     
-                    <rect x="50" y="425" width="140" height="50" rx="6" fill="url(#greenGrad)"/>
-                    <text x="120" y="447" text-anchor="middle" fill="white" font-size="10" font-weight="600">🧠 LLM基座</text>
-                    <text x="120" y="463" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">GPT-4 | Claude | DeepSeek</text>
+                    <rect x="655" y="462" width="110" height="35" rx="5" fill="white" stroke="#0969DA"/>
+                    <text x="710" y="480" text-anchor="middle" fill="#0969DA" font-size="9" font-weight="500">📊 反馈闭环</text>
+                    <text x="710" y="492" text-anchor="middle" fill="#8B949E" font-size="7">日志分析 | A/B测试</text>
                     
-                    <rect x="205" y="425" width="140" height="50" rx="6" fill="white" stroke="#1A7F37"/>
-                    <text x="275" y="447" text-anchor="middle" fill="#1A7F37" font-size="10" font-weight="500">📚 RAG知识库</text>
-                    <text x="275" y="463" text-anchor="middle" fill="#8B949E" font-size="8">研报 | 制度 | FAQ</text>
+                    <!-- 安全合规 -->
+                    <text x="50" y="510" fill="#57606A" font-size="9" font-weight="500">安全合规与权限管理</text>
+                    <rect x="50" y="517" width="100" height="18" rx="4" fill="white" stroke="#CF222E"/>
+                    <text x="100" y="530" text-anchor="middle" fill="#CF222E" font-size="8">🛡️ 内容审核</text>
+                    <rect x="155" y="517" width="100" height="18" rx="4" fill="white" stroke="#CF222E"/>
+                    <text x="205" y="530" text-anchor="middle" fill="#CF222E" font-size="8">🔒 权限RBAC</text>
+                    <rect x="260" y="517" width="100" height="18" rx="4" fill="white" stroke="#CF222E"/>
+                    <text x="310" y="530" text-anchor="middle" fill="#CF222E" font-size="8">📝 审计日志</text>
+                    <rect x="365" y="517" width="100" height="18" rx="4" fill="white" stroke="#CF222E"/>
+                    <text x="415" y="530" text-anchor="middle" fill="#CF222E" font-size="8">⚠️ 风险拦截</text>
                     
-                    <rect x="360" y="425" width="140" height="50" rx="6" fill="white" stroke="#1A7F37"/>
-                    <text x="430" y="447" text-anchor="middle" fill="#1A7F37" font-size="10" font-weight="500">💻 代码执行</text>
-                    <text x="430" y="463" text-anchor="middle" fill="#8B949E" font-size="8">Python沙箱 | 回测引擎</text>
+                    <!-- 可观测性 -->
+                    <text x="540" y="510" fill="#57606A" font-size="9" font-weight="500">可观测性</text>
+                    <rect x="540" y="517" width="85" height="18" rx="4" fill="white" stroke="#0891B2"/>
+                    <text x="582" y="530" text-anchor="middle" fill="#0891B2" font-size="8">🔗 链路追踪</text>
+                    <rect x="630" y="517" width="85" height="18" rx="4" fill="white" stroke="#0891B2"/>
+                    <text x="672" y="530" text-anchor="middle" fill="#0891B2" font-size="8">📈 性能监控</text>
+                    <rect x="720" y="517" width="85" height="18" rx="4" fill="white" stroke="#0891B2"/>
+                    <text x="762" y="530" text-anchor="middle" fill="#0891B2" font-size="8">🚨 告警通知</text>
                     
-                    <rect x="515" y="425" width="140" height="50" rx="6" fill="white" stroke="#1A7F37"/>
-                    <text x="585" y="447" text-anchor="middle" fill="#1A7F37" font-size="10" font-weight="500">📊 数据处理</text>
-                    <text x="585" y="463" text-anchor="middle" fill="#8B949E" font-size="8">ETL | 可视化 | BI</text>
+                    <!-- ==================== L5: 数据层 ==================== -->
+                    <rect x="30" y="550" width="840" height="85" rx="8" fill="#F6F8FA" stroke="#CF222E" stroke-width="2"/>
+                    <text x="60" y="572" fill="#CF222E" font-size="12" font-weight="600">L5 数据层 (Data Layer)</text>
                     
-                    <rect x="670" y="425" width="185" height="50" rx="6" fill="white" stroke="#1A7F37"/>
-                    <text x="762" y="447" text-anchor="middle" fill="#1A7F37" font-size="10" font-weight="500">🔌 外部工具集成</text>
-                    <text x="762" y="463" text-anchor="middle" fill="#8B949E" font-size="8">Wind | Bloomberg | 恒生 | MCP</text>
+                    <rect x="50" y="585" width="130" height="38" rx="5" fill="white" stroke="#CF222E"/>
+                    <text x="115" y="602" text-anchor="middle" fill="#CF222E" font-size="9" font-weight="500">📈 行情数据</text>
+                    <text x="115" y="616" text-anchor="middle" fill="#8B949E" font-size="7">实时行情 | 历史K线</text>
                     
-                    <!-- Layer 5: Data & Infra -->
-                    <rect x="30" y="500" width="840" height="75" rx="8" fill="#F6F8FA" stroke="#D0D7DE" stroke-width="1"/>
-                    <text x="60" y="520" fill="#57606A" font-size="11" font-weight="600">数据与基础设施层</text>
+                    <rect x="185" y="585" width="130" height="38" rx="5" fill="white" stroke="#CF222E"/>
+                    <text x="250" y="602" text-anchor="middle" fill="#CF222E" font-size="9" font-weight="500">💰 财务数据</text>
+                    <text x="250" y="616" text-anchor="middle" fill="#8B949E" font-size="7">财报 | 估值 | 指标</text>
                     
-                    <rect x="50" y="530" width="155" height="32" rx="6" fill="white" stroke="#CF222E"/>
-                    <text x="127" y="551" text-anchor="middle" fill="#CF222E" font-size="9">📈 行情 | 财务 | 另类数据</text>
+                    <rect x="320" y="585" width="130" height="38" rx="5" fill="white" stroke="#CF222E"/>
+                    <text x="385" y="602" text-anchor="middle" fill="#CF222E" font-size="9" font-weight="500">📄 研报/公告</text>
+                    <text x="385" y="616" text-anchor="middle" fill="#8B949E" font-size="7">知识库 | 新闻舆情</text>
                     
-                    <rect x="220" y="530" width="155" height="32" rx="6" fill="white" stroke="#CF222E"/>
-                    <text x="297" y="551" text-anchor="middle" fill="#CF222E" font-size="9">📄 研报 | 公告 | 新闻库</text>
+                    <rect x="455" y="585" width="130" height="38" rx="5" fill="white" stroke="#CF222E"/>
+                    <text x="520" y="602" text-anchor="middle" fill="#CF222E" font-size="9" font-weight="500">🛰️ 另类数据</text>
+                    <text x="520" y="616" text-anchor="middle" fill="#8B949E" font-size="7">卫星 | 供应链 | 舆情</text>
                     
-                    <rect x="390" y="530" width="155" height="32" rx="6" fill="white" stroke="#CF222E"/>
-                    <text x="467" y="551" text-anchor="middle" fill="#CF222E" font-size="9">🔐 用户 | 交易 | 持仓数据</text>
+                    <rect x="590" y="585" width="130" height="38" rx="5" fill="white" stroke="#CF222E"/>
+                    <text x="655" y="602" text-anchor="middle" fill="#CF222E" font-size="9" font-weight="500">🔐 用户/交易数据</text>
+                    <text x="655" y="616" text-anchor="middle" fill="#8B949E" font-size="7">持仓 | 订单 | 画像</text>
                     
-                    <rect x="560" y="530" width="145" height="32" rx="6" fill="white" stroke="#CF222E"/>
-                    <text x="632" y="551" text-anchor="middle" fill="#CF222E" font-size="9">☁️ 云原生 | K8s | GPU</text>
+                    <rect x="725" y="585" width="130" height="38" rx="5" fill="white" stroke="#CF222E"/>
+                    <text x="790" y="602" text-anchor="middle" fill="#CF222E" font-size="9" font-weight="500">☁️ 基础设施</text>
+                    <text x="790" y="616" text-anchor="middle" fill="#8B949E" font-size="7">K8s | GPU | 私有云</text>
                     
-                    <rect x="720" y="530" width="135" height="32" rx="6" fill="white" stroke="#CF222E"/>
-                    <text x="787" y="551" text-anchor="middle" fill="#CF222E" font-size="9">🔒 私有化 | 数据隔离</text>
+                    <!-- ==================== 核心特性 ==================== -->
+                    <rect x="30" y="650" width="840" height="115" rx="8" fill="rgba(26,127,55,0.06)" stroke="rgba(26,127,55,0.3)" stroke-width="1"/>
+                    <text x="60" y="675" fill="#1A7F37" font-size="11" font-weight="600">🎯 架构核心特性</text>
                     
-                    <!-- Features Box -->
-                    <rect x="30" y="590" width="840" height="75" rx="8" fill="rgba(26,127,55,0.06)" stroke="rgba(26,127,55,0.3)" stroke-width="1"/>
-                    <text x="60" y="615" fill="#1A7F37" font-size="11" font-weight="600">🎯 核心特性</text>
+                    <text x="50" y="700" fill="#24292F" font-size="10" font-weight="500">用户交互层</text>
+                    <text x="50" y="715" fill="#57606A" font-size="9">• 6类用户角色全覆盖</text>
+                    <text x="50" y="730" fill="#57606A" font-size="9">• 移动端/PC端多终端</text>
+                    <text x="50" y="745" fill="#57606A" font-size="9">• 对话/表单/API/嵌入</text>
                     
-                    <text x="50" y="640" fill="#57606A" font-size="10">• 多Agent协作：复杂任务自动分解</text>
-                    <text x="250" y="640" fill="#57606A" font-size="10">• 金融垂直优化：策略回测、风控合规</text>
-                    <text x="480" y="640" fill="#57606A" font-size="10">• 私有化部署：数据不出域</text>
-                    <text x="670" y="640" fill="#57606A" font-size="10">• 可观测性：全链路追踪</text>
+                    <text x="220" y="700" fill="#24292F" font-size="10" font-weight="500">工作流编排层</text>
+                    <text x="220" y="715" fill="#57606A" font-size="9">• 智能意图识别与分解</text>
+                    <text x="220" y="730" fill="#57606A" font-size="9">• 上下文记忆与偏好</text>
+                    <text x="220" y="745" fill="#57606A" font-size="9">• AI+非AI能力融合</text>
                     
-                    <text x="50" y="660" fill="#57606A" font-size="10">• 上下文记忆：用户偏好学习</text>
-                    <text x="250" y="660" fill="#57606A" font-size="10">• 外部工具集成：Wind/Bloomberg无缝对接</text>
-                    <text x="480" y="660" fill="#57606A" font-size="10">• 安全合规：内容审核、操作审计</text>
-                    <text x="670" y="660" fill="#57606A" font-size="10">• 持续学习：反馈闭环</text>
+                    <text x="400" y="700" fill="#24292F" font-size="10" font-weight="500">Agent能力层</text>
+                    <text x="400" y="715" fill="#57606A" font-size="9">• 8+垂直Agent可扩展</text>
+                    <text x="400" y="730" fill="#57606A" font-size="9">• 通用能力框架复用</text>
+                    <text x="400" y="745" fill="#57606A" font-size="9">• 插件化扩展机制</text>
+                    
+                    <text x="570" y="700" fill="#24292F" font-size="10" font-weight="500">基础设施层</text>
+                    <text x="570" y="715" fill="#57606A" font-size="9">• 共享能力池化复用</text>
+                    <text x="570" y="730" fill="#57606A" font-size="9">• 自进化调优闭环</text>
+                    <text x="570" y="745" fill="#57606A" font-size="9">• 安全合规权限管理</text>
+                    
+                    <text x="730" y="700" fill="#24292F" font-size="10" font-weight="500">数据层</text>
+                    <text x="730" y="715" fill="#57606A" font-size="9">• 多源数据统一接入</text>
+                    <text x="730" y="730" fill="#57606A" font-size="9">• 私有化部署隔离</text>
+                    <text x="730" y="745" fill="#57606A" font-size="9">• 数据不出域合规</text>
                 </svg>
             </div>
         </section>
@@ -780,36 +858,49 @@
                         <tbody>
                             <tr>
                                 <td><span class="status status-warning">L1</span> 用户交互层</td>
-                                <td>6类用户角色 + 4种交互方式</td>
-                                <td>对话式、表单式、API、嵌入式多渠道接入</td>
+                                <td>用户角色、工作场景、终端、交互形式</td>
+                                <td>6类用户角色（量化/PM/风控/交易/市场/运营）、移动端/PC端、对话/表单/API/嵌入式</td>
                                 <td>React/Vue、WebSocket、REST API</td>
                             </tr>
                             <tr>
-                                <td><span class="status status-info">L2</span> Agent编排层</td>
-                                <td>智能编排中心、记忆模块、工作流引擎</td>
-                                <td>意图识别、任务分解、Agent调度、结果聚合</td>
+                                <td><span class="status status-info">L2</span> 工作流编排层</td>
+                                <td>智能编排中心、上下文记忆、非AI能力集成、工作流引擎</td>
+                                <td>意图识别→任务分解→Agent调度、会话记忆/用户偏好、规则引擎/审批流程、DAG编排/状态管理</td>
                                 <td>LangChain、LlamaIndex、自研编排框架</td>
                             </tr>
                             <tr>
-                                <td><span class="status status-success">L3</span> 智能体层</td>
-                                <td>8个专业Agent</td>
-                                <td>Quant/Research/Data/Risk/Trading/Chatbot/Workflow/Browser</td>
-                                <td>LLM + 领域工具 + 专业提示词</td>
+                                <td><span class="status status-success">L3</span> Agent能力层</td>
+                                <td>8个垂直Agent + 可扩展框架</td>
+                                <td>Quant/Research/Data/Risk/Trading/Chatbot/Workflow/Browser，通用能力：规划推理、工具调用、反思迭代</td>
+                                <td>LLM + 领域工具 + 专业提示词 + 插件扩展</td>
                             </tr>
                             <tr>
-                                <td><span class="status status-success">L4</span> 能力层</td>
-                                <td>LLM基座、RAG、代码执行、外部工具</td>
-                                <td>大模型推理、知识检索、代码沙箱、API集成</td>
-                                <td>GPT-4/Claude/DeepSeek、Milvus、MCP</td>
+                                <td><span class="status status-success">L4</span> 基础设施层</td>
+                                <td>共享能力、自进化调优、安全合规、可观测性</td>
+                                <td>LLM基座/RAG/代码沙箱/外部网关、模型微调/反馈闭环、内容审核/RBAC/审计、链路追踪/监控/告警</td>
+                                <td>GPT-4/Claude/DeepSeek、Milvus、MCP、Prometheus</td>
                             </tr>
                             <tr>
-                                <td><span class="status status-danger">L5</span> 基础设施层</td>
-                                <td>数据层、计算层、安全层</td>
-                                <td>行情/财务/另类数据、云原生、私有化部署</td>
-                                <td>K8s、GPU集群、数据隔离</td>
+                                <td><span class="status status-danger">L5</span> 数据层</td>
+                                <td>行情数据、财务数据、研报/公告、另类数据、用户数据、基础设施</td>
+                                <td>实时行情/历史K线、财报/估值/指标、知识库/新闻舆情、卫星/供应链、持仓/订单/画像、K8s/GPU/私有云</td>
+                                <td>Wind/Tushare、知识图谱、向量数据库、私有化部署</td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+                
+                <!-- 架构设计亮点 -->
+                <div class="insight-box" style="margin-top: var(--spacing-lg); border-left-color: var(--color-success); background: rgba(26, 127, 55, 0.06);">
+                    <p class="insight-title" style="color: var(--color-success);">🎯 架构设计亮点</p>
+                    <div class="features-grid">
+                        <div class="feature-item">工作流编排层独立，支持复杂场景的多Agent协作</div>
+                        <div class="feature-item">上下文记忆模块，实现用户偏好学习和个性化服务</div>
+                        <div class="feature-item">非AI能力集成，融合规则引擎、审批流程等传统能力</div>
+                        <div class="feature-item">Agent可扩展框架，支持插件化快速扩展新Agent</div>
+                        <div class="feature-item">自进化调优机制，基于反馈持续优化模型效果</div>
+                        <div class="feature-item">数据层独立，强调金融数据的核心地位和私有化部署</div>
+                    </div>
                 </div>
             </div>
         </section>
