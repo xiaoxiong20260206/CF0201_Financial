@@ -4,1216 +4,1007 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>金融行业AI转型标杆案例 | 中国头部量化私募AI布局深度调研</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        /* ==================== CSS 变量定义 ==================== */
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #12121a;
-            --bg-card: rgba(20, 20, 30, 0.85);
-            --text-primary: #f5f5f7;
-            --text-secondary: rgba(245, 245, 247, 0.7);
-            --text-muted: rgba(245, 245, 247, 0.5);
-            --accent-gold: #d4af37;
-            --accent-gold-light: #f0d878;
-            --accent-blue: #4a9eff;
-            --accent-purple: #a855f7;
-            --accent-green: #22c55e;
-            --accent-orange: #f59e0b;
-            --accent-red: #ef4444;
-            --accent-cyan: #06b6d4;
-            --border-color: rgba(212, 175, 55, 0.15);
-            --glow-gold: rgba(212, 175, 55, 0.3);
+            /* 主色调 */
+            --color-success: #1A7F37;
+            --color-success-light: #2DA44E;
+            --color-danger: #CF222E;
+            --color-danger-light: #FF7B72;
+            --color-warning: #BF8700;
+            --color-warning-dark: #9A6700;
+            --color-info: #0969DA;
+            --color-info-light: #54AEFF;
+            
+            /* 中性色 */
+            --color-text-primary: #24292F;
+            --color-text-secondary: #57606A;
+            --color-text-muted: #8B949E;
+            --color-border: #D0D7DE;
+            --color-border-light: #EAEEF2;
+            --color-bg: #FAFBFC;
+            --color-bg-card: #FFFFFF;
+            --color-bg-table-header: #F6F8FA;
+            
+            /* 渐变色 */
+            --gradient-success: linear-gradient(135deg, #1A7F37 0%, #2DA44E 100%);
+            --gradient-badge: linear-gradient(135deg, #DDF4FF 0%, #D4F8E8 100%);
+            --gradient-blue-text: linear-gradient(90deg, #0969DA, #54AEFF);
+            
+            /* 阴影 */
+            --shadow-card: rgba(31, 35, 40, 0.04) 0px 1px 3px 0px, rgba(31, 35, 40, 0.04) 0px 3px 8px 0px;
+            --shadow-card-light: rgba(31, 35, 40, 0.04) 0px 1px 0px 0px;
+            
+            /* 间距 */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            
+            /* 圆角 */
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-full: 20px;
+            
+            /* 字体 */
+            --font-family: -apple-system, "system-ui", "Segoe UI", "Noto Sans SC", Helvetica, Arial, sans-serif;
         }
         
+        /* ==================== 基础重置 ==================== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
-        html {
-            scroll-behavior: smooth;
-        }
-        
         body {
-            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            min-height: 100vh;
-            overflow-x: hidden;
+            font-family: var(--font-family);
+            font-size: 15px;
+            line-height: 1.5;
+            color: var(--color-text-secondary);
+            background-color: var(--color-bg);
         }
         
-        /* Animated Background */
-        .bg-pattern {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background:
-                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(74, 158, 255, 0.05) 0%, transparent 50%),
-                radial-gradient(ellipse 50% 30% at 10% 60%, rgba(168, 85, 247, 0.04) 0%, transparent 50%);
+        /* ==================== 容器布局 ==================== */
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: var(--spacing-lg) var(--spacing-md) 48px;
         }
         
-        .grid-lines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-image:
-                linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            animation: gridMove 20s linear infinite;
+        /* ==================== 头部区域 ==================== */
+        .header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
         }
         
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(60px, 60px); }
+        .badge {
+            display: inline-block;
+            background: var(--gradient-badge);
+            color: var(--color-info);
+            padding: var(--spacing-xs) 12px;
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            font-weight: 500;
+            margin-bottom: var(--spacing-md);
         }
         
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .main-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            line-height: 1.25;
+            margin-bottom: var(--spacing-sm);
         }
         
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .subtitle {
+            font-size: 15px;
+            color: var(--color-text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
         }
         
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
+        /* ==================== 导航目录 ==================== */
+        .toc {
+            background: var(--color-bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-card);
+            margin-bottom: var(--spacing-lg);
+            overflow: hidden;
         }
         
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        /* Header */
-        header {
-            padding: 1.5rem 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            z-index: 10;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .logo {
+        .toc-item {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md) 20px;
+            color: var(--color-text-primary);
             text-decoration: none;
-            color: inherit;
+            border-bottom: 1px solid var(--color-border-light);
+            transition: background 0.15s;
         }
         
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
-            border-radius: 10px;
+        .toc-item:last-child {
+            border-bottom: none;
+        }
+        
+        .toc-item:hover {
+            background: var(--color-bg);
+        }
+        
+        /* ==================== 章节编号 ==================== */
+        .section-number {
+            background: var(--gradient-success);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            flex-shrink: 0;
         }
         
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-primary);
+        .section-number-yellow {
+            background: var(--color-warning);
         }
         
-        .nav-links {
-            display: flex;
-            gap: 2rem;
+        .section-number-blue {
+            background: var(--color-info);
         }
         
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
+        .section-number-purple {
+            background: #8B5CF6;
         }
         
-        .nav-links a:hover {
-            color: var(--accent-gold);
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 4rem 4rem 3rem;
-            text-align: center;
-            position: relative;
-        }
-        
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid var(--border-color);
-            border-radius: 30px;
-            font-size: 0.85rem;
-            color: var(--accent-gold);
-            margin-bottom: 2rem;
-            animation: fadeInDown 0.8s ease-out;
-        }
-        
-        .hero-badge::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--accent-gold);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 0.8s ease-out 0.2s backwards;
-        }
-        
-        .hero h1 span {
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            animation: fadeInUp 0.8s ease-out 0.4s backwards;
-        }
-        
-        /* Stats Grid */
+        /* ==================== 统计卡片 ==================== */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            padding: 0 4rem 3rem;
-            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         .stat-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 2rem;
+            background: var(--color-bg-card);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-card-light);
+            border: 1px solid var(--color-border);
+            padding: 20px;
             text-align: center;
-            backdrop-filter: blur(20px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-gold);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px var(--glow-gold);
         }
         
         .stat-value {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
         }
+        
+        .stat-value.success { color: var(--color-success); }
+        .stat-value.danger { color: var(--color-danger); }
+        .stat-value.warning { color: var(--color-warning); }
+        .stat-value.info { color: var(--color-info); }
         
         .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
+            font-size: 11px;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 4rem;
-        }
-        
-        /* Section */
-        .section {
-            margin-bottom: 4rem;
+        /* ==================== 章节卡片 ==================== */
+        .section-card {
+            background: var(--color-bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-card);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
         }
         
         .section-header {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
+            gap: 12px;
+            margin-bottom: var(--spacing-md);
         }
         
-        .section-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--accent-gold), rgba(212, 175, 55, 0.3));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-        
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+        .section-header h2 {
+            font-size: 16px;
             font-weight: 600;
+            color: var(--color-text-primary);
         }
         
-        /* Cards */
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2rem;
-            backdrop-filter: blur(20px);
-            margin-bottom: 1.5rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        .section-content {
+            color: var(--color-text-secondary);
+            line-height: 1.5;
         }
         
-        .card:hover {
-            border-color: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        .section-content p {
+            margin-bottom: var(--spacing-md);
         }
         
-        .card h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--accent-gold);
-            margin-bottom: 1.5rem;
-            display: flex;
+        /* ==================== 状态标签 ==================== */
+        .status {
+            display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 4px;
+            padding: 2px 8px;
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            font-weight: 500;
         }
         
-        /* Table */
+        .status-success {
+            background: rgba(26, 127, 55, 0.12);
+            color: var(--color-success);
+        }
+        
+        .status-warning {
+            background: rgba(191, 135, 0, 0.12);
+            color: var(--color-warning-dark);
+        }
+        
+        .status-danger {
+            background: rgba(207, 34, 46, 0.2);
+            color: var(--color-danger);
+        }
+        
+        .status-info {
+            background: rgba(9, 105, 218, 0.12);
+            color: var(--color-info);
+        }
+        
+        .status-purple {
+            background: rgba(139, 92, 246, 0.12);
+            color: #8B5CF6;
+        }
+        
+        /* ==================== 引用框 ==================== */
+        .quote-box {
+            background: var(--color-bg-table-header);
+            border-left: 3px solid var(--color-info);
+            padding: var(--spacing-md) 20px;
+            color: var(--color-text-primary);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--spacing-md) 0;
+        }
+        
+        .quote-box p {
+            margin: 0;
+        }
+        
+        .quote-box .quote-text {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--color-text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .quote-box .quote-author {
+            font-size: 13px;
+            color: var(--color-text-muted);
+        }
+        
+        /* ==================== 洞察框 ==================== */
+        .insight-box {
+            border-left: 3px solid var(--color-warning);
+            background: rgba(191, 135, 0, 0.06);
+            padding: var(--spacing-md) 20px;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--spacing-md) 0;
+        }
+        
+        .insight-box .insight-title {
+            font-weight: 600;
+            color: var(--color-warning-dark);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .insight-box-success {
+            border-left-color: var(--color-success);
+            background: rgba(26, 127, 55, 0.06);
+        }
+        
+        .insight-box-success .insight-title {
+            color: var(--color-success);
+        }
+        
+        .insight-box-info {
+            border-left-color: var(--color-info);
+            background: rgba(9, 105, 218, 0.06);
+        }
+        
+        .insight-box-info .insight-title {
+            color: var(--color-info);
+        }
+        
+        /* ==================== 表格样式 ==================== */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: var(--spacing-md) 0;
+        }
+        
         table {
-            width: 100%;
             border-collapse: collapse;
-        }
-        
-        th, td {
-            padding: 1rem 1.25rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
+            width: 100%;
+            min-width: 500px;
         }
         
         th {
-            background: rgba(212, 175, 55, 0.08);
-            color: var(--accent-gold);
-            font-weight: 500;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            background: var(--color-bg-table-header);
+            color: var(--color-text-secondary);
+            padding: 12px 16px;
+            font-weight: 600;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+            font-size: 13px;
         }
         
-        tr:hover td {
-            background: rgba(212, 175, 55, 0.03);
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--color-border-light);
+            vertical-align: middle;
+            font-size: 14px;
         }
         
-        /* Badges */
-        .badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 500;
+        tbody tr:hover {
+            background: rgba(0, 0, 0, 0.02);
         }
         
-        .badge-success {
-            background: rgba(34, 197, 94, 0.15);
-            color: var(--accent-green);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-        }
-        
-        .badge-info {
-            background: rgba(74, 158, 255, 0.15);
-            color: var(--accent-blue);
-            border: 1px solid rgba(74, 158, 255, 0.3);
-        }
-        
-        .badge-warning {
-            background: rgba(245, 158, 11, 0.15);
-            color: var(--accent-orange);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-        }
-        
-        .badge-gold {
-            background: rgba(212, 175, 55, 0.15);
-            color: var(--accent-gold);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-        
-        .badge-purple {
-            background: rgba(168, 85, 247, 0.15);
-            color: var(--accent-purple);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-        }
-        
-        .badge-cyan {
-            background: rgba(6, 182, 212, 0.15);
-            color: var(--accent-cyan);
-            border: 1px solid rgba(6, 182, 212, 0.3);
-        }
-        
-        /* Quote Box */
-        .quote-box {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(212, 175, 55, 0.05));
-            border: 2px solid var(--accent-gold);
-            border-radius: 20px;
-            padding: 2.5rem;
-            text-align: center;
-            position: relative;
-            margin: 2rem 0;
-        }
-        
-        .quote-box::before {
-            content: '"';
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            color: var(--accent-gold);
-            line-height: 1;
-        }
-        
-        .quote-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            font-weight: 500;
-            color: var(--accent-gold);
-            line-height: 1.5;
-            margin-bottom: 1rem;
-        }
-        
-        .quote-author {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-        
-        /* Two Column Layout */
-        .two-column {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-        
-        /* Company Cards */
+        /* ==================== 公司卡片 ==================== */
         .company-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            gap: var(--spacing-md);
+        }
+        
+        @media (max-width: 768px) {
+            .company-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         .company-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 1.5rem;
-            border: 1px solid var(--border-color);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            background: var(--color-bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-card);
+            padding: var(--spacing-md);
+            border-top: 4px solid var(--color-border);
         }
         
-        .company-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-        }
-        
-        .company-card.gold::before { background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light)); }
-        .company-card.blue::before { background: linear-gradient(90deg, var(--accent-blue), #60a5fa); }
-        .company-card.purple::before { background: linear-gradient(90deg, var(--accent-purple), #c084fc); }
-        .company-card.green::before { background: linear-gradient(90deg, var(--accent-green), #4ade80); }
-        .company-card.orange::before { background: linear-gradient(90deg, var(--accent-orange), #fbbf24); }
-        .company-card.cyan::before { background: linear-gradient(90deg, var(--accent-cyan), #22d3ee); }
-        
-        .company-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
+        .company-card.gold { border-top-color: var(--color-warning); }
+        .company-card.blue { border-top-color: var(--color-info); }
+        .company-card.purple { border-top-color: #8B5CF6; }
+        .company-card.green { border-top-color: var(--color-success); }
+        .company-card.orange { border-top-color: #F59E0B; }
+        .company-card.cyan { border-top-color: #06B6D4; }
         
         .company-card h4 {
-            font-size: 1.1rem;
+            font-size: 15px;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: var(--spacing-xs);
         }
         
-        .company-card.gold h4 { color: var(--accent-gold); }
-        .company-card.blue h4 { color: var(--accent-blue); }
-        .company-card.purple h4 { color: var(--accent-purple); }
-        .company-card.green h4 { color: var(--accent-green); }
-        .company-card.orange h4 { color: var(--accent-orange); }
-        .company-card.cyan h4 { color: var(--accent-cyan); }
+        .company-card.gold h4 { color: var(--color-warning-dark); }
+        .company-card.blue h4 { color: var(--color-info); }
+        .company-card.purple h4 { color: #8B5CF6; }
+        .company-card.green h4 { color: var(--color-success); }
+        .company-card.orange h4 { color: #D97706; }
+        .company-card.cyan h4 { color: #0891B2; }
         
         .company-card .meta {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
+            font-size: 12px;
+            color: var(--color-text-muted);
+            margin-bottom: var(--spacing-sm);
         }
         
         .company-card p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-xs);
         }
         
         .company-card ul {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            padding-left: 1.25rem;
-            margin-top: 0.75rem;
+            font-size: 13px;
+            color: var(--color-text-muted);
+            padding-left: 20px;
+            margin: var(--spacing-sm) 0;
         }
         
         .company-card li {
-            margin-bottom: 0.4rem;
+            margin-bottom: 4px;
         }
         
-        /* Timeline */
+        .company-card .badges {
+            margin-top: var(--spacing-sm);
+            display: flex;
+            gap: var(--spacing-xs);
+            flex-wrap: wrap;
+        }
+        
+        /* ==================== 时间线 ==================== */
         .timeline {
             position: relative;
-            padding-left: 40px;
+            padding-left: 32px;
         }
         
         .timeline::before {
             content: '';
             position: absolute;
-            left: 15px;
+            left: 12px;
             top: 0;
             bottom: 0;
             width: 2px;
-            background: linear-gradient(to bottom, var(--accent-gold), var(--accent-purple), var(--accent-blue));
+            background: linear-gradient(to bottom, var(--color-success), var(--color-info), #8B5CF6);
         }
         
         .timeline-item {
             position: relative;
-            padding: 1.25rem 1.5rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            transition: all 0.3s;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-sm);
+            transition: all 0.15s;
         }
         
         .timeline-item:hover {
-            border-color: var(--accent-gold);
-            transform: translateX(5px);
+            border-color: var(--color-success);
+            transform: translateX(4px);
         }
         
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -33px;
+            left: -26px;
             top: 50%;
             transform: translateY(-50%);
-            width: 12px;
-            height: 12px;
-            background: var(--accent-gold);
+            width: 10px;
+            height: 10px;
+            background: var(--color-success);
             border-radius: 50%;
-            border: 3px solid var(--bg-primary);
+            border: 2px solid var(--color-bg);
         }
         
         .timeline-item.highlight {
-            border: 2px solid var(--accent-gold);
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
+            border: 2px solid var(--color-success);
+            background: rgba(26, 127, 55, 0.04);
         }
         
         .timeline-date {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--accent-gold);
-            font-weight: 500;
-            margin-bottom: 0.25rem;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--color-success);
+            margin-bottom: 2px;
         }
         
         .timeline-content {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 14px;
+            color: var(--color-text-secondary);
         }
         
-        /* Comparison Table */
-        .comparison-table {
-            overflow-x: auto;
-        }
-        
-        .comparison-table table {
-            min-width: 900px;
-        }
-        
-        .comparison-table th:first-child,
-        .comparison-table td:first-child {
-            position: sticky;
-            left: 0;
-            background: var(--bg-secondary);
-            z-index: 1;
-        }
-        
-        /* Insight Box */
-        .insight-box {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.03));
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        
-        .insight-box h4 {
-            color: var(--accent-green);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .insight-box p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 0.75rem;
-        }
-        
-        .insight-box ul {
-            padding-left: 1.5rem;
-            color: var(--text-secondary);
-        }
-        
-        .insight-box li {
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Highlight Box */
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.03));
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        
-        .highlight-box h4 {
-            color: var(--accent-gold);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .highlight-box p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 0.75rem;
-        }
-        
-        /* Progress Bar */
-        .progress-container {
-            margin: 1rem 0;
-        }
-        
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-        
-        .progress-label span:first-child {
-            color: var(--text-secondary);
-        }
-        
-        .progress-label span:last-child {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--accent-gold);
-            font-weight: 500;
-        }
-        
-        .progress-bar {
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light));
-            border-radius: 4px;
-            transition: width 1s ease-out;
-        }
-        
-        /* Legend */
-        .legend {
+        /* ==================== 两列布局 ==================== */
+        .two-column {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        
-        .legend-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            text-align: center;
-        }
-        
-        .legend-item .icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .legend-item .title {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-        
-        .legend-item .desc {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-        
-        .legend-item.gold .title { color: var(--accent-gold); }
-        .legend-item.purple .title { color: var(--accent-purple); }
-        .legend-item.orange .title { color: var(--accent-orange); }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 3rem 4rem;
-            border-top: 1px solid var(--border-color);
-            margin-top: 4rem;
-        }
-        
-        footer p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        footer a {
-            color: var(--accent-gold);
-            text-decoration: none;
-        }
-        
-        footer a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Back to Top */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--accent-gold);
-            color: var(--bg-primary);
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            z-index: 100;
-        }
-        
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px var(--glow-gold);
-        }
-        
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .two-column { grid-template-columns: 1fr; }
-            .company-grid { grid-template-columns: 1fr; }
-            .legend { grid-template-columns: 1fr; }
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
         }
         
         @media (max-width: 768px) {
-            header { padding: 1rem 1.5rem; }
-            .hero { padding: 2rem 1.5rem; }
-            .stats-grid { padding: 0 1.5rem 2rem; gap: 1rem; }
-            .container { padding: 1.5rem; }
-            .stat-value { font-size: 2rem; }
-            .nav-links { display: none; }
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* ==================== 列表样式 ==================== */
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+            font-size: 14px;
+        }
+        
+        .list-item::before {
+            content: "→";
+            color: var(--color-success);
+            flex-shrink: 0;
+        }
+        
+        /* ==================== 页脚 ==================== */
+        .footer {
+            text-align: center;
+            padding: var(--spacing-lg) 0;
+            border-top: 1px solid var(--color-border-light);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .footer p {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .footer a {
+            color: var(--color-info);
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* ==================== 响应式 ==================== */
+        @media (max-width: 960px) {
+            .container {
+                padding: var(--spacing-md) 12px 32px;
+            }
+            
+            .section-card {
+                padding: var(--spacing-md);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 20px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .company-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-pattern"></div>
-    <div class="grid-lines"></div>
-    
-    <!-- Header -->
-    <header>
-        <a href="https://xiaoxiong20260206.github.io/AIFinLearn/" class="logo">
-            <div class="logo-icon">🏦</div>
-            <span class="logo-text">AI+Finance</span>
-        </a>
-        <nav class="nav-links">
-            <a href="#overview">行业概览</a>
-            <a href="#companies">标杆企业</a>
-            <a href="#comparison">深度对比</a>
-            <a href="#insights">实践启示</a>
-            <a href="#timeline">发展脉络</a>
-        </nav>
-    </header>
-    
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-badge">
-            <span>深度调研报告</span>
-            <span style="color: var(--text-muted);">|</span>
-            <span>2026年2月更新</span>
-        </div>
-        <h1>
-            <span>金融行业AI转型</span><br>标杆案例研究
-        </h1>
-        <p class="hero-subtitle">
-            深度调研中国头部量化私募AI布局：幻方量化、明汯投资、灵均投资、鸣石基金等<br>
-            总结头部量化私募可借鉴的关键经验与差异化路径
-        </p>
-    </section>
-    
-    <!-- Stats Grid -->
-    <section class="stats-grid" id="overview">
-        <div class="stat-card">
-            <div class="stat-value">1.5万亿</div>
-            <div class="stat-label">私募量化管理规模<br><span style="color: var(--text-muted);">人民币</span></div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value">30%</div>
-            <div class="stat-label">量化交易占比<br><span style="color: var(--accent-gold);">A股日成交额</span></div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value">28家</div>
-            <div class="stat-label">百亿私募招AI岗<br><span style="color: var(--text-muted);">2025春季</span></div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-value">3年</div>
-            <div class="stat-label">AI转型窗口期<br><span style="color: var(--accent-orange);">行业共识</span></div>
-        </div>
-    </section>
-    
     <div class="container">
-        <!-- Industry Quote -->
+        <!-- 头部区域 -->
+        <header class="header">
+            <span class="badge">📊 深度调研报告</span>
+            <h1 class="main-title">金融行业AI转型标杆案例研究</h1>
+            <p class="subtitle">深度调研中国头部量化私募AI布局：幻方量化、明汯投资、灵均投资、鸣石基金等，总结可借鉴的关键经验与差异化路径</p>
+        </header>
+        
+        <!-- 导航目录 -->
+        <nav class="toc">
+            <a href="#overview" class="toc-item">
+                <span class="section-number">1</span>
+                <span>行业概览</span>
+            </a>
+            <a href="#companies" class="toc-item">
+                <span class="section-number">2</span>
+                <span>头部量化私募AI布局全景</span>
+            </a>
+            <a href="#comparison" class="toc-item">
+                <span class="section-number">3</span>
+                <span>深度对比分析</span>
+            </a>
+            <a href="#insights" class="toc-item">
+                <span class="section-number section-number-yellow">4</span>
+                <span>可借鉴的关键经验</span>
+            </a>
+            <a href="#timeline" class="toc-item">
+                <span class="section-number section-number-blue">5</span>
+                <span>行业AI发展脉络</span>
+            </a>
+            <a href="#conclusion" class="toc-item">
+                <span class="section-number section-number-purple">6</span>
+                <span>核心结论</span>
+            </a>
+        </nav>
+        
+        <!-- 统计卡片 -->
+        <div class="stats-grid" id="overview">
+            <div class="stat-card">
+                <div class="stat-value warning">1.5万亿</div>
+                <div class="stat-label">私募量化管理规模</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value info">30%</div>
+                <div class="stat-label">A股日成交占比</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value success">28家</div>
+                <div class="stat-label">百亿私募招AI岗</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value danger">3年</div>
+                <div class="stat-label">AI转型窗口期</div>
+            </div>
+        </div>
+        
+        <!-- 行业引言 -->
         <div class="quote-box">
-            <p class="quote-text">
-                未来三年内，不应用AI技术的量化经理<br>可能被市场淘汰。
-            </p>
+            <p class="quote-text">"未来三年内，不应用AI技术的量化经理可能被市场淘汰。"</p>
             <p class="quote-author">— 倍漾量化创始人 冯霁</p>
         </div>
         
-        <!-- Company Profiles -->
-        <section class="section" id="companies">
+        <!-- 头部量化私募AI布局 -->
+        <section id="companies" class="section-card">
             <div class="section-header">
-                <div class="section-icon">🏢</div>
-                <h2 class="section-title">头部量化私募AI布局全景</h2>
+                <span class="section-number">2</span>
+                <h2>头部量化私募AI布局全景</h2>
             </div>
-            
-            <div class="company-grid">
-                <!-- 幻方量化 -->
-                <div class="company-card gold">
-                    <h4>🚀 幻方量化（九章资产）</h4>
-                    <div class="meta">创始人：梁文锋 | 总部：杭州 | AUM：700亿+</div>
-                    <p><strong>定位：</strong>"中国版文艺复兴" + AGI探索者</p>
-                    <ul>
-                        <li><strong>2016年</strong>：第一个深度学习模型上线实盘</li>
-                        <li><strong>2017年</strong>：100% AI策略覆盖</li>
-                        <li><strong>萤火超算</strong>：萤火二号搭载10,000×A100 GPU</li>
-                        <li><strong>DeepSeek</strong>：2023年成立，首期投入30亿，2025年震动全球</li>
-                        <li><strong>特色</strong>：唯一做通用大模型的量化机构</li>
-                    </ul>
-                    <p style="margin-top: 0.75rem;"><span class="badge badge-success">2025收益56.6%</span> <span class="badge badge-gold">百亿量化第2名</span></p>
-                </div>
-                
-                <!-- 北京某头部投资 -->
-                <div class="company-card blue">
-                    <h4>🔬 北京某头部量化投资</h4>
-                    <div class="meta">创始人：清华系 | 总部：北京 | AUM：650亿+</div>
-                    <p><strong>定位：</strong>头部量化私募代表</p>
-                    <ul>
-                        <li><strong>2012年</strong>：最早成立的量化"四大天王"</li>
-                        <li><strong>三大实验室</strong>：Data Lab、AI Lab、水滴实验室</li>
-                        <li><strong>超算集群</strong>：建立超算集群</li>
-                        <li><strong>外部合作</strong>：与研究院联合实验室（金融数字化）</li>
-                        <li><strong>最新</strong>：携手微软复现DeepSeek-R1</li>
-                    </ul>
-                    <p style="margin-top: 0.75rem;"><span class="badge badge-info">华尔街派</span> <span class="badge badge-purple">清华系</span></p>
-                </div>
-                
-                <!-- 明汯投资 -->
-                <div class="company-card purple">
-                    <h4>💹 明汯投资</h4>
-                    <div class="meta">创始人：裘慧明 | 总部：上海 | AUM：600亿+</div>
-                    <p><strong>定位：</strong>超算级算力，全球化布局</p>
-                    <ul>
-                        <li><strong>北美投研中心</strong>：数千张GPU、万张CPU、PB级存储</li>
-                        <li><strong>超算能力</strong>：金融场景算力居世界超算TOP500</li>
-                        <li><strong>策略线</strong>：期货程序化、量化选股、事件驱动、量化CTA</li>
-                        <li><strong>创始人背景</strong>：华尔街千禧年基金</li>
-                    </ul>
-                    <p style="margin-top: 0.75rem;"><span class="badge badge-success">2024收益前10</span> <span class="badge badge-info">华尔街派</span></p>
-                </div>
-                
-                <!-- 灵均投资 -->
-                <div class="company-card green">
-                    <h4>🎯 灵均投资</h4>
-                    <div class="meta">创始人：蔡枚杰、马志宇 | 总部：上海 | AUM：400亿+</div>
-                    <p><strong>定位：</strong>国内首批量化私募，AI智能体先锋</p>
-                    <ul>
-                        <li><strong>2014年</strong>：成立，国内首批量化私募</li>
-                        <li><strong>富厚科技</strong>：落地AI智能体"AI名片"</li>
-                        <li><strong>跨场景布局</strong>：学习、健康、心理、财经等多领域</li>
-                        <li><strong>2025业绩</strong>：73.51%年度收益，百亿量化第一</li>
-                    </ul>
-                    <p style="margin-top: 0.75rem;"><span class="badge badge-success">2025收益73.5%</span> <span class="badge badge-gold">百亿量化冠军</span></p>
-                </div>
-                
-                <!-- 鸣石基金 -->
-                <div class="company-card orange">
-                    <h4>🔥 鸣石基金</h4>
-                    <div class="meta">创始人：袁宇 | 总部：上海 | AUM：200亿+</div>
-                    <p><strong>定位：</strong>全流程AI量化体系</p>
-                    <ul>
-                        <li><strong>2021年</strong>：成立AI实验室G-Lab</li>
-                        <li><strong>超算中心</strong>：两期建设累计投入"亿元级"</li>
-                        <li><strong>AI覆盖</strong>：因子、信号、模型优化、交易算法</li>
-                        <li><strong>2025年3月</strong>：全球招募AI科学家</li>
-                    </ul>
-                    <p style="margin-top: 0.75rem;"><span class="badge badge-warning">全流程AI</span> <span class="badge badge-info">全球招聘</span></p>
-                </div>
-                
-                <!-- 宽德投资 -->
-                <div class="company-card cyan">
-                    <h4>🧪 宽德投资</h4>
-                    <div class="meta">创始人：徐御之 | 总部：上海 | AUM：300亿+</div>
-                    <p><strong>定位：</strong>智能学习实验室，超级助手研发</p>
-                    <ul>
-                        <li><strong>智能学习实验室</strong>：从量化起步，探索科学领域</li>
-                        <li><strong>超级助手</strong>：研发通用型AI助手</li>
-                        <li><strong>2025年</strong>：紧急招揽AI研究员和工程师</li>
-                    </ul>
-                    <p style="margin-top: 0.75rem;"><span class="badge badge-cyan">通用AI</span> <span class="badge badge-info">科学领域</span></p>
+            <div class="section-content">
+                <div class="company-grid">
+                    <!-- 幻方量化 -->
+                    <div class="company-card gold">
+                        <h4>🚀 幻方量化（九章资产）</h4>
+                        <div class="meta">创始人：梁文锋 | 总部：杭州 | AUM：700亿+</div>
+                        <p><strong>定位：</strong>"中国版文艺复兴" + AGI探索者</p>
+                        <ul>
+                            <li><strong>2016年</strong>：第一个深度学习模型上线实盘</li>
+                            <li><strong>2017年</strong>：100% AI策略覆盖</li>
+                            <li><strong>萤火超算</strong>：萤火二号搭载10,000×A100 GPU</li>
+                            <li><strong>DeepSeek</strong>：2023年成立，首期投入30亿，2025年震动全球</li>
+                        </ul>
+                        <div class="badges">
+                            <span class="status status-success">2025收益56.6%</span>
+                            <span class="status status-warning">百亿量化第2名</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 北京某头部投资 -->
+                    <div class="company-card blue">
+                        <h4>🔬 北京某头部量化投资</h4>
+                        <div class="meta">创始人：清华系 | 总部：北京 | AUM：650亿+</div>
+                        <p><strong>定位：</strong>头部量化私募代表</p>
+                        <ul>
+                            <li><strong>2012年</strong>：最早成立的量化"四大天王"</li>
+                            <li><strong>三大实验室</strong>：Data Lab、AI Lab、水滴实验室</li>
+                            <li><strong>超算集群</strong>：建立超算集群</li>
+                            <li><strong>最新</strong>：携手微软复现DeepSeek-R1</li>
+                        </ul>
+                        <div class="badges">
+                            <span class="status status-info">华尔街派</span>
+                            <span class="status status-purple">清华系</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 明汯投资 -->
+                    <div class="company-card purple">
+                        <h4>💹 明汯投资</h4>
+                        <div class="meta">创始人：裘慧明 | 总部：上海 | AUM：600亿+</div>
+                        <p><strong>定位：</strong>超算级算力，全球化布局</p>
+                        <ul>
+                            <li><strong>北美投研中心</strong>：数千张GPU、万张CPU、PB级存储</li>
+                            <li><strong>超算能力</strong>：金融场景算力居世界超算TOP500</li>
+                            <li><strong>策略线</strong>：期货程序化、量化选股、事件驱动、量化CTA</li>
+                        </ul>
+                        <div class="badges">
+                            <span class="status status-success">2024收益前10</span>
+                            <span class="status status-info">华尔街派</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 灵均投资 -->
+                    <div class="company-card green">
+                        <h4>🎯 灵均投资</h4>
+                        <div class="meta">创始人：蔡枚杰、马志宇 | 总部：上海 | AUM：400亿+</div>
+                        <p><strong>定位：</strong>国内首批量化私募，AI智能体先锋</p>
+                        <ul>
+                            <li><strong>2014年</strong>：成立，国内首批量化私募</li>
+                            <li><strong>富厚科技</strong>：落地AI智能体"AI名片"</li>
+                            <li><strong>跨场景布局</strong>：学习、健康、心理、财经等多领域</li>
+                        </ul>
+                        <div class="badges">
+                            <span class="status status-success">2025收益73.5%</span>
+                            <span class="status status-warning">百亿量化冠军</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 鸣石基金 -->
+                    <div class="company-card orange">
+                        <h4>🔥 鸣石基金</h4>
+                        <div class="meta">创始人：袁宇 | 总部：上海 | AUM：200亿+</div>
+                        <p><strong>定位：</strong>全流程AI量化体系</p>
+                        <ul>
+                            <li><strong>2021年</strong>：成立AI实验室G-Lab</li>
+                            <li><strong>超算中心</strong>：两期建设累计投入"亿元级"</li>
+                            <li><strong>AI覆盖</strong>：因子、信号、模型优化、交易算法</li>
+                        </ul>
+                        <div class="badges">
+                            <span class="status status-warning">全流程AI</span>
+                            <span class="status status-info">全球招聘</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 宽德投资 -->
+                    <div class="company-card cyan">
+                        <h4>🧪 宽德投资</h4>
+                        <div class="meta">创始人：徐御之 | 总部：上海 | AUM：300亿+</div>
+                        <p><strong>定位：</strong>智能学习实验室，超级助手研发</p>
+                        <ul>
+                            <li><strong>智能学习实验室</strong>：从量化起步，探索科学领域</li>
+                            <li><strong>超级助手</strong>：研发通用型AI助手</li>
+                            <li><strong>2025年</strong>：紧急招揽AI研究员和工程师</li>
+                        </ul>
+                        <div class="badges">
+                            <span class="status status-info">通用AI</span>
+                            <span class="status status-purple">科学领域</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
         
-        <!-- Comparison Table -->
-        <section class="section" id="comparison">
+        <!-- 深度对比分析 -->
+        <section id="comparison" class="section-card">
             <div class="section-header">
-                <div class="section-icon">📊</div>
-                <h2 class="section-title">头部量化私募AI布局深度对比</h2>
+                <span class="section-number">3</span>
+                <h2>深度对比分析</h2>
             </div>
-            
-            <div class="card">
-                <h3>🔍 核心维度对比分析</h3>
-                <div class="comparison-table">
+            <div class="section-content">
+                <h3 style="font-size: 15px; font-weight: 600; color: var(--color-text-primary); margin-bottom: var(--spacing-md);">🔍 核心维度对比</h3>
+                <div class="table-wrapper">
                     <table>
-                        <tr>
-                            <th>维度</th>
-                            <th>幻方量化</th>
-                            <th>北京某头部</th>
-                            <th>明汯投资</th>
-                            <th>灵均投资</th>
-                            <th>鸣石基金</th>
-                        </tr>
-                        <tr>
-                            <td><strong>AI布局深度</strong></td>
-                            <td><span class="badge badge-success">极深</span><br>通用大模型+量化</td>
-                            <td><span class="badge badge-info">深</span><br>三大实验室</td>
-                            <td><span class="badge badge-info">深</span><br>超算级算力</td>
-                            <td><span class="badge badge-warning">中深</span><br>AI智能体</td>
-                            <td><span class="badge badge-warning">中深</span><br>全流程AI</td>
-                        </tr>
-                        <tr>
-                            <td><strong>算力投入</strong></td>
-                            <td>萤火二号<br>10,000×A100<br><span style="color: var(--accent-gold);">约10亿元</span></td>
-                            <td>北溟超算<br>规模未公开<br><span style="color: var(--text-muted);">量化前三</span></td>
-                            <td>北美投研中心<br>数千GPU<br><span style="color: var(--accent-purple);">TOP500</span></td>
-                            <td>未公开</td>
-                            <td>超算中心<br><span style="color: var(--accent-orange);">亿元级</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>AI战略方向</strong></td>
-                            <td>AGI探索<br>DeepSeek独立发展</td>
-                            <td>金融AI垂直<br>+ 大模型复现</td>
-                            <td>金融AI垂直<br>高频策略</td>
-                            <td>AI智能体<br>跨场景应用</td>
-                            <td>全流程AI<br>量化赋能</td>
-                        </tr>
-                        <tr>
-                            <td><strong>创始人背景</strong></td>
-                            <td>浙大CS<br><span class="badge badge-gold">本土派</span></td>
-                            <td>清华+千禧年<br><span class="badge badge-purple">华尔街派</span></td>
-                            <td>千禧年<br><span class="badge badge-purple">华尔街派</span></td>
-                            <td>本土<br><span class="badge badge-gold">本土派</span></td>
-                            <td>本土<br><span class="badge badge-gold">本土派</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>外部产出</strong></td>
-                            <td>DeepSeek<br><span class="badge badge-success">全球影响</span></td>
-                            <td>IQuest-Coder<br><span class="badge badge-info">开源模型</span></td>
-                            <td>无公开产出</td>
-                            <td>AI名片<br><span class="badge badge-info">C端产品</span></td>
-                            <td>无公开产出</td>
-                        </tr>
-                        <tr>
-                            <td><strong>2025业绩</strong></td>
-                            <td>56.6%<br>第2名</td>
-                            <td>表现一般<br>排名靠后</td>
-                            <td>前10</td>
-                            <td>73.5%<br><span class="badge badge-success">第1名</span></td>
-                            <td>中等</td>
-                        </tr>
-                        <tr>
-                            <td><strong>销售模式</strong></td>
-                            <td><span class="badge badge-gold">直销为主</span><br>利润率更高</td>
-                            <td>渠道+直销</td>
-                            <td>渠道为主</td>
-                            <td>渠道为主</td>
-                            <td>渠道为主</td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>维度</th>
+                                <th>幻方量化</th>
+                                <th>北京某头部</th>
+                                <th>明汯投资</th>
+                                <th>灵均投资</th>
+                                <th>鸣石基金</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>AI布局深度</strong></td>
+                                <td><span class="status status-success">极深</span><br><small>通用大模型+量化</small></td>
+                                <td><span class="status status-info">深</span><br><small>三大实验室</small></td>
+                                <td><span class="status status-info">深</span><br><small>超算级算力</small></td>
+                                <td><span class="status status-warning">中深</span><br><small>AI智能体</small></td>
+                                <td><span class="status status-warning">中深</span><br><small>全流程AI</small></td>
+                            </tr>
+                            <tr>
+                                <td><strong>算力投入</strong></td>
+                                <td>萤火二号<br><small style="color: var(--color-warning);">约10亿元</small></td>
+                                <td>北溟超算<br><small style="color: var(--color-text-muted);">量化前三</small></td>
+                                <td>北美投研中心<br><small style="color: #8B5CF6;">TOP500</small></td>
+                                <td><small>未公开</small></td>
+                                <td>超算中心<br><small style="color: #D97706;">亿元级</small></td>
+                            </tr>
+                            <tr>
+                                <td><strong>AI战略方向</strong></td>
+                                <td>AGI探索<br><small>DeepSeek独立发展</small></td>
+                                <td>金融AI垂直<br><small>+ 大模型复现</small></td>
+                                <td>金融AI垂直<br><small>高频策略</small></td>
+                                <td>AI智能体<br><small>跨场景应用</small></td>
+                                <td>全流程AI<br><small>量化赋能</small></td>
+                            </tr>
+                            <tr>
+                                <td><strong>创始人背景</strong></td>
+                                <td><span class="status status-warning">本土派</span><br><small>浙大CS</small></td>
+                                <td><span class="status status-purple">华尔街派</span><br><small>清华+千禧年</small></td>
+                                <td><span class="status status-purple">华尔街派</span><br><small>千禧年</small></td>
+                                <td><span class="status status-warning">本土派</span></td>
+                                <td><span class="status status-warning">本土派</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>外部产出</strong></td>
+                                <td><span class="status status-success">DeepSeek</span><br><small>全球影响</small></td>
+                                <td><span class="status status-info">IQuest-Coder</span><br><small>开源模型</small></td>
+                                <td><small>无公开产出</small></td>
+                                <td><span class="status status-info">AI名片</span><br><small>C端产品</small></td>
+                                <td><small>无公开产出</small></td>
+                            </tr>
+                            <tr>
+                                <td><strong>2025业绩</strong></td>
+                                <td>56.6%<br><small>第2名</small></td>
+                                <td><small>表现一般</small></td>
+                                <td><small>前10</small></td>
+                                <td><span class="status status-success">73.5%</span><br><small>第1名</small></td>
+                                <td><small>中等</small></td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
-            </div>
-            
-            <div class="card">
-                <h3>🧬 AI技术应用场景对比</h3>
-                <table>
-                    <tr>
-                        <th>应用场景</th>
-                        <th>幻方</th>
-                        <th>北京某</th>
-                        <th>明汯</th>
-                        <th>鸣石</th>
-                        <th>技术描述</th>
-                    </tr>
-                    <tr>
-                        <td>因子挖掘</td>
-                        <td style="color: var(--accent-green);">✓</td>
-                        <td style="color: var(--accent-green);">✓</td>
-                        <td style="color: var(--accent-green);">✓</td>
-                        <td style="color: var(--accent-green);">✓</td>
-                        <td>深度学习探索非线性关系</td>
-                    </tr>
-                    <tr>
-                        <td>NLP因子（研报/新闻）</td>
-                        <td style="color: var(--accent-green);">✓</td>
-                        <td style="color: var(--accent-green);">✓</td>
-                        <td style="color: var(--accent-green);">✓</td>
-                        <td style="color: var(--accent-green);">✓</td>
-                        <td>Transformer分析非结构化数据</td>
-                    </tr>
-                    <tr>
-                        <td>多模态数据（卫星/图像）</td>
-                        <td style="color: var(--accent-green);">✓</td>
-                        <td style="color: var(--accent-orange);">○</td>
-                        <td style="color: var(--accent-orange);">○</td>
-                        <td style="color: var(--text-muted);">-</td>
-                        <td>CV处理卫星图像、供应链物流</td>
-                    </tr>
-                    <tr>
-                        <td>交易执行优化</td>
-                        <td style="color: var(--accent-green);">✓</td>
-                        <td style="color: var(--accent-green);">✓</td>
-                        <td style="color: var(--accent-green);">✓</td>
-                        <td style="color: var(--accent-green);">✓</td>
-                        <td>强化学习动态拆单、流动性判断</td>
-                    </tr>
-                    <tr>
-                        <td>动态风控</td>
-                        <td style="color: var(--accent-green);">✓</td>
-                        <td style="color: var(--accent-green);">✓</td>
-                        <td style="color: var(--accent-green);">✓</td>
-                        <td style="color: var(--accent-green);">✓</td>
-                        <td>实时监控+自动对冲机制</td>
-                    </tr>
-                    <tr>
-                        <td>通用大模型研发</td>
-                        <td style="color: var(--accent-gold);">★</td>
-                        <td style="color: var(--accent-orange);">○</td>
-                        <td style="color: var(--text-muted);">-</td>
-                        <td style="color: var(--text-muted);">-</td>
-                        <td>DeepSeek系列（仅幻方）</td>
-                    </tr>
-                    <tr>
-                        <td>代码大模型</td>
-                        <td style="color: var(--accent-gold);">★</td>
-                        <td style="color: var(--accent-green);">✓</td>
-                        <td style="color: var(--text-muted);">-</td>
-                        <td style="color: var(--text-muted);">-</td>
-                        <td>IQuest-Coder（北京某头部）</td>
-                    </tr>
-                </table>
-                <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.85rem;">
+                
+                <h3 style="font-size: 15px; font-weight: 600; color: var(--color-text-primary); margin: var(--spacing-lg) 0 var(--spacing-md);">🧬 AI技术应用场景对比</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>应用场景</th>
+                                <th>幻方</th>
+                                <th>北京某</th>
+                                <th>明汯</th>
+                                <th>鸣石</th>
+                                <th>技术描述</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>因子挖掘</td>
+                                <td style="color: var(--color-success);">✓</td>
+                                <td style="color: var(--color-success);">✓</td>
+                                <td style="color: var(--color-success);">✓</td>
+                                <td style="color: var(--color-success);">✓</td>
+                                <td>深度学习探索非线性关系</td>
+                            </tr>
+                            <tr>
+                                <td>NLP因子</td>
+                                <td style="color: var(--color-success);">✓</td>
+                                <td style="color: var(--color-success);">✓</td>
+                                <td style="color: var(--color-success);">✓</td>
+                                <td style="color: var(--color-success);">✓</td>
+                                <td>Transformer分析非结构化数据</td>
+                            </tr>
+                            <tr>
+                                <td>多模态数据</td>
+                                <td style="color: var(--color-success);">✓</td>
+                                <td style="color: var(--color-warning);">○</td>
+                                <td style="color: var(--color-warning);">○</td>
+                                <td style="color: var(--color-text-muted);">-</td>
+                                <td>CV处理卫星图像、供应链物流</td>
+                            </tr>
+                            <tr>
+                                <td>交易执行优化</td>
+                                <td style="color: var(--color-success);">✓</td>
+                                <td style="color: var(--color-success);">✓</td>
+                                <td style="color: var(--color-success);">✓</td>
+                                <td style="color: var(--color-success);">✓</td>
+                                <td>强化学习动态拆单、流动性判断</td>
+                            </tr>
+                            <tr>
+                                <td>通用大模型研发</td>
+                                <td style="color: var(--color-warning);">★</td>
+                                <td style="color: var(--color-warning);">○</td>
+                                <td style="color: var(--color-text-muted);">-</td>
+                                <td style="color: var(--color-text-muted);">-</td>
+                                <td>DeepSeek系列（仅幻方）</td>
+                            </tr>
+                            <tr>
+                                <td>代码大模型</td>
+                                <td style="color: var(--color-warning);">★</td>
+                                <td style="color: var(--color-success);">✓</td>
+                                <td style="color: var(--color-text-muted);">-</td>
+                                <td style="color: var(--color-text-muted);">-</td>
+                                <td>IQuest-Coder（北京某头部）</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="font-size: 12px; color: var(--color-text-muted); margin-top: var(--spacing-sm);">
                     ★ 领先 | ✓ 已应用 | ○ 探索中 | - 无公开信息
                 </p>
             </div>
         </section>
         
-        <!-- Insights -->
-        <section class="section" id="insights">
+        <!-- 可借鉴的关键经验 -->
+        <section id="insights" class="section-card">
             <div class="section-header">
-                <div class="section-icon">💡</div>
-                <h2 class="section-title">可借鉴的关键经验</h2>
+                <span class="section-number section-number-yellow">4</span>
+                <h2>可借鉴的关键经验</h2>
             </div>
-            
-            <div class="insight-box" style="border-color: var(--accent-gold); background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.03));">
-                <h4 style="color: var(--accent-gold);">🏆 幻方模式的核心启示</h4>
-                <p><strong>1. “技术外溢”战略：从量化到AGI</strong></p>
-                <ul>
-                    <li>幻方将AI研发资源的“余力”转化为DeepSeek，开辟全新价值空间</li>
-                    <li>头部量化已有多个实验室积累，可考虑将部分研究成果产品化或开源</li>
-                    <li><strong>建议</strong>：开源代码模型是好的开始，可进一步扩展金融垂直大模型</li>
-                </ul>
-            </div>
-            
-            <div class="insight-box">
-                <h4>📈 可借鉴的具体方向</h4>
+            <div class="section-content">
+                <div class="insight-box insight-box-success">
+                    <p class="insight-title">🏆 幻方模式的核心启示</p>
+                    <p><strong>1. "技术外溢"战略：从量化到AGI</strong></p>
+                    <ul style="padding-left: 20px; font-size: 14px; margin: var(--spacing-sm) 0;">
+                        <li>幻方将AI研发资源的"余力"转化为DeepSeek，开辟全新价值空间</li>
+                        <li>头部量化已有多个实验室积累，可考虑将部分研究成果产品化或开源</li>
+                        <li><strong>建议</strong>：开源代码模型是好的开始，可进一步扩展金融垂直大模型</li>
+                    </ul>
+                </div>
+                
                 <div class="two-column">
-                    <div>
-                        <p><strong>1. 算力基建持续投入</strong></p>
-                        <ul>
+                    <div class="insight-box">
+                        <p class="insight-title">📈 算力基建持续投入</p>
+                        <ul style="padding-left: 20px; font-size: 14px;">
                             <li>幻方萤火二号：10亿级投入，1万张A100</li>
                             <li>明汯北美中心：TOP500超算能力</li>
-                            <li><strong>行动建议</strong>：超算集群需持续升级，保持“量化前三”地位</li>
+                            <li><strong>行动建议</strong>：超算集群需持续升级，保持"量化前三"地位</li>
                         </ul>
-                        
-                        <p style="margin-top: 1rem;"><strong>2. AI研发体系化</strong></p>
-                        <ul>
+                    </div>
+                    <div class="insight-box">
+                        <p class="insight-title">🔬 AI研发体系化</p>
+                        <ul style="padding-left: 20px; font-size: 14px;">
                             <li>鸣石G-Lab：2021年成立，全流程AI覆盖</li>
                             <li>宽德智能学习实验室：通用型超级助手</li>
                             <li><strong>行动建议</strong>：实验室需强化协同，形成完整技术栈</li>
                         </ul>
                     </div>
-                    <div>
-                        <p><strong>3. 人才战略升级</strong></p>
-                        <ul>
+                    <div class="insight-box">
+                        <p class="insight-title">👨‍💻 人才战略升级</p>
+                        <ul style="padding-left: 20px; font-size: 14px;">
                             <li>行业AI研究员年薪：200万+</li>
                             <li>与互联网大厂、科创企业激烈竞争</li>
                             <li><strong>行动建议</strong>：利用高校优势，强化校招+顶尖人才引进</li>
                         </ul>
-                        
-                        <p style="margin-top: 1rem;"><strong>4. 开源生态建设</strong></p>
-                        <ul>
+                    </div>
+                    <div class="insight-box">
+                        <p class="insight-title">🌐 开源生态建设</p>
+                        <ul style="padding-left: 20px; font-size: 14px;">
                             <li>DeepSeek开源策略：建立全球影响力</li>
                             <li>IQuest-Coder：已开源SOTA代码模型</li>
                             <li><strong>行动建议</strong>：扩大开源范围，建立技术品牌</li>
                         </ul>
                     </div>
                 </div>
-            </div>
-            
-            <div class="card" style="border: 2px solid var(--accent-blue);">
-                <h3 style="color: var(--accent-blue);">🎯 差异化发展路径建议</h3>
-                <table>
-                    <tr>
-                        <th>维度</th>
-                        <th>当前状态</th>
-                        <th>建议行动</th>
-                        <th>参考标杆</th>
-                    </tr>
-                    <tr>
-                        <td><strong>AI产出可见度</strong></td>
-                        <td>三大实验室，产出内化</td>
-                        <td>扩大开源、技术论文发表</td>
-                        <td>幻方DeepSeek</td>
-                    </tr>
-                    <tr>
-                        <td><strong>算力公开度</strong></td>
-                        <td>北溟超算，细节未公开</td>
-                        <td>适度披露，建立技术形象</td>
-                        <td>明汯TOP500</td>
-                    </tr>
-                    <tr>
-                        <td><strong>跨场景应用</strong></td>
-                        <td>聚焦金融量化</td>
-                        <td>探索金融垂直AI产品</td>
-                        <td>灵均AI名片</td>
-                    </tr>
-                    <tr>
-                        <td><strong>大模型战略</strong></td>
-                        <td>复现DeepSeek-R1</td>
-                        <td>发展金融专用大模型</td>
-                        <td>幻方双轨制</td>
-                    </tr>
-                    <tr>
-                        <td><strong>销售模式</strong></td>
-                        <td>渠道+直销</td>
-                        <td>可考虑增加直销占比</td>
-                        <td>幻方直销为主</td>
-                    </tr>
-                </table>
-            </div>
-            
-            <div class="highlight-box" style="border-color: var(--accent-orange);">
-                <h4 style="color: var(--accent-orange);">⚠️ 需要注意的风险与挑战</h4>
-                <p><strong>1. AI投入产出比的不确定性</strong></p>
-                <p>AI方向投入有"前期投入大，短期内不一定看到结果"的特点，需要量力而行。</p>
-                <p style="margin-top: 0.75rem;"><strong>2. 业绩与AI投入的关联性</strong></p>
-                <p>部分头部量化2025年业绩表现一般，说明AI投入不能直接等同于业绩提升，需关注策略实效。</p>
-                <p style="margin-top: 0.75rem;"><strong>3. 技术落地的实际效果</strong></p>
-                <p>量化机构宣传AI技术，需要实际成果落地，否则可能沦为"PPT技术"。</p>
+                
+                <div class="insight-box insight-box-info" style="margin-top: var(--spacing-lg);">
+                    <p class="insight-title">🎯 差异化发展路径建议</p>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>维度</th>
+                                    <th>当前状态</th>
+                                    <th>建议行动</th>
+                                    <th>参考标杆</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>AI产出可见度</strong></td>
+                                    <td>三大实验室，产出内化</td>
+                                    <td>扩大开源、技术论文发表</td>
+                                    <td>幻方DeepSeek</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>算力公开度</strong></td>
+                                    <td>北溟超算，细节未公开</td>
+                                    <td>适度披露，建立技术形象</td>
+                                    <td>明汯TOP500</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>跨场景应用</strong></td>
+                                    <td>聚焦金融量化</td>
+                                    <td>探索金融垂直AI产品</td>
+                                    <td>灵均AI名片</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>大模型战略</strong></td>
+                                    <td>复现DeepSeek-R1</td>
+                                    <td>发展金融专用大模型</td>
+                                    <td>幻方双轨制</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="insight-box" style="border-left-color: var(--color-danger); background: rgba(207, 34, 46, 0.04);">
+                    <p class="insight-title" style="color: var(--color-danger);">⚠️ 需要注意的风险与挑战</p>
+                    <div class="list-item"><strong>AI投入产出比的不确定性</strong> — AI方向投入有"前期投入大，短期内不一定看到结果"的特点，需要量力而行</div>
+                    <div class="list-item"><strong>业绩与AI投入的关联性</strong> — 部分头部量化2025年业绩表现一般，说明AI投入不能直接等同于业绩提升</div>
+                    <div class="list-item"><strong>技术落地的实际效果</strong> — 量化机构宣传AI技术，需要实际成果落地，否则可能沦为"PPT技术"</div>
+                </div>
             </div>
         </section>
         
-        <!-- Timeline -->
-        <section class="section" id="timeline">
+        <!-- 行业AI发展脉络 -->
+        <section id="timeline" class="section-card">
             <div class="section-header">
-                <div class="section-icon">📅</div>
-                <h2 class="section-title">行业AI发展脉络</h2>
+                <span class="section-number section-number-blue">5</span>
+                <h2>行业AI发展脉络</h2>
             </div>
-            
-            <div class="card">
+            <div class="section-content">
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="timeline-date">2012年</div>
-                        <div class="timeline-content"><strong>北京某头部量化成立</strong>，最早的量化“四大天王”之一</div>
+                        <div class="timeline-content"><strong>北京某头部量化成立</strong>，最早的量化"四大天王"之一</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-date">2014-2015年</div>
@@ -1228,10 +1019,6 @@
                         <div class="timeline-content">幻方100% AI策略覆盖，行业AI应用进入探索期</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-date">2018-2020年</div>
-                        <div class="timeline-content">因诺、稳博、信弘天禾、世纪前沿等相继成立AI团队</div>
-                    </div>
-                    <div class="timeline-item">
                         <div class="timeline-date">2020年</div>
                         <div class="timeline-content">幻方萤火一号上线（1,100 GPU），AI从"锦上添花"变为"核心引擎"</div>
                     </div>
@@ -1244,20 +1031,12 @@
                         <div class="timeline-content"><strong>DeepSeek成立</strong>，幻方探索AGI，首期投入30亿元</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-date">2024年</div>
-                        <div class="timeline-content">行业AI应用从"赋能"转向"长期体系化建设"</div>
-                    </div>
-                    <div class="timeline-item">
                         <div class="timeline-date">2025年1月</div>
                         <div class="timeline-content"><strong>DeepSeek R1发布</strong>，震动全球AI界，量化行业关注度空前</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-date">2025年2月</div>
                         <div class="timeline-content">灵均2025收益73.5%登顶，幻方56.6%居第二</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2025年3月</div>
-                        <div class="timeline-content">宽德、蒙玺、鸣石等4家头部量化公开宣布加码AI研发</div>
                     </div>
                     <div class="timeline-item highlight">
                         <div class="timeline-date">2026年2月（当前）</div>
@@ -1267,102 +1046,45 @@
             </div>
         </section>
         
-        <!-- Industry Trends -->
-        <section class="section">
+        <!-- 核心结论 -->
+        <section id="conclusion" class="section-card">
             <div class="section-header">
-                <div class="section-icon">📈</div>
-                <h2 class="section-title">行业趋势与展望</h2>
+                <span class="section-number section-number-purple">6</span>
+                <h2>核心结论</h2>
             </div>
-            
-            <div class="two-column">
-                <div class="card">
-                    <h3>🔮 技术方向</h3>
-                    <ul style="padding-left: 1.5rem; color: var(--text-secondary);">
-                        <li style="margin-bottom: 0.75rem;"><strong>大模型研发</strong>：从DeepSeek到金融垂直模型</li>
-                        <li style="margin-bottom: 0.75rem;"><strong>智能体应用</strong>：AI Agent在投研、交易全链路落地</li>
-                        <li style="margin-bottom: 0.75rem;"><strong>算力基建</strong>：超算级集群成为标配</li>
-                        <li style="margin-bottom: 0.75rem;"><strong>多模态场景</strong>：NLP、CV、端到端模型</li>
-                        <li><strong>强化学习</strong>：交易执行、风控优化</li>
-                    </ul>
-                </div>
-                
-                <div class="card">
-                    <h3>🏁 竞争格局</h3>
-                    <ul style="padding-left: 1.5rem; color: var(--text-secondary);">
-                        <li style="margin-bottom: 0.75rem;"><strong>头部集中</strong>：七大巨头规模占比近30%</li>
-                        <li style="margin-bottom: 0.75rem;"><strong>技术壁垒</strong>：自研实验室、算力投入、跨界合作</li>
-                        <li style="margin-bottom: 0.75rem;"><strong>人才争夺</strong>：顶尖AI专家年薪200万+</li>
-                        <li style="margin-bottom: 0.75rem;"><strong>差异化</strong>：AGI vs 垂直AI vs 跨场景</li>
-                        <li><strong>AI核心竞争力</strong>：已成为量化投资的核心竞争力</li>
-                    </ul>
+            <div class="section-content">
+                <div style="background: rgba(26, 127, 55, 0.04); border-radius: var(--radius-md); padding: var(--spacing-md);">
+                    <ol style="padding-left: 20px; color: var(--color-text-secondary);">
+                        <li style="margin-bottom: var(--spacing-md); line-height: 1.6;">
+                            <strong style="color: var(--color-success);">幻方量化是中国量化AI应用的标杆案例</strong>，从2016年开始全面采用深度学习，并成功孵化出震动全球的DeepSeek，开创了"量化+AGI"双轨发展模式
+                        </li>
+                        <li style="margin-bottom: var(--spacing-md); line-height: 1.6;">
+                            <strong style="color: var(--color-success);">头部量化私募普遍具备AI转型基础条件</strong>，多家机构建立实验室、超算集群，清华系、华尔街派人才优势明显，已有开源代码模型产出
+                        </li>
+                        <li style="margin-bottom: var(--spacing-md); line-height: 1.6;">
+                            <strong style="color: var(--color-success);">多数机构的差距在于"外部产出可见度"</strong>，AI投入集中于内部量化策略，缺乏像DeepSeek这样具有全球影响力的外部产出
+                        </li>
+                        <li style="margin-bottom: var(--spacing-md); line-height: 1.6;">
+                            <strong style="color: var(--color-success);">建议采取"金融垂直AI+开源生态"战略</strong>，在金融专用大模型、AI Agent产品化方面建立差异化优势
+                        </li>
+                        <li style="line-height: 1.6;">
+                            <strong style="color: var(--color-danger);">行业共识：未来3年是AI转型关键窗口期</strong>，不拥抱AI的量化机构可能被市场淘汰
+                        </li>
+                    </ol>
                 </div>
             </div>
         </section>
         
-        <!-- Conclusion -->
-        <section class="section">
-            <div class="section-header">
-                <div class="section-icon">📝</div>
-                <h2 class="section-title">核心结论</h2>
-            </div>
-            
-            <div class="card" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.03));">
-                <ol style="padding-left: 1.5rem; color: var(--text-secondary);">
-                    <li style="margin-bottom: 1.25rem; line-height: 1.7;">
-                        <strong style="color: var(--accent-gold);">幻方量化是中国量化AI应用的标杆案例</strong>，从2016年开始全面采用深度学习，并成功孵化出震动全球的DeepSeek，开创了"量化+AGI"双轨发展模式
-                    </li>
-                    <li style="margin-bottom: 1.25rem; line-height: 1.7;">
-                        <strong style="color: var(--accent-gold);">头部量化私募普遍具备AI转型基础条件</strong>，多家机构建立实验室、超算集群，清华系、华尔街派人才优势明显，已有开源代码模型产出
-                    </li>
-                    <li style="margin-bottom: 1.25rem; line-height: 1.7;">
-                        <strong style="color: var(--accent-gold);">多数机构的差距在于"外部产出可见度"</strong>，AI投入集中于内部量化策略，缺乏像DeepSeek这样具有全球影响力的外部产出
-                    </li>
-                    <li style="margin-bottom: 1.25rem; line-height: 1.7;">
-                        <strong style="color: var(--accent-gold);">建议采取"金融垂直AI+开源生态"战略</strong>，在金融专用大模型、AI Agent产品化方面建立差异化优势
-                    </li>
-                    <li style="line-height: 1.7;">
-                        <strong style="color: var(--accent-gold);">行业共识：未来3年是AI转型关键窗口期</strong>，不拥抱AI的量化机构可能被市场淘汰
-                    </li>
-                </ol>
-            </div>
-        </section>
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>金融行业AI转型标杆案例研究 | 中国头部量化私募AI布局深度调研</p>
+            <p>调研日期: 2026年2月 | 数据来源: 中国证券报、21世纪经济报道、证券时报、私募排排网、Bloomberg</p>
+            <p style="margin-top: 12px;">
+                <a href="index.html">← 返回场景分析</a>
+                <span style="margin: 0 12px;">|</span>
+                <a href="产品架构.html">产品架构与Roadmap</a>
+            </p>
+        </footer>
     </div>
-    
-    <!-- Footer -->
-    <footer>
-        <p>金融行业AI转型标杆案例研究 | 中国头部量化私募AI布局深度调研</p>
-        <p>调研日期: 2026年2月 | 数据来源: 中国证券报、21世纪经济报道、证券时报、私募排排网、Bloomberg</p>
-        <p style="margin-top: 1rem;">
-            <a href="https://xiaoxiong20260206.github.io/AIFinLearn/">← 返回 AI+Finance 调研合集</a>
-        </p>
-    </footer>
-    
-    <!-- Back to Top Button -->
-    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
-    
-    <script>
-        // Back to top button visibility
-        window.addEventListener('scroll', () => {
-            const btn = document.querySelector('.back-to-top');
-            if (window.scrollY > 500) {
-                btn.classList.add('visible');
-            } else {
-                btn.classList.remove('visible');
-            }
-        });
-        
-        // Animate progress bars on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.width = entry.target.dataset.width || entry.target.style.width;
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        document.querySelectorAll('.progress-fill').forEach(bar => {
-            observer.observe(bar);
-        });
-    </script>
 </body>
 </html>

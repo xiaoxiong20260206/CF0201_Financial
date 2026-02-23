@@ -4,240 +4,244 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>金融数字员工产品架构 | AI Digital Worker Architecture</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        /* ==================== CSS 变量定义 ==================== */
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #12121a;
-            --bg-card: rgba(20, 20, 30, 0.85);
-            --text-primary: #f5f5f7;
-            --text-secondary: rgba(245, 245, 247, 0.7);
-            --text-muted: rgba(245, 245, 247, 0.5);
-            --accent-gold: #d4af37;
-            --accent-gold-light: #f0d878;
-            --accent-blue: #4a9eff;
-            --accent-purple: #a855f7;
-            --accent-green: #22c55e;
-            --accent-orange: #f59e0b;
-            --accent-red: #ef4444;
-            --accent-cyan: #06b6d4;
-            --accent-pink: #ec4899;
-            --border-color: rgba(212, 175, 55, 0.15);
-            --glow-gold: rgba(212, 175, 55, 0.3);
+            /* 主色调 */
+            --color-success: #1A7F37;
+            --color-success-light: #2DA44E;
+            --color-danger: #CF222E;
+            --color-danger-light: #FF7B72;
+            --color-warning: #BF8700;
+            --color-warning-dark: #9A6700;
+            --color-info: #0969DA;
+            --color-info-light: #54AEFF;
+            
+            /* 中性色 */
+            --color-text-primary: #24292F;
+            --color-text-secondary: #57606A;
+            --color-text-muted: #8B949E;
+            --color-border: #D0D7DE;
+            --color-border-light: #EAEEF2;
+            --color-bg: #FAFBFC;
+            --color-bg-card: #FFFFFF;
+            --color-bg-table-header: #F6F8FA;
+            
+            /* 渐变色 */
+            --gradient-success: linear-gradient(135deg, #1A7F37 0%, #2DA44E 100%);
+            --gradient-badge: linear-gradient(135deg, #DDF4FF 0%, #D4F8E8 100%);
+            --gradient-blue-text: linear-gradient(90deg, #0969DA, #54AEFF);
+            
+            /* 阴影 */
+            --shadow-card: rgba(31, 35, 40, 0.04) 0px 1px 3px 0px, rgba(31, 35, 40, 0.04) 0px 3px 8px 0px;
+            --shadow-card-light: rgba(31, 35, 40, 0.04) 0px 1px 0px 0px;
+            
+            /* 间距 */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            
+            /* 圆角 */
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-full: 20px;
+            
+            /* 字体 */
+            --font-family: -apple-system, "system-ui", "Segoe UI", "Noto Sans SC", Helvetica, Arial, sans-serif;
         }
         
+        /* ==================== 基础重置 ==================== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
-        html {
-            scroll-behavior: smooth;
-        }
-        
         body {
-            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            min-height: 100vh;
-            overflow-x: hidden;
+            font-family: var(--font-family);
+            font-size: 15px;
+            line-height: 1.5;
+            color: var(--color-text-secondary);
+            background-color: var(--color-bg);
         }
         
-        /* Animated Background */
-        .bg-pattern {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background:
-                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(74, 158, 255, 0.05) 0%, transparent 50%),
-                radial-gradient(ellipse 50% 30% at 10% 60%, rgba(168, 85, 247, 0.04) 0%, transparent 50%);
+        /* ==================== 容器布局 ==================== */
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: var(--spacing-lg) var(--spacing-md) 48px;
         }
         
-        .grid-lines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-image:
-                linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            animation: gridMove 20s linear infinite;
+        /* ==================== 头部区域 ==================== */
+        .header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
         }
         
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(60px, 60px); }
+        .badge {
+            display: inline-block;
+            background: var(--gradient-badge);
+            color: var(--color-info);
+            padding: var(--spacing-xs) 12px;
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            font-weight: 500;
+            margin-bottom: var(--spacing-md);
         }
         
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .main-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            line-height: 1.25;
+            margin-bottom: var(--spacing-sm);
         }
         
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+        .subtitle {
+            font-size: 15px;
+            color: var(--color-text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
         }
         
-        /* Header */
-        header {
-            padding: 1.5rem 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            z-index: 10;
-            border-bottom: 1px solid var(--border-color);
+        /* ==================== 导航目录 ==================== */
+        .toc {
+            background: var(--color-bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-card);
+            margin-bottom: var(--spacing-lg);
+            overflow: hidden;
         }
         
-        .logo {
+        .toc-item {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md) 20px;
+            color: var(--color-text-primary);
             text-decoration: none;
-            color: inherit;
+            border-bottom: 1px solid var(--color-border-light);
+            transition: background 0.15s;
         }
         
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
-            border-radius: 10px;
+        .toc-item:last-child {
+            border-bottom: none;
+        }
+        
+        .toc-item:hover {
+            background: var(--color-bg);
+        }
+        
+        /* ==================== 章节编号 ==================== */
+        .section-number {
+            background: var(--gradient-success);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            flex-shrink: 0;
         }
         
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-primary);
+        .section-number-yellow {
+            background: var(--color-warning);
         }
         
-        .nav-links {
-            display: flex;
-            gap: 2rem;
+        .section-number-blue {
+            background: var(--color-info);
         }
         
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
+        .section-number-purple {
+            background: #8B5CF6;
         }
         
-        .nav-links a:hover {
-            color: var(--accent-gold);
+        /* ==================== 统计卡片 ==================== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
         }
         
-        /* Hero Section */
-        .hero {
-            padding: 3rem 4rem 2rem;
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .stat-card {
+            background: var(--color-bg-card);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-card-light);
+            border: 1px solid var(--color-border);
+            padding: 20px;
             text-align: center;
-            position: relative;
         }
         
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid var(--border-color);
-            border-radius: 30px;
-            font-size: 0.85rem;
-            color: var(--accent-gold);
-            margin-bottom: 1.5rem;
+        .stat-value {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
         }
         
-        .hero-badge::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--accent-gold);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
+        .stat-value.success { color: var(--color-success); }
+        .stat-value.danger { color: var(--color-danger); }
+        .stat-value.warning { color: var(--color-warning); }
+        .stat-value.info { color: var(--color-info); }
+        
+        .stat-label {
+            font-size: 11px;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-        
-        .hero h1 span {
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem 4rem;
-        }
-        
-        /* Section */
-        .section {
-            margin-bottom: 4rem;
+        /* ==================== 章节卡片 ==================== */
+        .section-card {
+            background: var(--color-bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-card);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
         }
         
         .section-header {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
+            gap: 12px;
+            margin-bottom: var(--spacing-md);
         }
         
-        .section-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--accent-gold), rgba(212, 175, 55, 0.3));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-        
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+        .section-header h2 {
+            font-size: 16px;
             font-weight: 600;
+            color: var(--color-text-primary);
         }
         
-        /* Architecture SVG Container */
+        .section-content {
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+        
+        .section-content p {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        /* ==================== 架构图容器 ==================== */
         .architecture-container {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2rem;
-            backdrop-filter: blur(20px);
+            background: var(--color-bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-card);
+            padding: var(--spacing-lg);
             overflow-x: auto;
+            margin-bottom: var(--spacing-lg);
         }
         
         .architecture-container svg {
@@ -245,20 +249,30 @@
             margin: 0 auto;
         }
         
-        /* Roadmap */
-        .roadmap-container {
+        /* ==================== Roadmap卡片 ==================== */
+        .roadmap-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
+            gap: var(--spacing-md);
+        }
+        
+        @media (max-width: 1024px) {
+            .roadmap-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .roadmap-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         .phase-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1.5rem;
-            backdrop-filter: blur(20px);
+            background: var(--color-bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-card);
+            padding: var(--spacing-md);
             position: relative;
             overflow: hidden;
         }
@@ -272,66 +286,66 @@
             height: 4px;
         }
         
-        .phase-card.p1::before { background: linear-gradient(90deg, var(--accent-green), #4ade80); }
-        .phase-card.p2::before { background: linear-gradient(90deg, var(--accent-blue), #60a5fa); }
-        .phase-card.p3::before { background: linear-gradient(90deg, var(--accent-purple), #c084fc); }
-        .phase-card.p4::before { background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light)); }
+        .phase-card.p1::before { background: var(--color-success); }
+        .phase-card.p2::before { background: var(--color-info); }
+        .phase-card.p3::before { background: #8B5CF6; }
+        .phase-card.p4::before { background: var(--color-warning); }
         
         .phase-header {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
         }
         
         .phase-number {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
+            font-weight: 600;
+            font-size: 14px;
+            color: white;
         }
         
-        .phase-card.p1 .phase-number { background: var(--accent-green); color: white; }
-        .phase-card.p2 .phase-number { background: var(--accent-blue); color: white; }
-        .phase-card.p3 .phase-number { background: var(--accent-purple); color: white; }
-        .phase-card.p4 .phase-number { background: var(--accent-gold); color: #0a0a0f; }
+        .phase-card.p1 .phase-number { background: var(--color-success); }
+        .phase-card.p2 .phase-number { background: var(--color-info); }
+        .phase-card.p3 .phase-number { background: #8B5CF6; }
+        .phase-card.p4 .phase-number { background: var(--color-warning); }
         
         .phase-title {
-            font-size: 1.1rem;
+            font-size: 15px;
             font-weight: 600;
+            color: var(--color-text-primary);
         }
         
-        .phase-card.p1 .phase-title { color: var(--accent-green); }
-        .phase-card.p2 .phase-title { color: var(--accent-blue); }
-        .phase-card.p3 .phase-title { color: var(--accent-purple); }
-        .phase-card.p4 .phase-title { color: var(--accent-gold); }
-        
         .phase-time {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
+            font-size: 11px;
+            color: var(--color-text-muted);
+            margin-bottom: var(--spacing-sm);
         }
         
         .phase-content h4 {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-xs);
+            margin-top: var(--spacing-sm);
         }
         
         .phase-content ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
         
         .phase-content li {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            padding: 0.25rem 0;
-            padding-left: 1rem;
+            font-size: 13px;
+            color: var(--color-text-muted);
+            padding: 2px 0;
+            padding-left: 16px;
             position: relative;
         }
         
@@ -339,532 +353,677 @@
             content: '→';
             position: absolute;
             left: 0;
-            color: var(--accent-gold);
+            color: var(--color-success);
+            font-size: 11px;
         }
         
         .phase-metrics {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .phase-metrics span {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--text-muted);
+            margin-top: var(--spacing-sm);
+            padding-top: var(--spacing-sm);
+            border-top: 1px solid var(--color-border-light);
+            font-size: 11px;
+            color: var(--color-text-muted);
         }
         
         .phase-metrics strong {
-            color: var(--accent-gold);
+            color: var(--color-success);
         }
         
-        /* Footer */
-        footer {
+        /* ==================== 状态标签 ==================== */
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        .status-success {
+            background: rgba(26, 127, 55, 0.12);
+            color: var(--color-success);
+        }
+        
+        .status-warning {
+            background: rgba(191, 135, 0, 0.12);
+            color: var(--color-warning-dark);
+        }
+        
+        .status-danger {
+            background: rgba(207, 34, 46, 0.2);
+            color: var(--color-danger);
+        }
+        
+        .status-info {
+            background: rgba(9, 105, 218, 0.12);
+            color: var(--color-info);
+        }
+        
+        /* ==================== 表格样式 ==================== */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: var(--spacing-md) 0;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 500px;
+        }
+        
+        th {
+            background: var(--color-bg-table-header);
+            color: var(--color-text-secondary);
+            padding: 12px 16px;
+            font-weight: 600;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+            font-size: 13px;
+        }
+        
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--color-border-light);
+            vertical-align: middle;
+            font-size: 14px;
+        }
+        
+        tbody tr:hover {
+            background: rgba(0, 0, 0, 0.02);
+        }
+        
+        /* ==================== 页脚 ==================== */
+        .footer {
             text-align: center;
-            padding: 3rem 4rem;
-            border-top: 1px solid var(--border-color);
-            margin-top: 4rem;
+            padding: var(--spacing-lg) 0;
+            border-top: 1px solid var(--color-border-light);
+            margin-top: var(--spacing-lg);
         }
         
-        footer p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 0.5rem;
+        .footer p {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            margin-bottom: var(--spacing-xs);
         }
         
-        footer a {
-            color: var(--accent-gold);
+        .footer a {
+            color: var(--color-info);
             text-decoration: none;
         }
         
-        footer a:hover {
+        .footer a:hover {
             text-decoration: underline;
         }
         
-        /* Back to Top */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--accent-gold);
-            color: var(--bg-primary);
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
+        /* ==================== 引用框 ==================== */
+        .quote-box {
+            background: var(--color-bg-table-header);
+            border-left: 3px solid var(--color-info);
+            padding: var(--spacing-md) 20px;
+            color: var(--color-text-primary);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--spacing-md) 0;
+        }
+        
+        /* ==================== 洞察框 ==================== */
+        .insight-box {
+            border-left: 3px solid var(--color-warning);
+            background: rgba(191, 135, 0, 0.06);
+            padding: var(--spacing-md) 20px;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: var(--spacing-md) 0;
+        }
+        
+        .insight-box .insight-title {
+            font-weight: 600;
+            color: var(--color-warning-dark);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        /* ==================== 特性网格 ==================== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+        
+        @media (max-width: 600px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .feature-item {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            z-index: 100;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+            font-size: 14px;
+            color: var(--color-text-secondary);
         }
         
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px var(--glow-gold);
-        }
-        
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .roadmap-container { grid-template-columns: repeat(2, 1fr); }
-        }
-        
-        @media (max-width: 768px) {
-            header { padding: 1rem 1.5rem; }
-            .hero { padding: 2rem 1.5rem; }
-            .container { padding: 1.5rem; }
-            .roadmap-container { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
+        .feature-item::before {
+            content: "✓";
+            color: var(--color-success);
+            font-weight: 600;
+            flex-shrink: 0;
         }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-pattern"></div>
-    <div class="grid-lines"></div>
-    
-    <!-- Header -->
-    <header>
-        <a href="https://xiaoxiong20260206.github.io/CF0201_Financial/" class="logo">
-            <div class="logo-icon">🤖</div>
-            <span class="logo-text">AI Digital Worker</span>
-        </a>
-        <nav class="nav-links">
-            <a href="#architecture">产品架构</a>
-            <a href="#roadmap">Roadmap</a>
-            <a href="index.html">场景分析</a>
-        </nav>
-    </header>
-    
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-badge">
-            <span>产品规划</span>
-            <span style="color: var(--text-muted);">|</span>
-            <span>2026年2月</span>
-        </div>
-        <h1>
-            <span>金融数字员工</span><br>产品架构与Roadmap
-        </h1>
-        <p class="hero-subtitle">
-            基于金融从业者工作场景分析，设计覆盖投研、交易、风控、运营全链路的AI数字员工产品体系
-        </p>
-    </section>
-    
     <div class="container">
-        <!-- Architecture Section -->
-        <section class="section" id="architecture">
-            <div class="section-header">
-                <div class="section-icon">🏗️</div>
-                <h2 class="section-title">产品架构图</h2>
+        <!-- 头部区域 -->
+        <header class="header">
+            <span class="badge">🏗️ 产品规划</span>
+            <h1 class="main-title">金融数字员工产品架构与Roadmap</h1>
+            <p class="subtitle">基于金融从业者工作场景分析，设计覆盖投研、交易、风控、运营全链路的AI数字员工产品体系</p>
+        </header>
+        
+        <!-- 导航目录 -->
+        <nav class="toc">
+            <a href="#architecture" class="toc-item">
+                <span class="section-number">1</span>
+                <span>产品架构图</span>
+            </a>
+            <a href="#layers" class="toc-item">
+                <span class="section-number">2</span>
+                <span>五层架构详解</span>
+            </a>
+            <a href="#agents" class="toc-item">
+                <span class="section-number">3</span>
+                <span>Agent能力矩阵</span>
+            </a>
+            <a href="#roadmap" class="toc-item">
+                <span class="section-number section-number-yellow">4</span>
+                <span>产品Roadmap</span>
+            </a>
+        </nav>
+        
+        <!-- 统计卡片 -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value success">8</div>
+                <div class="stat-label">核心Agent</div>
             </div>
-            
+            <div class="stat-card">
+                <div class="stat-value info">5</div>
+                <div class="stat-label">架构层级</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value warning">6</div>
+                <div class="stat-label">用户角色</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value success">18月</div>
+                <div class="stat-label">Roadmap周期</div>
+            </div>
+        </div>
+        
+        <!-- 架构图 -->
+        <section id="architecture" class="section-card">
+            <div class="section-header">
+                <span class="section-number">1</span>
+                <h2>产品架构图</h2>
+            </div>
             <div class="architecture-container">
-                <svg viewBox="0 0 1200 850" style="width: 100%; max-width: 1200px; height: auto;">
+                <svg viewBox="0 0 900 680" style="width: 100%; max-width: 900px; height: auto;">
                     <defs>
-                        <!-- Gradients -->
-                        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#D4AF37"/>
-                            <stop offset="100%" style="stop-color:#B8960C"/>
+                        <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#1A7F37"/>
+                            <stop offset="100%" style="stop-color:#2DA44E"/>
                         </linearGradient>
                         <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#4a9eff"/>
-                            <stop offset="100%" style="stop-color:#1d4ed8"/>
-                        </linearGradient>
-                        <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#22c55e"/>
-                            <stop offset="100%" style="stop-color:#16a34a"/>
+                            <stop offset="0%" style="stop-color:#0969DA"/>
+                            <stop offset="100%" style="stop-color:#54AEFF"/>
                         </linearGradient>
                         <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#a855f7"/>
-                            <stop offset="100%" style="stop-color:#7c3aed"/>
+                            <stop offset="0%" style="stop-color:#8B5CF6"/>
+                            <stop offset="100%" style="stop-color:#A78BFA"/>
                         </linearGradient>
                         <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#f59e0b"/>
-                            <stop offset="100%" style="stop-color:#d97706"/>
+                            <stop offset="0%" style="stop-color:#BF8700"/>
+                            <stop offset="100%" style="stop-color:#D9A50B"/>
                         </linearGradient>
                         <linearGradient id="pinkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#ec4899"/>
-                            <stop offset="100%" style="stop-color:#be185d"/>
+                            <stop offset="0%" style="stop-color:#CF222E"/>
+                            <stop offset="100%" style="stop-color:#FF7B72"/>
                         </linearGradient>
-                        <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#06b6d4"/>
-                            <stop offset="100%" style="stop-color:#0891b2"/>
-                        </linearGradient>
-                        <linearGradient id="darkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#1e293b"/>
-                            <stop offset="100%" style="stop-color:#0f172a"/>
-                        </linearGradient>
-                        
-                        <filter id="glow">
-                            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                            <feMerge>
-                                <feMergeNode in="coloredBlur"/>
-                                <feMergeNode in="SourceGraphic"/>
-                            </feMerge>
-                        </filter>
                     </defs>
                     
                     <!-- Title -->
-                    <text x="600" y="30" text-anchor="middle" fill="#D4AF37" font-size="18" font-weight="bold" font-family="Noto Sans SC">金融数字员工产品架构 (Finance AI Digital Worker Architecture)</text>
+                    <text x="450" y="25" text-anchor="middle" fill="#24292F" font-size="14" font-weight="600" font-family="system-ui, sans-serif">金融数字员工产品架构 (Finance AI Digital Worker)</text>
                     
-                    <!-- Layer 1: User Interface Layer -->
-                    <rect x="50" y="55" width="1100" height="90" rx="12" fill="url(#darkGrad)" stroke="rgba(212,175,55,0.3)" stroke-width="1"/>
-                    <text x="100" y="80" fill="#D4AF37" font-size="12" font-weight="bold" font-family="Noto Sans SC">用户交互层 (User Interface Layer)</text>
+                    <!-- Layer 1: User Interface -->
+                    <rect x="30" y="45" width="840" height="75" rx="8" fill="#F6F8FA" stroke="#D0D7DE" stroke-width="1"/>
+                    <text x="60" y="65" fill="#57606A" font-size="11" font-weight="600">用户交互层</text>
                     
-                    <!-- User Types -->
-                    <rect x="70" y="95" width="100" height="40" rx="8" fill="url(#orangeGrad)"/>
-                    <text x="120" y="120" text-anchor="middle" fill="white" font-size="10" font-family="Noto Sans SC">👨‍💼 量化研究员</text>
+                    <rect x="50" y="75" width="85" height="35" rx="6" fill="url(#orangeGrad)"/>
+                    <text x="92" y="97" text-anchor="middle" fill="white" font-size="10" font-family="system-ui">👨‍💼 量化研究员</text>
                     
-                    <rect x="185" y="95" width="100" height="40" rx="8" fill="url(#orangeGrad)"/>
-                    <text x="235" y="120" text-anchor="middle" fill="white" font-size="10" font-family="Noto Sans SC">📊 基金经理</text>
+                    <rect x="145" y="75" width="85" height="35" rx="6" fill="url(#orangeGrad)"/>
+                    <text x="187" y="97" text-anchor="middle" fill="white" font-size="10" font-family="system-ui">📊 基金经理</text>
                     
-                    <rect x="300" y="95" width="100" height="40" rx="8" fill="url(#orangeGrad)"/>
-                    <text x="350" y="120" text-anchor="middle" fill="white" font-size="10" font-family="Noto Sans SC">⚠️ 风控经理</text>
+                    <rect x="240" y="75" width="85" height="35" rx="6" fill="url(#orangeGrad)"/>
+                    <text x="282" y="97" text-anchor="middle" fill="white" font-size="10" font-family="system-ui">⚠️ 风控经理</text>
                     
-                    <rect x="415" y="95" width="100" height="40" rx="8" fill="url(#orangeGrad)"/>
-                    <text x="465" y="120" text-anchor="middle" fill="white" font-size="10" font-family="Noto Sans SC">💹 交易员</text>
+                    <rect x="335" y="75" width="85" height="35" rx="6" fill="url(#orangeGrad)"/>
+                    <text x="377" y="97" text-anchor="middle" fill="white" font-size="10" font-family="system-ui">💹 交易员</text>
                     
-                    <rect x="530" y="95" width="100" height="40" rx="8" fill="url(#orangeGrad)"/>
-                    <text x="580" y="120" text-anchor="middle" fill="white" font-size="10" font-family="Noto Sans SC">🤝 客户经理</text>
+                    <rect x="430" y="75" width="85" height="35" rx="6" fill="url(#orangeGrad)"/>
+                    <text x="472" y="97" text-anchor="middle" fill="white" font-size="10" font-family="system-ui">🤝 客户经理</text>
                     
-                    <rect x="645" y="95" width="100" height="40" rx="8" fill="url(#orangeGrad)"/>
-                    <text x="695" y="120" text-anchor="middle" fill="white" font-size="10" font-family="Noto Sans SC">⚙️ 运营人员</text>
+                    <rect x="525" y="75" width="85" height="35" rx="6" fill="url(#orangeGrad)"/>
+                    <text x="567" y="97" text-anchor="middle" fill="white" font-size="10" font-family="system-ui">⚙️ 运营人员</text>
                     
                     <!-- Channels -->
-                    <rect x="780" y="95" width="80" height="40" rx="8" fill="rgba(212,175,55,0.2)" stroke="#D4AF37" stroke-width="1"/>
-                    <text x="820" y="120" text-anchor="middle" fill="#D4AF37" font-size="9" font-family="Noto Sans SC">💬 对话式</text>
+                    <rect x="640" y="75" width="70" height="35" rx="6" fill="white" stroke="#D0D7DE"/>
+                    <text x="675" y="97" text-anchor="middle" fill="#57606A" font-size="9">💬 对话式</text>
                     
-                    <rect x="870" y="95" width="80" height="40" rx="8" fill="rgba(212,175,55,0.2)" stroke="#D4AF37" stroke-width="1"/>
-                    <text x="910" y="120" text-anchor="middle" fill="#D4AF37" font-size="9" font-family="Noto Sans SC">📋 表单式</text>
+                    <rect x="720" y="75" width="70" height="35" rx="6" fill="white" stroke="#D0D7DE"/>
+                    <text x="755" y="97" text-anchor="middle" fill="#57606A" font-size="9">🔌 API</text>
                     
-                    <rect x="960" y="95" width="80" height="40" rx="8" fill="rgba(212,175,55,0.2)" stroke="#D4AF37" stroke-width="1"/>
-                    <text x="1000" y="120" text-anchor="middle" fill="#D4AF37" font-size="9" font-family="Noto Sans SC">🔌 API</text>
+                    <rect x="800" y="75" width="55" height="35" rx="6" fill="white" stroke="#D0D7DE"/>
+                    <text x="827" y="97" text-anchor="middle" fill="#57606A" font-size="9">嵌入式</text>
                     
-                    <rect x="1050" y="95" width="80" height="40" rx="8" fill="rgba(212,175,55,0.2)" stroke="#D4AF37" stroke-width="1"/>
-                    <text x="1090" y="120" text-anchor="middle" fill="#D4AF37" font-size="9" font-family="Noto Sans SC">🤖 嵌入式</text>
+                    <!-- Layer 2: Orchestration -->
+                    <rect x="30" y="130" width="840" height="100" rx="8" fill="#F6F8FA" stroke="#D0D7DE" stroke-width="1"/>
+                    <text x="60" y="150" fill="#57606A" font-size="11" font-weight="600">Agent编排层</text>
                     
-                    <!-- Layer 2: Agent Orchestration Layer -->
-                    <rect x="50" y="160" width="1100" height="130" rx="12" fill="url(#darkGrad)" stroke="rgba(168,85,247,0.3)" stroke-width="1"/>
-                    <text x="100" y="185" fill="#a855f7" font-size="12" font-weight="bold" font-family="Noto Sans SC">Agent编排层 (Agent Orchestration Layer)</text>
+                    <rect x="50" y="160" width="150" height="55" rx="6" fill="url(#purpleGrad)"/>
+                    <text x="125" y="182" text-anchor="middle" fill="white" font-size="10" font-weight="600">🧠 智能编排中心</text>
+                    <text x="125" y="200" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9">意图识别 | 任务分解</text>
                     
-                    <!-- Orchestrator -->
-                    <rect x="70" y="200" width="200" height="75" rx="10" fill="url(#purpleGrad)" filter="url(#glow)"/>
-                    <text x="170" y="225" text-anchor="middle" fill="white" font-size="11" font-weight="bold" font-family="Noto Sans SC">🧠 智能编排中心</text>
-                    <text x="170" y="245" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9" font-family="Noto Sans SC">意图识别 | 任务分解</text>
-                    <text x="170" y="260" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9" font-family="Noto Sans SC">Agent调度 | 结果聚合</text>
+                    <rect x="215" y="160" width="130" height="55" rx="6" fill="white" stroke="#8B5CF6"/>
+                    <text x="280" y="182" text-anchor="middle" fill="#8B5CF6" font-size="10" font-weight="500">💾 记忆与上下文</text>
+                    <text x="280" y="200" text-anchor="middle" fill="#8B949E" font-size="9">会话记忆 | 偏好学习</text>
                     
-                    <!-- Memory & Context -->
-                    <rect x="290" y="200" width="160" height="75" rx="10" fill="rgba(168,85,247,0.2)" stroke="#a855f7" stroke-width="1"/>
-                    <text x="370" y="225" text-anchor="middle" fill="#a855f7" font-size="10" font-weight="bold" font-family="Noto Sans SC">💾 记忆与上下文</text>
-                    <text x="370" y="245" text-anchor="middle" fill="rgba(168,85,247,0.8)" font-size="9" font-family="Noto Sans SC">会话记忆 | 用户画像</text>
-                    <text x="370" y="260" text-anchor="middle" fill="rgba(168,85,247,0.8)" font-size="9" font-family="Noto Sans SC">任务历史 | 偏好学习</text>
+                    <rect x="360" y="160" width="130" height="55" rx="6" fill="white" stroke="#8B5CF6"/>
+                    <text x="425" y="182" text-anchor="middle" fill="#8B5CF6" font-size="10" font-weight="500">🔧 工具注册中心</text>
+                    <text x="425" y="200" text-anchor="middle" fill="#8B949E" font-size="9">API网关 | 权限控制</text>
                     
-                    <!-- Tool Registry -->
-                    <rect x="470" y="200" width="160" height="75" rx="10" fill="rgba(168,85,247,0.2)" stroke="#a855f7" stroke-width="1"/>
-                    <text x="550" y="225" text-anchor="middle" fill="#a855f7" font-size="10" font-weight="bold" font-family="Noto Sans SC">🔧 工具注册中心</text>
-                    <text x="550" y="245" text-anchor="middle" fill="rgba(168,85,247,0.8)" font-size="9" font-family="Noto Sans SC">API网关 | 工具发现</text>
-                    <text x="550" y="260" text-anchor="middle" fill="rgba(168,85,247,0.8)" font-size="9" font-family="Noto Sans SC">权限控制 | 调用监控</text>
+                    <rect x="505" y="160" width="130" height="55" rx="6" fill="white" stroke="#8B5CF6"/>
+                    <text x="570" y="182" text-anchor="middle" fill="#8B5CF6" font-size="10" font-weight="500">⚡ 工作流引擎</text>
+                    <text x="570" y="200" text-anchor="middle" fill="#8B949E" font-size="9">DAG编排 | 状态管理</text>
                     
-                    <!-- Workflow Engine -->
-                    <rect x="650" y="200" width="160" height="75" rx="10" fill="rgba(168,85,247,0.2)" stroke="#a855f7" stroke-width="1"/>
-                    <text x="730" y="225" text-anchor="middle" fill="#a855f7" font-size="10" font-weight="bold" font-family="Noto Sans SC">⚡ 工作流引擎</text>
-                    <text x="730" y="245" text-anchor="middle" fill="rgba(168,85,247,0.8)" font-size="9" font-family="Noto Sans SC">DAG编排 | 并行执行</text>
-                    <text x="730" y="260" text-anchor="middle" fill="rgba(168,85,247,0.8)" font-size="9" font-family="Noto Sans SC">状态管理 | 错误恢复</text>
+                    <rect x="650" y="160" width="105" height="55" rx="6" fill="white" stroke="#CF222E"/>
+                    <text x="702" y="182" text-anchor="middle" fill="#CF222E" font-size="10" font-weight="500">🛡️ 安全合规</text>
+                    <text x="702" y="200" text-anchor="middle" fill="#8B949E" font-size="9">审计 | 风控</text>
                     
-                    <!-- Safety & Compliance -->
-                    <rect x="830" y="200" width="160" height="75" rx="10" fill="rgba(239,68,68,0.2)" stroke="#ef4444" stroke-width="1"/>
-                    <text x="910" y="225" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="bold" font-family="Noto Sans SC">🛡️ 安全合规层</text>
-                    <text x="910" y="245" text-anchor="middle" fill="rgba(239,68,68,0.8)" font-size="9" font-family="Noto Sans SC">内容审核 | 合规检查</text>
-                    <text x="910" y="260" text-anchor="middle" fill="rgba(239,68,68,0.8)" font-size="9" font-family="Noto Sans SC">审计日志 | 风险拦截</text>
+                    <rect x="770" y="160" width="85" height="55" rx="6" fill="white" stroke="#0969DA"/>
+                    <text x="812" y="182" text-anchor="middle" fill="#0969DA" font-size="10" font-weight="500">📊 可观测</text>
+                    <text x="812" y="200" text-anchor="middle" fill="#8B949E" font-size="9">链路追踪</text>
                     
-                    <!-- Observability -->
-                    <rect x="1010" y="200" width="120" height="75" rx="10" fill="rgba(6,182,212,0.2)" stroke="#06b6d4" stroke-width="1"/>
-                    <text x="1070" y="225" text-anchor="middle" fill="#06b6d4" font-size="10" font-weight="bold" font-family="Noto Sans SC">📊 可观测性</text>
-                    <text x="1070" y="245" text-anchor="middle" fill="rgba(6,182,212,0.8)" font-size="9" font-family="Noto Sans SC">链路追踪</text>
-                    <text x="1070" y="260" text-anchor="middle" fill="rgba(6,182,212,0.8)" font-size="9" font-family="Noto Sans SC">性能监控</text>
+                    <!-- Layer 3: Agent -->
+                    <rect x="30" y="240" width="840" height="145" rx="8" fill="#F6F8FA" stroke="#D0D7DE" stroke-width="1"/>
+                    <text x="60" y="260" fill="#57606A" font-size="11" font-weight="600">智能体层 (Agent Layer)</text>
                     
-                    <!-- Layer 3: Agent Layer -->
-                    <rect x="50" y="305" width="1100" height="180" rx="12" fill="url(#darkGrad)" stroke="rgba(74,158,255,0.3)" stroke-width="1"/>
-                    <text x="100" y="330" fill="#4a9eff" font-size="12" font-weight="bold" font-family="Noto Sans SC">智能体层 (Agent Layer)</text>
+                    <!-- Row 1 -->
+                    <rect x="50" y="270" width="115" height="45" rx="6" fill="url(#blueGrad)"/>
+                    <text x="107" y="290" text-anchor="middle" fill="white" font-size="10" font-weight="600">📈 Quant Agent</text>
+                    <text x="107" y="305" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">策略 | 因子 | 回测</text>
                     
-                    <!-- Core Agents Row 1 -->
-                    <rect x="70" y="345" width="145" height="60" rx="8" fill="url(#blueGrad)"/>
-                    <text x="142" y="370" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="Noto Sans SC">📈 Quant Agent</text>
-                    <text x="142" y="390" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8" font-family="Noto Sans SC">策略开发 | 因子计算 | 回测</text>
+                    <rect x="175" y="270" width="115" height="45" rx="6" fill="url(#blueGrad)"/>
+                    <text x="232" y="290" text-anchor="middle" fill="white" font-size="10" font-weight="600">🔬 Research Agent</text>
+                    <text x="232" y="305" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">研究 | 分析 | 研报</text>
                     
-                    <rect x="230" y="345" width="145" height="60" rx="8" fill="url(#blueGrad)"/>
-                    <text x="302" y="370" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="Noto Sans SC">🔬 Research Agent</text>
-                    <text x="302" y="390" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8" font-family="Noto Sans SC">行业研究 | 公司分析 | 研报</text>
+                    <rect x="300" y="270" width="115" height="45" rx="6" fill="url(#blueGrad)"/>
+                    <text x="357" y="290" text-anchor="middle" fill="white" font-size="10" font-weight="600">📊 Data Agent</text>
+                    <text x="357" y="305" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">获取 | 清洗 | 可视化</text>
                     
-                    <rect x="390" y="345" width="145" height="60" rx="8" fill="url(#blueGrad)"/>
-                    <text x="462" y="370" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="Noto Sans SC">📊 Data Agent</text>
-                    <text x="462" y="390" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8" font-family="Noto Sans SC">数据获取 | 清洗 | 可视化</text>
+                    <rect x="425" y="270" width="115" height="45" rx="6" fill="url(#blueGrad)"/>
+                    <text x="482" y="290" text-anchor="middle" fill="white" font-size="10" font-weight="600">⚠️ Risk Agent</text>
+                    <text x="482" y="305" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">风控 | 压测 | 合规</text>
                     
-                    <rect x="550" y="345" width="145" height="60" rx="8" fill="url(#blueGrad)"/>
-                    <text x="622" y="370" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="Noto Sans SC">⚠️ Risk Agent</text>
-                    <text x="622" y="390" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8" font-family="Noto Sans SC">风险监控 | 压力测试 | 合规</text>
+                    <!-- Row 2 -->
+                    <rect x="50" y="325" width="115" height="45" rx="6" fill="url(#greenGrad)"/>
+                    <text x="107" y="345" text-anchor="middle" fill="white" font-size="10" font-weight="600">💹 Trading Agent</text>
+                    <text x="107" y="360" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">订单 | 执行 | 算法</text>
                     
-                    <rect x="710" y="345" width="145" height="60" rx="8" fill="url(#greenGrad)"/>
-                    <text x="782" y="370" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="Noto Sans SC">💹 Trading Agent</text>
-                    <text x="782" y="390" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8" font-family="Noto Sans SC">订单执行 | 执行分析 | 算法</text>
+                    <rect x="175" y="325" width="115" height="45" rx="6" fill="url(#greenGrad)"/>
+                    <text x="232" y="345" text-anchor="middle" fill="white" font-size="10" font-weight="600">💬 Chatbot Agent</text>
+                    <text x="232" y="360" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">问答 | 写作 | 客服</text>
                     
-                    <!-- Core Agents Row 2 -->
-                    <rect x="70" y="415" width="145" height="60" rx="8" fill="url(#greenGrad)"/>
-                    <text x="142" y="440" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="Noto Sans SC">💬 Chatbot Agent</text>
-                    <text x="142" y="460" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8" font-family="Noto Sans SC">知识问答 | 文档写作 | 客服</text>
+                    <rect x="300" y="325" width="115" height="45" rx="6" fill="url(#greenGrad)"/>
+                    <text x="357" y="345" text-anchor="middle" fill="white" font-size="10" font-weight="600">⚙️ Workflow Agent</text>
+                    <text x="357" y="360" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">自动化 | 审核</text>
                     
-                    <rect x="230" y="415" width="145" height="60" rx="8" fill="url(#greenGrad)"/>
-                    <text x="302" y="440" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="Noto Sans SC">⚙️ Workflow Agent</text>
-                    <text x="302" y="460" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8" font-family="Noto Sans SC">流程自动化 | 报告审核</text>
-                    
-                    <rect x="390" y="415" width="145" height="60" rx="8" fill="url(#greenGrad)"/>
-                    <text x="462" y="440" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="Noto Sans SC">🌐 Browser Agent</text>
-                    <text x="462" y="460" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8" font-family="Noto Sans SC">信息采集 | 舆情监控</text>
-                    
-                    <rect x="550" y="415" width="145" height="60" rx="8" fill="url(#greenGrad)"/>
-                    <text x="622" y="440" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="Noto Sans SC">⏰ Background Agent</text>
-                    <text x="622" y="460" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8" font-family="Noto Sans SC">定时任务 | 自动化报告</text>
+                    <rect x="425" y="325" width="115" height="45" rx="6" fill="url(#greenGrad)"/>
+                    <text x="482" y="345" text-anchor="middle" fill="white" font-size="10" font-weight="600">🌐 Browser Agent</text>
+                    <text x="482" y="360" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">采集 | 舆情</text>
                     
                     <!-- Agent Capabilities -->
-                    <rect x="870" y="345" width="260" height="130" rx="10" fill="rgba(74,158,255,0.1)" stroke="#4a9eff" stroke-width="1" stroke-dasharray="5,3"/>
-                    <text x="1000" y="370" text-anchor="middle" fill="#4a9eff" font-size="10" font-weight="bold" font-family="Noto Sans SC">Agent通用能力</text>
-                    <text x="920" y="395" fill="rgba(74,158,255,0.8)" font-size="9" font-family="Noto Sans SC">• 规划推理 (Planning)</text>
-                    <text x="920" y="415" fill="rgba(74,158,255,0.8)" font-size="9" font-family="Noto Sans SC">• 工具调用 (Tool Use)</text>
-                    <text x="920" y="435" fill="rgba(74,158,255,0.8)" font-size="9" font-family="Noto Sans SC">• 反思迭代 (Reflection)</text>
-                    <text x="920" y="455" fill="rgba(74,158,255,0.8)" font-size="9" font-family="Noto Sans SC">• 多轮对话 (Multi-turn)</text>
+                    <rect x="560" y="270" width="295" height="100" rx="6" fill="white" stroke="#D0D7DE" stroke-dasharray="4,2"/>
+                    <text x="707" y="295" text-anchor="middle" fill="#57606A" font-size="10" font-weight="600">Agent通用能力</text>
+                    <text x="590" y="320" fill="#8B949E" font-size="9">• 规划推理 (Planning)</text>
+                    <text x="590" y="338" fill="#8B949E" font-size="9">• 工具调用 (Tool Use)</text>
+                    <text x="730" y="320" fill="#8B949E" font-size="9">• 反思迭代 (Reflection)</text>
+                    <text x="730" y="338" fill="#8B949E" font-size="9">• 多轮对话 (Multi-turn)</text>
                     
-                    <!-- Layer 4: Capability Layer -->
-                    <rect x="50" y="500" width="1100" height="120" rx="12" fill="url(#darkGrad)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
-                    <text x="100" y="525" fill="#22c55e" font-size="12" font-weight="bold" font-family="Noto Sans SC">能力层 (Capability Layer)</text>
+                    <!-- Layer 4: Capability -->
+                    <rect x="30" y="395" width="840" height="95" rx="8" fill="#F6F8FA" stroke="#D0D7DE" stroke-width="1"/>
+                    <text x="60" y="415" fill="#57606A" font-size="11" font-weight="600">能力层 (Capability Layer)</text>
                     
-                    <!-- LLM -->
-                    <rect x="70" y="540" width="180" height="65" rx="10" fill="url(#greenGrad)"/>
-                    <text x="160" y="565" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="Noto Sans SC">🧠 LLM基座</text>
-                    <text x="160" y="585" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8" font-family="Noto Sans SC">GPT-4 | Claude | DeepSeek</text>
-                    <text x="160" y="598" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8" font-family="Noto Sans SC">金融垂直微调模型</text>
+                    <rect x="50" y="425" width="140" height="50" rx="6" fill="url(#greenGrad)"/>
+                    <text x="120" y="447" text-anchor="middle" fill="white" font-size="10" font-weight="600">🧠 LLM基座</text>
+                    <text x="120" y="463" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8">GPT-4 | Claude | DeepSeek</text>
                     
-                    <!-- RAG -->
-                    <rect x="270" y="540" width="180" height="65" rx="10" fill="rgba(34,197,94,0.2)" stroke="#22c55e" stroke-width="1"/>
-                    <text x="360" y="565" text-anchor="middle" fill="#22c55e" font-size="10" font-weight="bold" font-family="Noto Sans SC">📚 RAG知识库</text>
-                    <text x="360" y="585" text-anchor="middle" fill="rgba(34,197,94,0.8)" font-size="8" font-family="Noto Sans SC">研报库 | 制度库 | FAQ</text>
-                    <text x="360" y="598" text-anchor="middle" fill="rgba(34,197,94,0.8)" font-size="8" font-family="Noto Sans SC">向量检索 | 混合搜索</text>
+                    <rect x="205" y="425" width="140" height="50" rx="6" fill="white" stroke="#1A7F37"/>
+                    <text x="275" y="447" text-anchor="middle" fill="#1A7F37" font-size="10" font-weight="500">📚 RAG知识库</text>
+                    <text x="275" y="463" text-anchor="middle" fill="#8B949E" font-size="8">研报 | 制度 | FAQ</text>
                     
-                    <!-- Code Execution -->
-                    <rect x="470" y="540" width="180" height="65" rx="10" fill="rgba(34,197,94,0.2)" stroke="#22c55e" stroke-width="1"/>
-                    <text x="560" y="565" text-anchor="middle" fill="#22c55e" font-size="10" font-weight="bold" font-family="Noto Sans SC">💻 代码执行</text>
-                    <text x="560" y="585" text-anchor="middle" fill="rgba(34,197,94,0.8)" font-size="8" font-family="Noto Sans SC">Python沙箱 | 量化框架</text>
-                    <text x="560" y="598" text-anchor="middle" fill="rgba(34,197,94,0.8)" font-size="8" font-family="Noto Sans SC">Jupyter | 回测引擎</text>
+                    <rect x="360" y="425" width="140" height="50" rx="6" fill="white" stroke="#1A7F37"/>
+                    <text x="430" y="447" text-anchor="middle" fill="#1A7F37" font-size="10" font-weight="500">💻 代码执行</text>
+                    <text x="430" y="463" text-anchor="middle" fill="#8B949E" font-size="8">Python沙箱 | 回测引擎</text>
                     
-                    <!-- Data Processing -->
-                    <rect x="670" y="540" width="180" height="65" rx="10" fill="rgba(34,197,94,0.2)" stroke="#22c55e" stroke-width="1"/>
-                    <text x="760" y="565" text-anchor="middle" fill="#22c55e" font-size="10" font-weight="bold" font-family="Noto Sans SC">📊 数据处理</text>
-                    <text x="760" y="585" text-anchor="middle" fill="rgba(34,197,94,0.8)" font-size="8" font-family="Noto Sans SC">ETL | 数据清洗 | 可视化</text>
-                    <text x="760" y="598" text-anchor="middle" fill="rgba(34,197,94,0.8)" font-size="8" font-family="Noto Sans SC">Pandas | Spark | BI工具</text>
+                    <rect x="515" y="425" width="140" height="50" rx="6" fill="white" stroke="#1A7F37"/>
+                    <text x="585" y="447" text-anchor="middle" fill="#1A7F37" font-size="10" font-weight="500">📊 数据处理</text>
+                    <text x="585" y="463" text-anchor="middle" fill="#8B949E" font-size="8">ETL | 可视化 | BI</text>
                     
-                    <!-- External Tools -->
-                    <rect x="870" y="540" width="260" height="65" rx="10" fill="rgba(34,197,94,0.2)" stroke="#22c55e" stroke-width="1"/>
-                    <text x="1000" y="565" text-anchor="middle" fill="#22c55e" font-size="10" font-weight="bold" font-family="Noto Sans SC">🔌 外部工具集成</text>
-                    <text x="1000" y="585" text-anchor="middle" fill="rgba(34,197,94,0.8)" font-size="8" font-family="Noto Sans SC">Wind | Bloomberg | 恒生 | 交易系统</text>
-                    <text x="1000" y="598" text-anchor="middle" fill="rgba(34,197,94,0.8)" font-size="8" font-family="Noto Sans SC">MCP协议 | API适配器 | 数据网关</text>
+                    <rect x="670" y="425" width="185" height="50" rx="6" fill="white" stroke="#1A7F37"/>
+                    <text x="762" y="447" text-anchor="middle" fill="#1A7F37" font-size="10" font-weight="500">🔌 外部工具集成</text>
+                    <text x="762" y="463" text-anchor="middle" fill="#8B949E" font-size="8">Wind | Bloomberg | 恒生 | MCP</text>
                     
-                    <!-- Layer 5: Data & Infrastructure Layer -->
-                    <rect x="50" y="635" width="1100" height="95" rx="12" fill="url(#darkGrad)" stroke="rgba(236,72,153,0.3)" stroke-width="1"/>
-                    <text x="100" y="660" fill="#ec4899" font-size="12" font-weight="bold" font-family="Noto Sans SC">数据与基础设施层 (Data & Infrastructure Layer)</text>
+                    <!-- Layer 5: Data & Infra -->
+                    <rect x="30" y="500" width="840" height="75" rx="8" fill="#F6F8FA" stroke="#D0D7DE" stroke-width="1"/>
+                    <text x="60" y="520" fill="#57606A" font-size="11" font-weight="600">数据与基础设施层</text>
                     
-                    <rect x="70" y="675" width="200" height="40" rx="8" fill="rgba(236,72,153,0.2)" stroke="#ec4899" stroke-width="1"/>
-                    <text x="170" y="700" text-anchor="middle" fill="#ec4899" font-size="9" font-family="Noto Sans SC">📈 行情数据 | 财务数据 | 另类数据</text>
+                    <rect x="50" y="530" width="155" height="32" rx="6" fill="white" stroke="#CF222E"/>
+                    <text x="127" y="551" text-anchor="middle" fill="#CF222E" font-size="9">📈 行情 | 财务 | 另类数据</text>
                     
-                    <rect x="290" y="675" width="200" height="40" rx="8" fill="rgba(236,72,153,0.2)" stroke="#ec4899" stroke-width="1"/>
-                    <text x="390" y="700" text-anchor="middle" fill="#ec4899" font-size="9" font-family="Noto Sans SC">📄 研报库 | 公告库 | 新闻库</text>
+                    <rect x="220" y="530" width="155" height="32" rx="6" fill="white" stroke="#CF222E"/>
+                    <text x="297" y="551" text-anchor="middle" fill="#CF222E" font-size="9">📄 研报 | 公告 | 新闻库</text>
                     
-                    <rect x="510" y="675" width="200" height="40" rx="8" fill="rgba(236,72,153,0.2)" stroke="#ec4899" stroke-width="1"/>
-                    <text x="610" y="700" text-anchor="middle" fill="#ec4899" font-size="9" font-family="Noto Sans SC">🔐 用户数据 | 交易记录 | 持仓数据</text>
+                    <rect x="390" y="530" width="155" height="32" rx="6" fill="white" stroke="#CF222E"/>
+                    <text x="467" y="551" text-anchor="middle" fill="#CF222E" font-size="9">🔐 用户 | 交易 | 持仓数据</text>
                     
-                    <rect x="730" y="675" width="200" height="40" rx="8" fill="rgba(236,72,153,0.2)" stroke="#ec4899" stroke-width="1"/>
-                    <text x="830" y="700" text-anchor="middle" fill="#ec4899" font-size="9" font-family="Noto Sans SC">☁️ 云原生 | K8s | GPU集群</text>
+                    <rect x="560" y="530" width="145" height="32" rx="6" fill="white" stroke="#CF222E"/>
+                    <text x="632" y="551" text-anchor="middle" fill="#CF222E" font-size="9">☁️ 云原生 | K8s | GPU</text>
                     
-                    <rect x="950" y="675" width="180" height="40" rx="8" fill="rgba(236,72,153,0.2)" stroke="#ec4899" stroke-width="1"/>
-                    <text x="1040" y="700" text-anchor="middle" fill="#ec4899" font-size="9" font-family="Noto Sans SC">🔒 私有化部署 | 数据隔离</text>
+                    <rect x="720" y="530" width="135" height="32" rx="6" fill="white" stroke="#CF222E"/>
+                    <text x="787" y="551" text-anchor="middle" fill="#CF222E" font-size="9">🔒 私有化 | 数据隔离</text>
                     
-                    <!-- Connection Lines -->
-                    <line x1="600" y1="145" x2="600" y2="160" stroke="rgba(212,175,55,0.5)" stroke-width="2" stroke-dasharray="4,2"/>
-                    <line x1="600" y1="290" x2="600" y2="305" stroke="rgba(168,85,247,0.5)" stroke-width="2" stroke-dasharray="4,2"/>
-                    <line x1="600" y1="485" x2="600" y2="500" stroke="rgba(74,158,255,0.5)" stroke-width="2" stroke-dasharray="4,2"/>
-                    <line x1="600" y1="620" x2="600" y2="635" stroke="rgba(34,197,94,0.5)" stroke-width="2" stroke-dasharray="4,2"/>
+                    <!-- Features Box -->
+                    <rect x="30" y="590" width="840" height="75" rx="8" fill="rgba(26,127,55,0.06)" stroke="rgba(26,127,55,0.3)" stroke-width="1"/>
+                    <text x="60" y="615" fill="#1A7F37" font-size="11" font-weight="600">🎯 核心特性</text>
                     
-                    <!-- Sidebar: Key Features -->
-                    <rect x="50" y="745" width="1100" height="90" rx="12" fill="rgba(212,175,55,0.1)" stroke="rgba(212,175,55,0.3)" stroke-width="1"/>
-                    <text x="100" y="770" fill="#D4AF37" font-size="12" font-weight="bold" font-family="Noto Sans SC">🎯 核心特性</text>
+                    <text x="50" y="640" fill="#57606A" font-size="10">• 多Agent协作：复杂任务自动分解</text>
+                    <text x="250" y="640" fill="#57606A" font-size="10">• 金融垂直优化：策略回测、风控合规</text>
+                    <text x="480" y="640" fill="#57606A" font-size="10">• 私有化部署：数据不出域</text>
+                    <text x="670" y="640" fill="#57606A" font-size="10">• 可观测性：全链路追踪</text>
                     
-                    <text x="70" y="800" fill="rgba(245,245,247,0.8)" font-size="10" font-family="Noto Sans SC">• 多Agent协作：复杂任务自动分解，多Agent并行执行</text>
-                    <text x="350" y="800" fill="rgba(245,245,247,0.8)" font-size="10" font-family="Noto Sans SC">• 金融垂直优化：策略回测、风控合规、研报生成</text>
-                    <text x="650" y="800" fill="rgba(245,245,247,0.8)" font-size="10" font-family="Noto Sans SC">• 私有化部署：数据不出域，满足金融合规要求</text>
-                    <text x="950" y="800" fill="rgba(245,245,247,0.8)" font-size="10" font-family="Noto Sans SC">• 可观测性：全链路追踪</text>
-                    
-                    <text x="70" y="822" fill="rgba(245,245,247,0.8)" font-size="10" font-family="Noto Sans SC">• 上下文记忆：用户偏好学习，个性化服务</text>
-                    <text x="350" y="822" fill="rgba(245,245,247,0.8)" font-size="10" font-family="Noto Sans SC">• 外部工具集成：Wind/Bloomberg/恒生无缝对接</text>
-                    <text x="650" y="822" fill="rgba(245,245,247,0.8)" font-size="10" font-family="Noto Sans SC">• 安全合规：内容审核、操作审计、权限管控</text>
-                    <text x="950" y="822" fill="rgba(245,245,247,0.8)" font-size="10" font-family="Noto Sans SC">• 持续学习：反馈闭环</text>
+                    <text x="50" y="660" fill="#57606A" font-size="10">• 上下文记忆：用户偏好学习</text>
+                    <text x="250" y="660" fill="#57606A" font-size="10">• 外部工具集成：Wind/Bloomberg无缝对接</text>
+                    <text x="480" y="660" fill="#57606A" font-size="10">• 安全合规：内容审核、操作审计</text>
+                    <text x="670" y="660" fill="#57606A" font-size="10">• 持续学习：反馈闭环</text>
                 </svg>
             </div>
         </section>
         
-        <!-- Roadmap Section -->
-        <section class="section" id="roadmap">
+        <!-- 五层架构详解 -->
+        <section id="layers" class="section-card">
             <div class="section-header">
-                <div class="section-icon">🗺️</div>
-                <h2 class="section-title">产品Roadmap</h2>
+                <span class="section-number">2</span>
+                <h2>五层架构详解</h2>
             </div>
-            
-            <div class="roadmap-container">
-                <!-- Phase 1 -->
-                <div class="phase-card p1">
-                    <div class="phase-header">
-                        <div class="phase-number">1</div>
-                        <div class="phase-title">MVP验证</div>
-                    </div>
-                    <div class="phase-time">📅 Q1 2026 (3个月)</div>
-                    <div class="phase-content">
-                        <h4>核心目标</h4>
-                        <ul>
-                            <li>搭建Agent编排框架</li>
-                            <li>实现Quant Agent原型</li>
-                            <li>对接Wind/Tushare数据</li>
-                            <li>策略回测基础功能</li>
-                        </ul>
-                        <h4 style="margin-top: 0.75rem;">交付物</h4>
-                        <ul>
-                            <li>量化策略助手Demo</li>
-                            <li>内部POC验证报告</li>
-                        </ul>
-                    </div>
-                    <div class="phase-metrics">
-                        <span>目标用户：<strong>5名量化研究员</strong></span>
-                        <span>成功指标：<strong>策略编写效率提升30%</strong></span>
-                    </div>
+            <div class="section-content">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>层级</th>
+                                <th>核心组件</th>
+                                <th>功能说明</th>
+                                <th>技术选型</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="status status-warning">L1</span> 用户交互层</td>
+                                <td>6类用户角色 + 4种交互方式</td>
+                                <td>对话式、表单式、API、嵌入式多渠道接入</td>
+                                <td>React/Vue、WebSocket、REST API</td>
+                            </tr>
+                            <tr>
+                                <td><span class="status status-info">L2</span> Agent编排层</td>
+                                <td>智能编排中心、记忆模块、工作流引擎</td>
+                                <td>意图识别、任务分解、Agent调度、结果聚合</td>
+                                <td>LangChain、LlamaIndex、自研编排框架</td>
+                            </tr>
+                            <tr>
+                                <td><span class="status status-success">L3</span> 智能体层</td>
+                                <td>8个专业Agent</td>
+                                <td>Quant/Research/Data/Risk/Trading/Chatbot/Workflow/Browser</td>
+                                <td>LLM + 领域工具 + 专业提示词</td>
+                            </tr>
+                            <tr>
+                                <td><span class="status status-success">L4</span> 能力层</td>
+                                <td>LLM基座、RAG、代码执行、外部工具</td>
+                                <td>大模型推理、知识检索、代码沙箱、API集成</td>
+                                <td>GPT-4/Claude/DeepSeek、Milvus、MCP</td>
+                            </tr>
+                            <tr>
+                                <td><span class="status status-danger">L5</span> 基础设施层</td>
+                                <td>数据层、计算层、安全层</td>
+                                <td>行情/财务/另类数据、云原生、私有化部署</td>
+                                <td>K8s、GPU集群、数据隔离</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                
-                <!-- Phase 2 -->
-                <div class="phase-card p2">
-                    <div class="phase-header">
-                        <div class="phase-number">2</div>
-                        <div class="phase-title">核心能力</div>
-                    </div>
-                    <div class="phase-time">📅 Q2-Q3 2026 (6个月)</div>
-                    <div class="phase-content">
-                        <h4>核心目标</h4>
-                        <ul>
-                            <li>Research Agent上线</li>
-                            <li>Data Agent上线</li>
-                            <li>RAG知识库搭建</li>
-                            <li>多Agent协作机制</li>
-                        </ul>
-                        <h4 style="margin-top: 0.75rem;">交付物</h4>
-                        <ul>
-                            <li>投研助手V1.0</li>
-                            <li>研报自动生成</li>
-                            <li>数据查询对话</li>
-                        </ul>
-                    </div>
-                    <div class="phase-metrics">
-                        <span>目标用户：<strong>50人内测</strong></span>
-                        <span>成功指标：<strong>研报撰写时间减少50%</strong></span>
-                    </div>
+            </div>
+        </section>
+        
+        <!-- Agent能力矩阵 -->
+        <section id="agents" class="section-card">
+            <div class="section-header">
+                <span class="section-number">3</span>
+                <h2>Agent能力矩阵</h2>
+            </div>
+            <div class="section-content">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Agent</th>
+                                <th>覆盖率</th>
+                                <th>核心能力</th>
+                                <th>技术栈</th>
+                                <th>优先级</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>📈 Quant Agent</strong></td>
+                                <td><span class="status status-success">28%</span></td>
+                                <td>策略开发、因子计算、回测分析</td>
+                                <td>LLM + 量化框架 + 优化算法</td>
+                                <td><span class="status status-danger">P0</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>🔬 Research Agent</strong></td>
+                                <td><span class="status status-success">18%</span></td>
+                                <td>行业研究、公司分析、研报撰写</td>
+                                <td>LLM + RAG + 搜索</td>
+                                <td><span class="status status-danger">P0</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>📊 Data Agent</strong></td>
+                                <td><span class="status status-info">14%</span></td>
+                                <td>数据获取、清洗、可视化</td>
+                                <td>API + ETL + BI工具</td>
+                                <td><span class="status status-warning">P1</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>⚠️ Risk Agent</strong></td>
+                                <td><span class="status status-info">12%</span></td>
+                                <td>风险监控、压力测试、合规检查</td>
+                                <td>风控模型 + 规则引擎</td>
+                                <td><span class="status status-warning">P1</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>💬 Chatbot Agent</strong></td>
+                                <td><span class="status status-info">11%</span></td>
+                                <td>知识问答、文档写作、客户服务</td>
+                                <td>LLM + RAG</td>
+                                <td><span class="status status-info">P2</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>⚙️ Workflow Agent</strong></td>
+                                <td><span class="status status-warning">9%</span></td>
+                                <td>流程自动化、报告审核</td>
+                                <td>RPA + LLM</td>
+                                <td><span class="status status-info">P2</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>💹 Trading Agent</strong></td>
+                                <td><span class="status status-warning">5%</span></td>
+                                <td>订单执行、执行分析、算法交易</td>
+                                <td>交易系统 + 算法交易</td>
+                                <td><span class="status status-info">P2</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>🌐 Browser Agent</strong></td>
+                                <td><span class="status status-warning">2%</span></td>
+                                <td>信息采集、舆情监控</td>
+                                <td>爬虫 + NLP</td>
+                                <td><span class="status status-success">P3</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                
-                <!-- Phase 3 -->
-                <div class="phase-card p3">
-                    <div class="phase-header">
-                        <div class="phase-number">3</div>
-                        <div class="phase-title">场景扩展</div>
+            </div>
+        </section>
+        
+        <!-- Roadmap -->
+        <section id="roadmap" class="section-card">
+            <div class="section-header">
+                <span class="section-number section-number-yellow">4</span>
+                <h2>产品Roadmap</h2>
+            </div>
+            <div class="section-content">
+                <div class="roadmap-grid">
+                    <!-- Phase 1 -->
+                    <div class="phase-card p1">
+                        <div class="phase-header">
+                            <div class="phase-number">1</div>
+                            <div class="phase-title">MVP验证</div>
+                        </div>
+                        <div class="phase-time">📅 Q1 2026 (3个月)</div>
+                        <div class="phase-content">
+                            <h4>核心目标</h4>
+                            <ul>
+                                <li>搭建Agent编排框架</li>
+                                <li>实现Quant Agent原型</li>
+                                <li>对接Wind/Tushare数据</li>
+                                <li>策略回测基础功能</li>
+                            </ul>
+                            <h4>交付物</h4>
+                            <ul>
+                                <li>量化策略助手Demo</li>
+                                <li>内部POC验证报告</li>
+                            </ul>
+                        </div>
+                        <div class="phase-metrics">
+                            目标：<strong>5名量化研究员</strong><br>
+                            指标：<strong>策略编写效率+30%</strong>
+                        </div>
                     </div>
-                    <div class="phase-time">📅 Q4 2026 - Q1 2027 (6个月)</div>
-                    <div class="phase-content">
-                        <h4>核心目标</h4>
-                        <ul>
-                            <li>Risk Agent上线</li>
-                            <li>Trading Agent上线</li>
-                            <li>Workflow Agent上线</li>
-                            <li>恒生/Bloomberg对接</li>
-                        </ul>
-                        <h4 style="margin-top: 0.75rem;">交付物</h4>
-                        <ul>
-                            <li>风控预警系统</li>
-                            <li>交易执行助手</li>
-                            <li>自动化报告引擎</li>
-                        </ul>
+                    
+                    <!-- Phase 2 -->
+                    <div class="phase-card p2">
+                        <div class="phase-header">
+                            <div class="phase-number">2</div>
+                            <div class="phase-title">核心能力</div>
+                        </div>
+                        <div class="phase-time">📅 Q2-Q3 2026 (6个月)</div>
+                        <div class="phase-content">
+                            <h4>核心目标</h4>
+                            <ul>
+                                <li>Research Agent上线</li>
+                                <li>Data Agent上线</li>
+                                <li>RAG知识库搭建</li>
+                                <li>多Agent协作机制</li>
+                            </ul>
+                            <h4>交付物</h4>
+                            <ul>
+                                <li>投研助手V1.0</li>
+                                <li>研报自动生成</li>
+                            </ul>
+                        </div>
+                        <div class="phase-metrics">
+                            目标：<strong>50人内测</strong><br>
+                            指标：<strong>研报撰写时间-50%</strong>
+                        </div>
                     </div>
-                    <div class="phase-metrics">
-                        <span>目标用户：<strong>200人规模化使用</strong></span>
-                        <span>成功指标：<strong>日常事务处理自动化率60%</strong></span>
+                    
+                    <!-- Phase 3 -->
+                    <div class="phase-card p3">
+                        <div class="phase-header">
+                            <div class="phase-number">3</div>
+                            <div class="phase-title">场景扩展</div>
+                        </div>
+                        <div class="phase-time">📅 Q4'26 - Q1'27 (6个月)</div>
+                        <div class="phase-content">
+                            <h4>核心目标</h4>
+                            <ul>
+                                <li>Risk Agent上线</li>
+                                <li>Trading Agent上线</li>
+                                <li>Workflow Agent上线</li>
+                                <li>恒生/Bloomberg对接</li>
+                            </ul>
+                            <h4>交付物</h4>
+                            <ul>
+                                <li>风控预警系统</li>
+                                <li>交易执行助手</li>
+                            </ul>
+                        </div>
+                        <div class="phase-metrics">
+                            目标：<strong>200人规模化</strong><br>
+                            指标：<strong>事务自动化率60%</strong>
+                        </div>
                     </div>
-                </div>
-                
-                <!-- Phase 4 -->
-                <div class="phase-card p4">
-                    <div class="phase-header">
-                        <div class="phase-number">4</div>
-                        <div class="phase-title">智能升级</div>
-                    </div>
-                    <div class="phase-time">📅 Q2-Q4 2027 (9个月)</div>
-                    <div class="phase-content">
-                        <h4>核心目标</h4>
-                        <ul>
-                            <li>多模态能力（图表理解）</li>
-                            <li>主动式Agent（预警推送）</li>
-                            <li>个性化学习与推荐</li>
-                            <li>端到端任务自主完成</li>
-                        </ul>
-                        <h4 style="margin-top: 0.75rem;">交付物</h4>
-                        <ul>
-                            <li>金融数字员工2.0</li>
-                            <li>智能投顾助手</li>
-                            <li>全流程自动化</li>
-                        </ul>
-                    </div>
-                    <div class="phase-metrics">
-                        <span>目标用户：<strong>全公司覆盖</strong></span>
-                        <span>成功指标：<strong>人效提升100%</strong></span>
+                    
+                    <!-- Phase 4 -->
+                    <div class="phase-card p4">
+                        <div class="phase-header">
+                            <div class="phase-number">4</div>
+                            <div class="phase-title">智能升级</div>
+                        </div>
+                        <div class="phase-time">📅 Q2-Q4 2027 (9个月)</div>
+                        <div class="phase-content">
+                            <h4>核心目标</h4>
+                            <ul>
+                                <li>多模态能力（图表理解）</li>
+                                <li>主动式Agent（预警）</li>
+                                <li>个性化学习推荐</li>
+                                <li>端到端任务自主完成</li>
+                            </ul>
+                            <h4>交付物</h4>
+                            <ul>
+                                <li>金融数字员工2.0</li>
+                                <li>智能投顾助手</li>
+                            </ul>
+                        </div>
+                        <div class="phase-metrics">
+                            目标：<strong>全公司覆盖</strong><br>
+                            指标：<strong>人效提升100%</strong>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+        
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>金融数字员工产品架构与Roadmap</p>
+            <p>基于金融从业者工作场景分析设计 | 2026年2月</p>
+            <p style="margin-top: 12px;">
+                <a href="index.html">← 场景分析</a>
+                <span style="margin: 0 12px;">|</span>
+                <a href="幻方量化调研报告.html">AI转型标杆案例</a>
+            </p>
+        </footer>
     </div>
-    
-    <!-- Footer -->
-    <footer>
-        <p>金融数字员工产品架构与Roadmap</p>
-        <p>基于金融从业者工作场景分析设计 | 2026年2月</p>
-        <p style="margin-top: 1rem;">
-            <a href="index.html">← 返回场景分析</a>
-            <span style="margin: 0 1rem;">|</span>
-            <a href="幻方量化调研报告.html">AI转型标杆案例</a>
-        </p>
-    </footer>
-    
-    <!-- Back to Top Button -->
-    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
-    
-    <script>
-        // Back to top button visibility
-        window.addEventListener('scroll', () => {
-            const btn = document.querySelector('.back-to-top');
-            if (window.scrollY > 500) {
-                btn.classList.add('visible');
-            } else {
-                btn.classList.remove('visible');
-            }
-        });
-    </script>
 </body>
 </html>
